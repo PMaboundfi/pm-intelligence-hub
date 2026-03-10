@@ -259,21 +259,55 @@
 
   <!-- SWOT PANEL -->
   <div class="panel" id="panel-swot">
-    <div class="swot-controls">
-      <select class="swot-select" id="swot-company-select">
-        <option value="">— Select a competitor —</option>
-      </select>
-      <button class="scan-btn" id="swot-btn" onclick="runSwot()" style="padding:10px 22px; font-size:13px;">
-        <span>🔬</span> Generate SWOT
-      </button>
-      <span style="font-size:12px; color:#374151" id="swot-status"></span>
+
+    <!-- MODE TABS -->
+    <div class="output-tabs" style="margin-bottom:20px;">
+      <button class="output-tab active" id="swot-tab-search" onclick="switchSwotMode('search', this)">🔍 Search by Name</button>
+      <button class="output-tab" id="swot-tab-discover" onclick="switchSwotMode('discover', this)">🤖 Auto-Discover</button>
     </div>
 
-    <div id="swot-results-area">
-      <div class="empty-state">
-        <div class="icon">🔬</div>
-        <h3>Select a competitor to analyze</h3>
-        <p>Choose a company from the dropdown and click Generate SWOT to get a full analysis across 6 dimensions.</p>
+    <!-- SEARCH MODE -->
+    <div id="swot-mode-search">
+      <div class="competitors-card" style="margin-bottom:20px;">
+        <h3>🔍 Search Any Company</h3>
+        <p style="font-size:12px; color:#6B7280; margin-bottom:14px;">Type any company name — not limited to your tracked list.</p>
+        <div class="input-row">
+          <input type="text" class="api-input" id="swot-search-input" placeholder="e.g. Noom, Klinio, Beat Diabetes..." onkeydown="if(event.key==='Enter') runSwotSearch()"/>
+          <button class="btn btn-primary" id="swot-search-btn" onclick="runSwotSearch()">🔬 Analyze</button>
+        </div>
+        <div style="margin-top:12px;">
+          <div style="font-size:11px; color:#4B5563; margin-bottom:8px;">Or pick from your tracked list:</div>
+          <div class="competitor-tags" id="swot-quick-tags"></div>
+        </div>
+      </div>
+      <span style="font-size:12px; color:#374151" id="swot-status"></span>
+      <div id="swot-results-area">
+        <div class="empty-state">
+          <div class="icon">🔬</div>
+          <h3>Search any competitor</h3>
+          <p>Type a company name above or click one of your tracked competitors to generate a full SWOT analysis.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUTO-DISCOVER MODE -->
+    <div id="swot-mode-discover" style="display:none;">
+      <div class="competitors-card" style="margin-bottom:20px;">
+        <h3>🤖 Describe Your Product</h3>
+        <p style="font-size:12px; color:#6B7280; margin-bottom:14px;">AI will identify your real competitors based on what your product does.</p>
+        <textarea class="api-input" id="product-description" rows="4" style="width:100%; resize:vertical; font-family:inherit; line-height:1.6;"
+          placeholder="Describe your product...">A mobile app that collects pre and post glucose readings from users and generates personalized diet plans based on their data. Currently in early validation with 10-15 users in the diabetes management space.</textarea>
+        <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
+          <button class="btn btn-primary" id="discover-btn" onclick="runAutoDiscover()">🤖 Find My Competitors</button>
+          <span style="font-size:11px; color:#4B5563;">Finds top 6 competitors · Generates SWOT for each</span>
+        </div>
+      </div>
+      <div id="discover-results-area">
+        <div class="empty-state">
+          <div class="icon">🤖</div>
+          <h3>Auto-discover your competitive landscape</h3>
+          <p>Edit the product description above and click "Find My Competitors" to map your full competitive landscape.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -617,27 +651,130 @@ ${text.slice(0, 8000)}`;
     a.click();
   }
 
-  async function runSwot() {
+  function switchSwotMode(mode, el) {
+    document.querySelectorAll('#panel-swot .output-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('swot-mode-search').style.display = mode === 'search' ? 'block' : 'none';
+    document.getElementById('swot-mode-discover').style.display = mode === 'discover' ? 'block' : 'none';
+  }
+
+  function populateSwotDropdown() {
+    // Quick tags for search mode
+    const container = document.getElementById('swot-quick-tags');
+    if (!container) return;
+    container.innerHTML = competitors.map(c =>
+      `<div class="tag" style="cursor:pointer;" onclick="quickSwot('${c}')">${c}</div>`
+    ).join('');
+  }
+
+  function quickSwot(company) {
+    document.getElementById('swot-search-input').value = company;
+    runSwotSearch();
+  }
+
+  async function runSwotSearch() {
     const key = getKey();
     if (!key) return showToast('⚠️ Save your OpenRouter API key first', 'error');
-    const company = document.getElementById('swot-company-select').value;
-    if (!company) return showToast('Please select a competitor', 'error');
+    const company = document.getElementById('swot-search-input').value.trim();
+    if (!company) return showToast('Enter a company name', 'error');
 
-    const btn = document.getElementById('swot-btn');
+    const btn = document.getElementById('swot-search-btn');
     btn.disabled = true;
-    btn.innerHTML = '<span class="spinner" style="width:14px;height:14px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:6px"></span> Analyzing...';
+    btn.textContent = 'Analyzing...';
     document.getElementById('swot-status').textContent = '';
-
     document.getElementById('swot-results-area').innerHTML = `
       <div class="loading-state">
         <div class="spinner"></div>
-        <p>Generating full SWOT analysis for ${company}...</p>
-        <span>Analyzing 6 dimensions · Takes 20–40 seconds</span>
+        <p>Generating SWOT for ${company}...</p>
+        <span>Analyzing 6 dimensions · 20–40 seconds</span>
       </div>`;
 
+    try {
+      const data = await fetchSwotForCompany(company);
+      renderSwot(data, 'swot-results-area');
+      document.getElementById('swot-status').textContent = `Analysis complete · ${new Date().toLocaleTimeString()}`;
+      showToast(`✅ SWOT ready for ${company}`);
+    } catch(e) {
+      document.getElementById('swot-results-area').innerHTML = `<div class="empty-state"><div class="icon">⚠️</div><h3>Failed</h3><p>${e.message}</p></div>`;
+      showToast('Failed: ' + e.message, 'error');
+    }
+    btn.disabled = false;
+    btn.textContent = '🔬 Analyze';
+  }
+
+  async function runAutoDiscover() {
+    const key = getKey();
+    if (!key) return showToast('⚠️ Save your OpenRouter API key first', 'error');
+    const desc = document.getElementById('product-description').value.trim();
+    if (!desc) return showToast('Add a product description first', 'error');
+
+    const btn = document.getElementById('discover-btn');
+    btn.disabled = true;
+    btn.textContent = 'Discovering...';
+
+    document.getElementById('discover-results-area').innerHTML = `
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Finding your top competitors...</p>
+        <span>This may take 30–60 seconds</span>
+      </div>`;
+
+    // Step 1: identify competitors
+    const discoverPrompt = `You are a Healthtech competitive intelligence analyst.
+
+A startup has this product: "${desc}"
+
+Identify the 5 most direct competitors in the diabetes/digital health space.
+Return ONLY a JSON array of company names (no explanation, no markdown):
+["Company A", "Company B", "Company C", "Company D", "Company E"]`;
+
+    try {
+      const text = await callOpenRouter([{ role: 'user', content: discoverPrompt }], 512);
+      const clean = text.replace(/```json|```/g, '').trim();
+      const start = clean.indexOf('[');
+      const end = clean.lastIndexOf(']') + 1;
+      const companyList = JSON.parse(clean.slice(start, end));
+
+      // Add to tracked competitors
+      companyList.forEach(c => { if (!competitors.includes(c)) competitors.push(c); });
+      renderCompetitors();
+      showToast(`✅ Found ${companyList.length} competitors — added to your list`);
+
+      // Step 2: generate SWOT for each
+      document.getElementById('discover-results-area').innerHTML = `
+        <div style="font-size:13px; color:#9CA3AF; margin-bottom:16px;">
+          Found <strong style="color:#fff">${companyList.length} competitors</strong> for your product. Generating SWOT analyses...
+        </div>
+        <div id="discover-swot-list"></div>`;
+
+      for (let i = 0; i < companyList.length; i++) {
+        const company = companyList[i];
+        const placeholder = document.createElement('div');
+        placeholder.id = `swot-card-${i}`;
+        placeholder.innerHTML = `<div class="loading-state" style="padding:30px;"><div class="spinner"></div><p>Analyzing ${company}... (${i+1}/${companyList.length})</p></div>`;
+        document.getElementById('discover-swot-list').appendChild(placeholder);
+
+        try {
+          const data = await fetchSwotForCompany(company);
+          placeholder.innerHTML = '';
+          renderSwot(data, `swot-card-${i}`, true);
+        } catch(e) {
+          placeholder.innerHTML = `<div style="padding:12px; color:#EF4444; font-size:12px;">Failed to analyze ${company}: ${e.message}</div>`;
+        }
+      }
+      showToast('✅ All SWOT analyses complete');
+    } catch(e) {
+      document.getElementById('discover-results-area').innerHTML = `<div class="empty-state"><div class="icon">⚠️</div><h3>Discovery failed</h3><p>${e.message}</p></div>`;
+      showToast('Discovery failed: ' + e.message, 'error');
+    }
+    btn.disabled = false;
+    btn.textContent = '🤖 Find My Competitors';
+  }
+
+  async function fetchSwotForCompany(company) {
     const prompt = `You are a senior Healthtech strategy analyst specializing in diabetes technology.
 
-Generate a comprehensive SWOT analysis for "${company}" as a competitor in the diabetes/CGM healthtech market.
+Generate a comprehensive SWOT analysis for "${company}" as a competitor in the diabetes/digital health market.
 
 Return ONLY a valid JSON object (no markdown, no extra text):
 {
@@ -650,103 +787,80 @@ Return ONLY a valid JSON object (no markdown, no extra text):
     "threats": ["point 1", "point 2", "point 3", "point 4"]
   },
   "dimensions": {
-    "productFeatures": "2 sentence assessment of their product capabilities and differentiation",
+    "productFeatures": "2 sentence assessment of their product capabilities",
     "pricingModel": "2 sentence assessment of their pricing and business model",
-    "clinicalEvidence": "2 sentence assessment of their clinical validation and evidence base",
-    "marketPositioning": "2 sentence assessment of their market positioning and brand",
-    "fdaApprovals": "2 sentence assessment of their regulatory status and FDA clearances",
-    "fundingFinancials": "2 sentence assessment of their funding, revenue, and financial position"
+    "clinicalEvidence": "2 sentence assessment of their clinical validation",
+    "marketPositioning": "2 sentence assessment of their market positioning",
+    "fdaApprovals": "2 sentence assessment of their regulatory status",
+    "fundingFinancials": "2 sentence assessment of their funding and financials"
   }
 }`;
-
-    try {
-      const text = await callOpenRouter([{ role: 'user', content: prompt }], 2048);
-      const clean = text.replace(/```json|```/g, '').trim();
-      const start = clean.indexOf('{');
-      const end = clean.lastIndexOf('}') + 1;
-      const data = JSON.parse(clean.slice(start, end));
-      renderSwot(data);
-      document.getElementById('swot-status').textContent = `Analysis complete · ${new Date().toLocaleTimeString()}`;
-      showToast(`✅ SWOT analysis ready for ${company}`);
-    } catch(e) {
-      document.getElementById('swot-results-area').innerHTML = `
-        <div class="empty-state">
-          <div class="icon">⚠️</div>
-          <h3>Analysis failed</h3>
-          <p>${e.message}</p>
-        </div>`;
-      showToast('Analysis failed: ' + e.message, 'error');
-    }
-
-    btn.disabled = false;
-    btn.innerHTML = '<span>🔬</span> Generate SWOT';
+    const text = await callOpenRouter([{ role: 'user', content: prompt }], 2048);
+    const clean = text.replace(/```json|```/g, '').trim();
+    const start = clean.indexOf('{');
+    const end = clean.lastIndexOf('}') + 1;
+    return JSON.parse(clean.slice(start, end));
   }
 
-  function renderSwot(data) {
+  function renderSwot(data, containerId, collapsed = false) {
     const dimLabels = {
-      productFeatures: { icon: '🧩', label: 'Product Features' },
-      pricingModel:    { icon: '💰', label: 'Pricing & Business Model' },
-      clinicalEvidence:{ icon: '🔬', label: 'Clinical Evidence' },
+      productFeatures:  { icon: '🧩', label: 'Product Features' },
+      pricingModel:     { icon: '💰', label: 'Pricing & Business Model' },
+      clinicalEvidence: { icon: '🔬', label: 'Clinical Evidence' },
       marketPositioning:{ icon: '🎯', label: 'Market Positioning' },
-      fdaApprovals:    { icon: '✅', label: 'FDA Approvals' },
+      fdaApprovals:     { icon: '✅', label: 'FDA Approvals' },
       fundingFinancials:{ icon: '📊', label: 'Funding & Financials' },
     };
-
-    document.getElementById('swot-results-area').innerHTML = `
-      <div class="swot-company-header">
-        <div>
-          <h3>${data.company}</h3>
-          <span>${data.overview}</span>
+    const uid = data.company.replace(/\s/g, '_');
+    const container = document.getElementById(containerId);
+    container.innerHTML = `
+      <div style="margin-bottom:24px; border:1px solid #1e3a5f; border-radius:12px; overflow:hidden;">
+        <div class="swot-company-header" style="cursor:${collapsed?'pointer':'default'};" onclick="${collapsed?`toggleSwotCard('${uid}')`:''}">
+          <div>
+            <h3>${data.company}</h3>
+            <span>${data.overview}</span>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();exportSwotData(${JSON.stringify(data).replace(/"/g,'&quot;')})">⬇ Export</button>
+            ${collapsed ? `<span id="chevron-${uid}" style="color:#4B5563;font-size:18px;">▼</span>` : ''}
+          </div>
         </div>
-        <button class="btn btn-secondary btn-sm" onclick="exportSwot()">⬇ Export Analysis</button>
-      </div>
-
-      <div class="swot-grid">
-        <div class="swot-quadrant strengths">
-          <h4>💪 Strengths</h4>
-          <ul>${data.swot.strengths.map(s => `<li>${s}</li>`).join('')}</ul>
+        <div id="swotbody-${uid}" style="${collapsed?'display:none;':''}padding:16px;">
+          <div class="swot-grid">
+            <div class="swot-quadrant strengths"><h4>💪 Strengths</h4><ul>${data.swot.strengths.map(s=>`<li>${s}</li>`).join('')}</ul></div>
+            <div class="swot-quadrant weaknesses"><h4>⚠️ Weaknesses</h4><ul>${data.swot.weaknesses.map(s=>`<li>${s}</li>`).join('')}</ul></div>
+            <div class="swot-quadrant opportunities"><h4>🚀 Opportunities</h4><ul>${data.swot.opportunities.map(s=>`<li>${s}</li>`).join('')}</ul></div>
+            <div class="swot-quadrant threats"><h4>🔥 Threats</h4><ul>${data.swot.threats.map(s=>`<li>${s}</li>`).join('')}</ul></div>
+          </div>
+          <div style="font-size:13px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;">📋 Dimension Analysis</div>
+          <div class="dimensions-grid">
+            ${Object.entries(data.dimensions).map(([key,val])=>`
+              <div class="dimension-card">
+                <h5>${dimLabels[key]?.icon} ${dimLabels[key]?.label}</h5>
+                <p>${val}</p>
+              </div>`).join('')}
+          </div>
         </div>
-        <div class="swot-quadrant weaknesses">
-          <h4>⚠️ Weaknesses</h4>
-          <ul>${data.swot.weaknesses.map(s => `<li>${s}</li>`).join('')}</ul>
-        </div>
-        <div class="swot-quadrant opportunities">
-          <h4>🚀 Opportunities</h4>
-          <ul>${data.swot.opportunities.map(s => `<li>${s}</li>`).join('')}</ul>
-        </div>
-        <div class="swot-quadrant threats">
-          <h4>🔥 Threats</h4>
-          <ul>${data.swot.threats.map(s => `<li>${s}</li>`).join('')}</ul>
-        </div>
-      </div>
-
-      <div style="font-size:13px; font-weight:600; color:#9CA3AF; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:12px;">📋 Dimension Analysis</div>
-      <div class="dimensions-grid">
-        ${Object.entries(data.dimensions).map(([key, val]) => `
-          <div class="dimension-card">
-            <h5>${dimLabels[key]?.icon} ${dimLabels[key]?.label}</h5>
-            <p>${val}</p>
-          </div>`).join('')}
       </div>`;
-
     window._lastSwotData = data;
   }
 
-  function exportSwot() {
-    const data = window._lastSwotData;
-    if (!data) return;
+  function toggleSwotCard(uid) {
+    const body = document.getElementById(`swotbody-${uid}`);
+    const chevron = document.getElementById(`chevron-${uid}`);
+    if (body.style.display === 'none') { body.style.display = 'block'; if(chevron) chevron.textContent = '▲'; }
+    else { body.style.display = 'none'; if(chevron) chevron.textContent = '▼'; }
+  }
+
+  function exportSwotData(data) {
     const lines = [
       `SWOT ANALYSIS: ${data.company.toUpperCase()}`,
       `Generated: ${new Date().toDateString()}`,
       `Overview: ${data.overview}`, ``,
-      `STRENGTHS`, `${'━'.repeat(30)}`,
-      ...data.swot.strengths.map(s => `  → ${s}`), ``,
-      `WEAKNESSES`, `${'━'.repeat(30)}`,
-      ...data.swot.weaknesses.map(s => `  → ${s}`), ``,
-      `OPPORTUNITIES`, `${'━'.repeat(30)}`,
-      ...data.swot.opportunities.map(s => `  → ${s}`), ``,
-      `THREATS`, `${'━'.repeat(30)}`,
-      ...data.swot.threats.map(s => `  → ${s}`), ``,
+      `STRENGTHS`, `${'━'.repeat(30)}`, ...data.swot.strengths.map(s=>`  → ${s}`), ``,
+      `WEAKNESSES`, `${'━'.repeat(30)}`, ...data.swot.weaknesses.map(s=>`  → ${s}`), ``,
+      `OPPORTUNITIES`, `${'━'.repeat(30)}`, ...data.swot.opportunities.map(s=>`  → ${s}`), ``,
+      `THREATS`, `${'━'.repeat(30)}`, ...data.swot.threats.map(s=>`  → ${s}`), ``,
       `DIMENSION ANALYSIS`, `${'━'.repeat(30)}`,
       `Product Features: ${data.dimensions.productFeatures}`, ``,
       `Pricing & Business Model: ${data.dimensions.pricingModel}`, ``,
@@ -758,7 +872,6 @@ Return ONLY a valid JSON object (no markdown, no extra text):
     downloadText(lines.join('\n'), `swot-${data.company.toLowerCase().replace(/\s/g,'-')}-${new Date().toISOString().split('T')[0]}.txt`);
     showToast('✅ SWOT exported');
   }
-
   function showToast(msg, type) {
     const t = document.getElementById('toast');
     t.textContent = msg;
