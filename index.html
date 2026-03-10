@@ -101,6 +101,33 @@
     .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #059669; display: inline-block; margin-right: 6px; animation: pulse 2s infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
     .model-note { font-size: 11px; color: #4B5563; margin-top: 8px; }
+
+    /* SWOT STYLES */
+    .swot-controls { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+    .swot-select { background: #111827; border: 1px solid #1e3a5f; color: #fff; padding: 10px 14px; border-radius: 8px; font-size: 13px; outline: none; min-width: 200px; cursor: pointer; }
+    .swot-select:focus { border-color: #2563EB; }
+    .swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+    .swot-quadrant { border-radius: 12px; padding: 20px; border: 1px solid; }
+    .swot-quadrant.strengths { background: #05966911; border-color: #05966944; }
+    .swot-quadrant.weaknesses { background: #DC262611; border-color: #DC262644; }
+    .swot-quadrant.opportunities { background: #2563EB11; border-color: #2563EB44; }
+    .swot-quadrant.threats { background: #D9770611; border-color: #D9770644; }
+    .swot-quadrant h4 { font-size: 12px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .swot-quadrant.strengths h4 { color: #6EE7B7; }
+    .swot-quadrant.weaknesses h4 { color: #FCA5A5; }
+    .swot-quadrant.opportunities h4 { color: #93C5FD; }
+    .swot-quadrant.threats h4 { color: #FCD34D; }
+    .swot-quadrant ul { list-style: none; padding: 0; }
+    .swot-quadrant ul li { font-size: 12px; color: #D1D5DB; line-height: 1.6; padding: 5px 0; border-bottom: 1px solid #ffffff08; display: flex; gap: 8px; }
+    .swot-quadrant ul li:last-child { border-bottom: none; }
+    .swot-quadrant ul li::before { content: '→'; opacity: 0.4; flex-shrink: 0; }
+    .dimensions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+    .dimension-card { background: #111827; border: 1px solid #1e3a5f; border-radius: 10px; padding: 16px; }
+    .dimension-card h5 { font-size: 11px; font-weight: 600; color: #4B7BE5; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .dimension-card p { font-size: 12px; color: #9CA3AF; line-height: 1.6; }
+    .swot-company-header { background: #111827; border: 1px solid #1e3a5f; border-radius: 12px; padding: 18px 24px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+    .swot-company-header h3 { font-size: 16px; font-weight: 700; color: #fff; }
+    .swot-company-header span { font-size: 12px; color: #4B5563; }
   </style>
 </head>
 <body>
@@ -118,6 +145,10 @@
     </div>
     <div class="nav-item" onclick="switchPanel('clinical', this)">
       <span class="icon">🧬</span> Clinical Translator
+      <span class="badge">Live</span>
+    </div>
+    <div class="nav-item" onclick="switchPanel('swot', this)">
+      <span class="icon">🔬</span> SWOT Analyzer
       <span class="badge">Live</span>
     </div>
     <div class="nav-item" onclick="switchPanel('trends', this)">
@@ -226,6 +257,27 @@
     </div>
   </div>
 
+  <!-- SWOT PANEL -->
+  <div class="panel" id="panel-swot">
+    <div class="swot-controls">
+      <select class="swot-select" id="swot-company-select">
+        <option value="">— Select a competitor —</option>
+      </select>
+      <button class="scan-btn" id="swot-btn" onclick="runSwot()" style="padding:10px 22px; font-size:13px;">
+        <span>🔬</span> Generate SWOT
+      </button>
+      <span style="font-size:12px; color:#374151" id="swot-status"></span>
+    </div>
+
+    <div id="swot-results-area">
+      <div class="empty-state">
+        <div class="icon">🔬</div>
+        <h3>Select a competitor to analyze</h3>
+        <p>Choose a company from the dropdown and click Generate SWOT to get a full analysis across 6 dimensions.</p>
+      </div>
+    </div>
+  </div>
+
   <!-- TRENDS PANEL -->
   <div class="panel" id="panel-trends">
     <div class="coming-soon">
@@ -264,12 +316,14 @@
       document.getElementById('api-key-clinical').value = saved;
     }
     renderCompetitors();
+    populateSwotDropdown();
     updateLastScanTime();
   });
 
   const panelMeta = {
     radar:    { title: 'Competitor Radar',    sub: 'Daily intelligence scan · Last 24 hours' },
     clinical: { title: 'Clinical Translator', sub: 'Upload a study PDF · Get 3 business outputs' },
+    swot:     { title: 'SWOT Analyzer',      sub: 'Full competitor analysis across 6 dimensions' },
     trends:   { title: 'Market Trends',       sub: 'Weekly healthtech signals · Phase 2' },
     briefs:   { title: 'Brief Writer',        sub: 'AI-powered content drafts · Phase 2' },
   };
@@ -305,6 +359,15 @@
     document.getElementById('competitor-tags').innerHTML = competitors.map((c, i) => `
       <div class="tag">${c}<span class="remove" onclick="removeCompetitor(${i})">×</span></div>
     `).join('');
+    populateSwotDropdown();
+  }
+
+  function populateSwotDropdown() {
+    const sel = document.getElementById('swot-company-select');
+    if (!sel) return;
+    const current = sel.value;
+    sel.innerHTML = '<option value="">— Select a competitor —</option>' +
+      competitors.map(c => `<option value="${c}" ${c === current ? 'selected' : ''}>${c}</option>`).join('');
   }
 
   function addCompetitor() {
@@ -552,6 +615,148 @@ ${text.slice(0, 8000)}`;
     a.href = URL.createObjectURL(blob);
     a.download = filename;
     a.click();
+  }
+
+  async function runSwot() {
+    const key = getKey();
+    if (!key) return showToast('⚠️ Save your OpenRouter API key first', 'error');
+    const company = document.getElementById('swot-company-select').value;
+    if (!company) return showToast('Please select a competitor', 'error');
+
+    const btn = document.getElementById('swot-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner" style="width:14px;height:14px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:6px"></span> Analyzing...';
+    document.getElementById('swot-status').textContent = '';
+
+    document.getElementById('swot-results-area').innerHTML = `
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Generating full SWOT analysis for ${company}...</p>
+        <span>Analyzing 6 dimensions · Takes 20–40 seconds</span>
+      </div>`;
+
+    const prompt = `You are a senior Healthtech strategy analyst specializing in diabetes technology.
+
+Generate a comprehensive SWOT analysis for "${company}" as a competitor in the diabetes/CGM healthtech market.
+
+Return ONLY a valid JSON object (no markdown, no extra text):
+{
+  "company": "${company}",
+  "overview": "One sentence describing what ${company} does in diabetes/healthtech",
+  "swot": {
+    "strengths": ["point 1", "point 2", "point 3", "point 4"],
+    "weaknesses": ["point 1", "point 2", "point 3", "point 4"],
+    "opportunities": ["point 1", "point 2", "point 3", "point 4"],
+    "threats": ["point 1", "point 2", "point 3", "point 4"]
+  },
+  "dimensions": {
+    "productFeatures": "2 sentence assessment of their product capabilities and differentiation",
+    "pricingModel": "2 sentence assessment of their pricing and business model",
+    "clinicalEvidence": "2 sentence assessment of their clinical validation and evidence base",
+    "marketPositioning": "2 sentence assessment of their market positioning and brand",
+    "fdaApprovals": "2 sentence assessment of their regulatory status and FDA clearances",
+    "fundingFinancials": "2 sentence assessment of their funding, revenue, and financial position"
+  }
+}`;
+
+    try {
+      const text = await callOpenRouter([{ role: 'user', content: prompt }], 2048);
+      const clean = text.replace(/```json|```/g, '').trim();
+      const start = clean.indexOf('{');
+      const end = clean.lastIndexOf('}') + 1;
+      const data = JSON.parse(clean.slice(start, end));
+      renderSwot(data);
+      document.getElementById('swot-status').textContent = `Analysis complete · ${new Date().toLocaleTimeString()}`;
+      showToast(`✅ SWOT analysis ready for ${company}`);
+    } catch(e) {
+      document.getElementById('swot-results-area').innerHTML = `
+        <div class="empty-state">
+          <div class="icon">⚠️</div>
+          <h3>Analysis failed</h3>
+          <p>${e.message}</p>
+        </div>`;
+      showToast('Analysis failed: ' + e.message, 'error');
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = '<span>🔬</span> Generate SWOT';
+  }
+
+  function renderSwot(data) {
+    const dimLabels = {
+      productFeatures: { icon: '🧩', label: 'Product Features' },
+      pricingModel:    { icon: '💰', label: 'Pricing & Business Model' },
+      clinicalEvidence:{ icon: '🔬', label: 'Clinical Evidence' },
+      marketPositioning:{ icon: '🎯', label: 'Market Positioning' },
+      fdaApprovals:    { icon: '✅', label: 'FDA Approvals' },
+      fundingFinancials:{ icon: '📊', label: 'Funding & Financials' },
+    };
+
+    document.getElementById('swot-results-area').innerHTML = `
+      <div class="swot-company-header">
+        <div>
+          <h3>${data.company}</h3>
+          <span>${data.overview}</span>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="exportSwot()">⬇ Export Analysis</button>
+      </div>
+
+      <div class="swot-grid">
+        <div class="swot-quadrant strengths">
+          <h4>💪 Strengths</h4>
+          <ul>${data.swot.strengths.map(s => `<li>${s}</li>`).join('')}</ul>
+        </div>
+        <div class="swot-quadrant weaknesses">
+          <h4>⚠️ Weaknesses</h4>
+          <ul>${data.swot.weaknesses.map(s => `<li>${s}</li>`).join('')}</ul>
+        </div>
+        <div class="swot-quadrant opportunities">
+          <h4>🚀 Opportunities</h4>
+          <ul>${data.swot.opportunities.map(s => `<li>${s}</li>`).join('')}</ul>
+        </div>
+        <div class="swot-quadrant threats">
+          <h4>🔥 Threats</h4>
+          <ul>${data.swot.threats.map(s => `<li>${s}</li>`).join('')}</ul>
+        </div>
+      </div>
+
+      <div style="font-size:13px; font-weight:600; color:#9CA3AF; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:12px;">📋 Dimension Analysis</div>
+      <div class="dimensions-grid">
+        ${Object.entries(data.dimensions).map(([key, val]) => `
+          <div class="dimension-card">
+            <h5>${dimLabels[key]?.icon} ${dimLabels[key]?.label}</h5>
+            <p>${val}</p>
+          </div>`).join('')}
+      </div>`;
+
+    window._lastSwotData = data;
+  }
+
+  function exportSwot() {
+    const data = window._lastSwotData;
+    if (!data) return;
+    const lines = [
+      `SWOT ANALYSIS: ${data.company.toUpperCase()}`,
+      `Generated: ${new Date().toDateString()}`,
+      `Overview: ${data.overview}`, ``,
+      `STRENGTHS`, `${'━'.repeat(30)}`,
+      ...data.swot.strengths.map(s => `  → ${s}`), ``,
+      `WEAKNESSES`, `${'━'.repeat(30)}`,
+      ...data.swot.weaknesses.map(s => `  → ${s}`), ``,
+      `OPPORTUNITIES`, `${'━'.repeat(30)}`,
+      ...data.swot.opportunities.map(s => `  → ${s}`), ``,
+      `THREATS`, `${'━'.repeat(30)}`,
+      ...data.swot.threats.map(s => `  → ${s}`), ``,
+      `DIMENSION ANALYSIS`, `${'━'.repeat(30)}`,
+      `Product Features: ${data.dimensions.productFeatures}`, ``,
+      `Pricing & Business Model: ${data.dimensions.pricingModel}`, ``,
+      `Clinical Evidence: ${data.dimensions.clinicalEvidence}`, ``,
+      `Market Positioning: ${data.dimensions.marketPositioning}`, ``,
+      `FDA Approvals: ${data.dimensions.fdaApprovals}`, ``,
+      `Funding & Financials: ${data.dimensions.fundingFinancials}`,
+    ];
+    downloadText(lines.join('\n'), `swot-${data.company.toLowerCase().replace(/\s/g,'-')}-${new Date().toISOString().split('T')[0]}.txt`);
+    showToast('✅ SWOT exported');
   }
 
   function showToast(msg, type) {
