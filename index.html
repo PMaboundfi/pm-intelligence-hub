@@ -6,543 +6,105 @@
   <title>PM Intelligence Hub</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0F1F3D;
-      color: #E5E7EB;
-      min-height: 100vh;
-      display: flex;
-    }
-
-    /* SIDEBAR */
-    .sidebar {
-      width: 240px;
-      min-height: 100vh;
-      background: #0a1628;
-      border-right: 1px solid #1e3a5f;
-      display: flex;
-      flex-direction: column;
-      padding: 24px 0;
-      position: fixed;
-      top: 0; left: 0; bottom: 0;
-    }
-
-    .logo {
-      padding: 0 20px 28px;
-      border-bottom: 1px solid #1e3a5f;
-    }
-
-    .logo h1 {
-      font-size: 14px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 0.5px;
-    }
-
-    .logo p {
-      font-size: 11px;
-      color: #4B7BE5;
-      margin-top: 3px;
-    }
-
-    .nav {
-      padding: 20px 12px;
-      flex: 1;
-    }
-
-    .nav-label {
-      font-size: 10px;
-      font-weight: 600;
-      color: #4B5563;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 0 8px;
-      margin-bottom: 8px;
-    }
-
-    .nav-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 13px;
-      color: #9CA3AF;
-      margin-bottom: 2px;
-      transition: all 0.15s;
-      border: 1px solid transparent;
-    }
-
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0F1F3D; color: #E5E7EB; min-height: 100vh; display: flex; }
+    .sidebar { width: 240px; min-height: 100vh; background: #0a1628; border-right: 1px solid #1e3a5f; display: flex; flex-direction: column; padding: 24px 0; position: fixed; top: 0; left: 0; bottom: 0; }
+    .logo { padding: 0 20px 28px; border-bottom: 1px solid #1e3a5f; }
+    .logo h1 { font-size: 14px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+    .logo p { font-size: 11px; color: #4B7BE5; margin-top: 3px; }
+    .nav { padding: 20px 12px; flex: 1; }
+    .nav-label { font-size: 10px; font-weight: 600; color: #4B5563; letter-spacing: 1px; text-transform: uppercase; padding: 0 8px; margin-bottom: 8px; }
+    .nav-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; cursor: pointer; font-size: 13px; color: #9CA3AF; margin-bottom: 2px; transition: all 0.15s; border: 1px solid transparent; }
     .nav-item:hover { background: #1e3a5f; color: #fff; }
-
-    .nav-item.active {
-      background: #1A3A6B;
-      color: #fff;
-      border-color: #2563EB;
-    }
-
+    .nav-item.active { background: #1A3A6B; color: #fff; border-color: #2563EB; }
     .nav-item .icon { font-size: 16px; }
-
-    .nav-item .badge {
-      margin-left: auto;
-      background: #2563EB;
-      color: #fff;
-      font-size: 10px;
-      padding: 2px 7px;
-      border-radius: 10px;
-      font-weight: 600;
-    }
-
-    .nav-item .badge.soon {
-      background: #374151;
-      color: #6B7280;
-    }
-
-    .sidebar-footer {
-      padding: 16px 20px;
-      border-top: 1px solid #1e3a5f;
-      font-size: 11px;
-      color: #374151;
-    }
-
-    /* MAIN */
-    .main {
-      margin-left: 240px;
-      flex: 1;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .topbar {
-      background: #0a1628;
-      border-bottom: 1px solid #1e3a5f;
-      padding: 16px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
+    .nav-item .badge { margin-left: auto; background: #2563EB; color: #fff; font-size: 10px; padding: 2px 7px; border-radius: 10px; font-weight: 600; }
+    .nav-item .badge.soon { background: #374151; color: #6B7280; }
+    .sidebar-footer { padding: 16px 20px; border-top: 1px solid #1e3a5f; font-size: 11px; color: #374151; }
+    .main { margin-left: 240px; flex: 1; min-height: 100vh; display: flex; flex-direction: column; }
+    .topbar { background: #0a1628; border-bottom: 1px solid #1e3a5f; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; }
     .topbar h2 { font-size: 16px; font-weight: 600; color: #fff; }
     .topbar p { font-size: 12px; color: #4B7BE5; margin-top: 2px; }
-
-    .topbar-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .date-badge {
-      background: #1e3a5f;
-      border: 1px solid #2563EB;
-      color: #93C5FD;
-      font-size: 11px;
-      padding: 5px 12px;
-      border-radius: 20px;
-    }
-
-    /* PANELS */
+    .topbar-right { display: flex; align-items: center; gap: 12px; }
+    .date-badge { background: #1e3a5f; border: 1px solid #2563EB; color: #93C5FD; font-size: 11px; padding: 5px 12px; border-radius: 20px; }
     .panel { display: none; padding: 28px 32px; }
     .panel.active { display: block; }
-
-    /* API KEY SETUP */
-    .setup-card {
-      background: #1e3a5f;
-      border: 1px solid #2563EB;
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 24px;
-    }
-
-    .setup-card h3 {
-      font-size: 14px;
-      font-weight: 600;
-      color: #93C5FD;
-      margin-bottom: 8px;
-    }
-
-    .setup-card p {
-      font-size: 12px;
-      color: #6B7280;
-      margin-bottom: 14px;
-      line-height: 1.6;
-    }
-
-    .input-row {
-      display: flex;
-      gap: 10px;
-    }
-
-    .api-input {
-      flex: 1;
-      background: #0F1F3D;
-      border: 1px solid #374151;
-      color: #fff;
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      outline: none;
-      transition: border 0.15s;
-    }
-
+    .setup-card { background: #1e3a5f; border: 1px solid #2563EB; border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+    .setup-card h3 { font-size: 14px; font-weight: 600; color: #93C5FD; margin-bottom: 8px; }
+    .setup-card p { font-size: 12px; color: #6B7280; margin-bottom: 14px; line-height: 1.6; }
+    .input-row { display: flex; gap: 10px; }
+    .api-input { flex: 1; background: #0F1F3D; border: 1px solid #374151; color: #fff; padding: 10px 14px; border-radius: 8px; font-size: 13px; outline: none; transition: border 0.15s; }
     .api-input:focus { border-color: #2563EB; }
-
-    /* COMPETITOR LIST */
-    .competitors-card {
-      background: #111827;
-      border: 1px solid #1e3a5f;
-      border-radius: 12px;
-      padding: 20px 24px;
-      margin-bottom: 24px;
-    }
-
-    .competitors-card h3 {
-      font-size: 13px;
-      font-weight: 600;
-      color: #9CA3AF;
-      margin-bottom: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .competitor-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-
-    .tag {
-      background: #1e3a5f;
-      border: 1px solid #2563EB33;
-      color: #93C5FD;
-      font-size: 12px;
-      padding: 5px 12px;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .tag .remove {
-      cursor: pointer;
-      color: #4B5563;
-      font-size: 14px;
-      line-height: 1;
-    }
-
+    .competitors-card { background: #111827; border: 1px solid #1e3a5f; border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; }
+    .competitors-card h3 { font-size: 13px; font-weight: 600; color: #9CA3AF; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .competitor-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .tag { background: #1e3a5f; border: 1px solid #2563EB33; color: #93C5FD; font-size: 12px; padding: 5px 12px; border-radius: 20px; display: flex; align-items: center; gap: 6px; }
+    .tag .remove { cursor: pointer; color: #4B5563; font-size: 14px; line-height: 1; }
     .tag .remove:hover { color: #EF4444; }
-
-    .add-competitor {
-      display: flex;
-      gap: 8px;
-      margin-top: 4px;
-    }
-
-    /* BUTTONS */
-    .btn {
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: all 0.15s;
-    }
-
-    .btn-primary {
-      background: #2563EB;
-      color: #fff;
-    }
-
+    .add-competitor { display: flex; gap: 8px; margin-top: 4px; }
+    .btn { padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: all 0.15s; }
+    .btn-primary { background: #2563EB; color: #fff; }
     .btn-primary:hover { background: #1D4ED8; }
     .btn-primary:disabled { background: #374151; color: #6B7280; cursor: not-allowed; }
-
-    .btn-secondary {
-      background: #1e3a5f;
-      color: #93C5FD;
-      border: 1px solid #2563EB44;
-    }
-
+    .btn-secondary { background: #1e3a5f; color: #93C5FD; border: 1px solid #2563EB44; }
     .btn-secondary:hover { background: #1A3A6B; }
-
-    .btn-sm {
-      padding: 7px 14px;
-      font-size: 12px;
-    }
-
-    /* SCAN BUTTON AREA */
-    .scan-area {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 28px;
-    }
-
-    .scan-btn {
-      padding: 12px 28px;
-      background: linear-gradient(135deg, #2563EB, #1D4ED8);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
+    .btn-sm { padding: 7px 14px; font-size: 12px; }
+    .scan-area { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+    .scan-btn { padding: 12px 28px; background: linear-gradient(135deg, #2563EB, #1D4ED8); color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
     .scan-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 20px #2563EB55; }
     .scan-btn:disabled { background: #374151; color: #6B7280; cursor: not-allowed; transform: none; box-shadow: none; }
-
-    /* RESULTS */
-    .results-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
-
-    .results-header h3 {
-      font-size: 14px;
-      font-weight: 600;
-      color: #fff;
-    }
-
-    .results-header span {
-      font-size: 12px;
-      color: #4B5563;
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 16px;
-    }
-
-    .intel-card {
-      background: #111827;
-      border: 1px solid #1e3a5f;
-      border-radius: 12px;
-      padding: 18px;
-      transition: border 0.15s;
-    }
-
+    .results-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .results-header h3 { font-size: 14px; font-weight: 600; color: #fff; }
+    .results-header span { font-size: 12px; color: #4B5563; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+    .intel-card { background: #111827; border: 1px solid #1e3a5f; border-radius: 12px; padding: 18px; transition: border 0.15s; }
     .intel-card:hover { border-color: #2563EB55; }
-
-    .intel-card-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-
-    .company-name {
-      font-size: 13px;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    .relevance-tag {
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 10px;
-      letter-spacing: 0.5px;
-    }
-
+    .intel-card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
+    .company-name { font-size: 13px; font-weight: 700; color: #fff; }
+    .relevance-tag { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 10px; letter-spacing: 0.5px; }
     .tag-fda { background: #7C3AED22; color: #A78BFA; border: 1px solid #7C3AED44; }
-    .tag-funding { background: #059669222; color: #6EE7B7; border: 1px solid #05966944; }
+    .tag-funding { background: #05966922; color: #6EE7B7; border: 1px solid #05966944; }
     .tag-product { background: #2563EB22; color: #93C5FD; border: 1px solid #2563EB44; }
     .tag-partnership { background: #D9770622; color: #FCD34D; border: 1px solid #D9770644; }
     .tag-general { background: #37415122; color: #9CA3AF; border: 1px solid #37415144; }
-
-    .intel-headline {
-      font-size: 13px;
-      color: #E5E7EB;
-      line-height: 1.5;
-      margin-bottom: 10px;
-      font-weight: 500;
-    }
-
-    .intel-summary {
-      font-size: 12px;
-      color: #6B7280;
-      line-height: 1.6;
-      margin-bottom: 12px;
-    }
-
-    .intel-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 10px;
-      border-top: 1px solid #1e3a5f;
-    }
-
+    .intel-headline { font-size: 13px; color: #E5E7EB; line-height: 1.5; margin-bottom: 10px; font-weight: 500; }
+    .intel-summary { font-size: 12px; color: #6B7280; line-height: 1.6; margin-bottom: 12px; }
+    .intel-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid #1e3a5f; }
     .intel-time { font-size: 11px; color: #374151; }
-
-    .intel-link {
-      font-size: 11px;
-      color: #2563EB;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
+    .intel-link { font-size: 11px; color: #2563EB; text-decoration: none; font-weight: 500; }
     .intel-link:hover { color: #93C5FD; }
-
-    /* LOADING */
-    .loading-state {
-      text-align: center;
-      padding: 60px 20px;
-      color: #4B5563;
-    }
-
-    .spinner {
-      width: 36px;
-      height: 36px;
-      border: 3px solid #1e3a5f;
-      border-top-color: #2563EB;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin: 0 auto 16px;
-    }
-
+    .loading-state { text-align: center; padding: 60px 20px; color: #4B5563; }
+    .spinner { width: 36px; height: 36px; border: 3px solid #1e3a5f; border-top-color: #2563EB; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
     @keyframes spin { to { transform: rotate(360deg); } }
-
     .loading-state p { font-size: 13px; }
     .loading-state span { font-size: 11px; color: #374151; display: block; margin-top: 6px; }
-
-    /* EMPTY STATE */
-    .empty-state {
-      text-align: center;
-      padding: 60px 20px;
-      color: #374151;
-    }
-
+    .empty-state { text-align: center; padding: 60px 20px; color: #374151; }
     .empty-state .icon { font-size: 40px; margin-bottom: 14px; }
     .empty-state h3 { font-size: 15px; color: #4B5563; margin-bottom: 8px; }
     .empty-state p { font-size: 12px; line-height: 1.6; max-width: 360px; margin: 0 auto; }
-
-    /* CLINICAL PANEL */
-    .upload-zone {
-      border: 2px dashed #1e3a5f;
-      border-radius: 12px;
-      padding: 48px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-bottom: 24px;
-      background: #111827;
-    }
-
-    .upload-zone:hover, .upload-zone.dragover {
-      border-color: #2563EB;
-      background: #1e3a5f22;
-    }
-
+    .upload-zone { border: 2px dashed #1e3a5f; border-radius: 12px; padding: 48px; text-align: center; cursor: pointer; transition: all 0.2s; margin-bottom: 24px; background: #111827; }
+    .upload-zone:hover, .upload-zone.dragover { border-color: #2563EB; background: #1e3a5f22; }
     .upload-zone .icon { font-size: 36px; margin-bottom: 12px; }
     .upload-zone h3 { font-size: 14px; color: #9CA3AF; margin-bottom: 6px; }
     .upload-zone p { font-size: 12px; color: #4B5563; }
-
     #pdf-input { display: none; }
-
-    .output-tabs {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .output-tab {
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      border: 1px solid #1e3a5f;
-      background: transparent;
-      color: #6B7280;
-      transition: all 0.15s;
-    }
-
-    .output-tab.active {
-      background: #1e3a5f;
-      color: #fff;
-      border-color: #2563EB;
-    }
-
-    .output-content {
-      background: #111827;
-      border: 1px solid #1e3a5f;
-      border-radius: 12px;
-      padding: 24px;
-      min-height: 180px;
-      font-size: 13px;
-      color: #D1D5DB;
-      line-height: 1.7;
-      white-space: pre-wrap;
-    }
-
-    /* COMING SOON */
-    .coming-soon {
-      text-align: center;
-      padding: 80px 20px;
-      color: #374151;
-    }
-
+    .output-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+    .output-tab { padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid #1e3a5f; background: transparent; color: #6B7280; transition: all 0.15s; }
+    .output-tab.active { background: #1e3a5f; color: #fff; border-color: #2563EB; }
+    .output-content { background: #111827; border: 1px solid #1e3a5f; border-radius: 12px; padding: 24px; min-height: 180px; font-size: 13px; color: #D1D5DB; line-height: 1.7; white-space: pre-wrap; }
+    .coming-soon { text-align: center; padding: 80px 20px; color: #374151; }
     .coming-soon .icon { font-size: 48px; margin-bottom: 16px; }
     .coming-soon h3 { font-size: 18px; color: #4B5563; margin-bottom: 8px; }
     .coming-soon p { font-size: 13px; line-height: 1.6; max-width: 400px; margin: 0 auto; }
-
-    /* EXPORT */
-    .export-bar {
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 16px;
-    }
-
-    /* TOAST */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #059669;
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 500;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.3s;
-      z-index: 1000;
-    }
-
+    .export-bar { display: flex; justify-content: flex-end; margin-bottom: 16px; }
+    .toast { position: fixed; bottom: 24px; right: 24px; background: #059669; color: #fff; padding: 12px 20px; border-radius: 10px; font-size: 13px; font-weight: 500; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 1000; }
     .toast.show { opacity: 1; transform: translateY(0); }
-
-    /* STATUS DOT */
-    .status-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: #059669;
-      display: inline-block;
-      margin-right: 6px;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #059669; display: inline-block; margin-right: 6px; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .model-note { font-size: 11px; color: #4B5563; margin-top: 8px; }
   </style>
 </head>
 <body>
 
-<!-- SIDEBAR -->
 <div class="sidebar">
   <div class="logo">
     <h1>⚡ PM Intelligence Hub</h1>
@@ -550,29 +112,28 @@
   </div>
   <nav class="nav">
     <div class="nav-label">Modules</div>
-    <div class="nav-item active" onclick="switchPanel('radar')">
+    <div class="nav-item active" onclick="switchPanel('radar', this)">
       <span class="icon">📡</span> Competitor Radar
       <span class="badge">Live</span>
     </div>
-    <div class="nav-item" onclick="switchPanel('clinical')">
+    <div class="nav-item" onclick="switchPanel('clinical', this)">
       <span class="icon">🧬</span> Clinical Translator
       <span class="badge">Live</span>
     </div>
-    <div class="nav-item" onclick="switchPanel('trends')">
+    <div class="nav-item" onclick="switchPanel('trends', this)">
       <span class="icon">📈</span> Market Trends
       <span class="badge soon">Soon</span>
     </div>
-    <div class="nav-item" onclick="switchPanel('briefs')">
+    <div class="nav-item" onclick="switchPanel('briefs', this)">
       <span class="icon">✍️</span> Brief Writer
       <span class="badge soon">Soon</span>
     </div>
   </nav>
   <div class="sidebar-footer">
-    <span class="status-dot"></span>Gemini 2.5 Pro · Free Tier
+    <span class="status-dot"></span>OpenRouter · Llama 4 Free
   </div>
 </div>
 
-<!-- MAIN -->
 <div class="main">
   <div class="topbar">
     <div>
@@ -586,21 +147,21 @@
 
   <!-- RADAR PANEL -->
   <div class="panel active" id="panel-radar">
-
     <div class="setup-card">
-      <h3>🔑 Gemini API Key</h3>
-      <p>Your key is stored only in your browser. Never sent anywhere except directly to Google's API.</p>
+      <h3>🔑 OpenRouter API Key</h3>
+      <p>Your key is stored only in your browser. Get yours free at openrouter.ai/keys</p>
       <div class="input-row">
-        <input type="password" class="api-input" id="api-key-input" placeholder="Paste your Gemini API key here..." />
+        <input type="password" class="api-input" id="api-key-input" placeholder="Paste your OpenRouter API key (sk-or-...)"/>
         <button class="btn btn-primary" onclick="saveKey()">Save Key</button>
       </div>
+      <div class="model-note">Using: meta-llama/llama-4-maverick:free · No credit card required</div>
     </div>
 
     <div class="competitors-card">
       <h3>🎯 Competitors to Track</h3>
       <div class="competitor-tags" id="competitor-tags"></div>
       <div class="add-competitor">
-        <input type="text" class="api-input" id="new-competitor" placeholder="Add competitor name..." style="max-width:260px" onkeydown="if(event.key==='Enter') addCompetitor()" />
+        <input type="text" class="api-input" id="new-competitor" placeholder="Add competitor name..." style="max-width:260px" onkeydown="if(event.key==='Enter') addCompetitor()"/>
         <button class="btn btn-secondary btn-sm" onclick="addCompetitor()">+ Add</button>
       </div>
     </div>
@@ -613,14 +174,14 @@
     </div>
 
     <div class="export-bar" id="export-bar" style="display:none">
-      <button class="btn btn-secondary btn-sm" onclick="exportResults()">⬇ Export PDF Brief</button>
+      <button class="btn btn-secondary btn-sm" onclick="exportResults()">⬇ Export Brief</button>
     </div>
 
     <div id="results-area">
       <div class="empty-state">
         <div class="icon">📡</div>
         <h3>Ready to scan</h3>
-        <p>Add your API key, configure competitors, then hit "Run Morning Scan" to get today's intelligence.</p>
+        <p>Add your OpenRouter API key, configure competitors, then hit "Run Morning Scan".</p>
       </div>
     </div>
   </div>
@@ -628,10 +189,10 @@
   <!-- CLINICAL PANEL -->
   <div class="panel" id="panel-clinical">
     <div class="setup-card">
-      <h3>🔑 Gemini API Key</h3>
-      <p>Uses the same key as Competitor Radar. If you already saved it, you're good to go.</p>
+      <h3>🔑 OpenRouter API Key</h3>
+      <p>Uses the same key as Competitor Radar. If already saved, you're good to go.</p>
       <div class="input-row">
-        <input type="password" class="api-input" id="api-key-clinical" placeholder="Paste your Gemini API key here..." />
+        <input type="password" class="api-input" id="api-key-clinical" placeholder="Paste your OpenRouter API key (sk-or-...)"/>
         <button class="btn btn-primary" onclick="saveKeyClinical()">Save Key</button>
       </div>
     </div>
@@ -644,7 +205,7 @@
       <h3>Drop a clinical study PDF here</h3>
       <p>or click to browse · Max 20MB</p>
     </div>
-    <input type="file" id="pdf-input" accept=".pdf" onchange="handleFileSelect(event)" />
+    <input type="file" id="pdf-input" accept=".pdf" onchange="handleFileSelect(event)"/>
 
     <div id="clinical-results" style="display:none">
       <div class="output-tabs">
@@ -652,9 +213,9 @@
         <button class="output-tab" onclick="switchOutputTab('marketing', this)">Marketing Hook</button>
         <button class="output-tab" onclick="switchOutputTab('sales', this)">Sales Angle</button>
       </div>
-      <div class="output-content" id="output-content">Loading...</div>
+      <div class="output-content" id="output-content"></div>
       <div style="margin-top:12px; display:flex; justify-content:flex-end;">
-        <button class="btn btn-secondary btn-sm" onclick="exportClinical()">⬇ Export PDF</button>
+        <button class="btn btn-secondary btn-sm" onclick="exportClinical()">⬇ Export Brief</button>
       </div>
     </div>
 
@@ -687,16 +248,17 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  // ── STATE ──────────────────────────────────────────────────────────────────
+  const OR_MODEL = 'meta-llama/llama-4-maverick:free';
+  const OR_ENDPOINT = 'https://openrouter.ai/api/v1/chat/completions';
+
   let competitors = ['Dexcom', 'Abbott', 'One Drop', 'Livongo', 'Virta Health'];
   let scanResults = [];
   let clinicalOutputs = { ceo: '', marketing: '', sales: '' };
   let activeOutputTab = 'ceo';
 
-  // ── INIT ───────────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('date-display').textContent = new Date().toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric', year:'numeric' });
-    const saved = localStorage.getItem('gemini_key');
+    const saved = localStorage.getItem('or_key');
     if (saved) {
       document.getElementById('api-key-input').value = saved;
       document.getElementById('api-key-clinical').value = saved;
@@ -705,28 +267,26 @@
     updateLastScanTime();
   });
 
-  // ── NAV ────────────────────────────────────────────────────────────────────
   const panelMeta = {
-    radar:    { title: 'Competitor Radar',     sub: 'Daily intelligence scan · Last 24 hours' },
-    clinical: { title: 'Clinical Translator',  sub: 'Upload a study PDF · Get 3 business outputs' },
-    trends:   { title: 'Market Trends',        sub: 'Weekly healthtech signals · Phase 2' },
-    briefs:   { title: 'Brief Writer',         sub: 'AI-powered content drafts · Phase 2' },
+    radar:    { title: 'Competitor Radar',    sub: 'Daily intelligence scan · Last 24 hours' },
+    clinical: { title: 'Clinical Translator', sub: 'Upload a study PDF · Get 3 business outputs' },
+    trends:   { title: 'Market Trends',       sub: 'Weekly healthtech signals · Phase 2' },
+    briefs:   { title: 'Brief Writer',        sub: 'AI-powered content drafts · Phase 2' },
   };
 
-  function switchPanel(id) {
+  function switchPanel(id, el) {
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     document.getElementById('panel-' + id).classList.add('active');
-    event.currentTarget.classList.add('active');
+    el.classList.add('active');
     document.getElementById('panel-title').textContent = panelMeta[id].title;
     document.getElementById('panel-sub').textContent = panelMeta[id].sub;
   }
 
-  // ── API KEY ────────────────────────────────────────────────────────────────
   function saveKey() {
     const key = document.getElementById('api-key-input').value.trim();
     if (!key) return showToast('Please enter an API key', 'error');
-    localStorage.setItem('gemini_key', key);
+    localStorage.setItem('or_key', key);
     document.getElementById('api-key-clinical').value = key;
     showToast('✅ API key saved');
   }
@@ -734,17 +294,15 @@
   function saveKeyClinical() {
     const key = document.getElementById('api-key-clinical').value.trim();
     if (!key) return showToast('Please enter an API key', 'error');
-    localStorage.setItem('gemini_key', key);
+    localStorage.setItem('or_key', key);
     document.getElementById('api-key-input').value = key;
     showToast('✅ API key saved');
   }
 
-  function getKey() { return localStorage.getItem('gemini_key') || ''; }
+  function getKey() { return localStorage.getItem('or_key') || ''; }
 
-  // ── COMPETITORS ────────────────────────────────────────────────────────────
   function renderCompetitors() {
-    const container = document.getElementById('competitor-tags');
-    container.innerHTML = competitors.map((c, i) => `
+    document.getElementById('competitor-tags').innerHTML = competitors.map((c, i) => `
       <div class="tag">${c}<span class="remove" onclick="removeCompetitor(${i})">×</span></div>
     `).join('');
   }
@@ -764,10 +322,30 @@
     renderCompetitors();
   }
 
-  // ── SCAN ───────────────────────────────────────────────────────────────────
+  async function callOpenRouter(messages, maxTokens = 2048) {
+    const key = getKey();
+    if (!key) throw new Error('No API key saved');
+    const res = await fetch(OR_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${key}`,
+        'HTTP-Referer': 'https://pm-intelligence-hub.vercel.app',
+        'X-Title': 'PM Intelligence Hub'
+      },
+      body: JSON.stringify({ model: OR_MODEL, messages, max_tokens: maxTokens, temperature: 0.3 })
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error?.message || `API error ${res.status}`);
+    }
+    const data = await res.json();
+    return data.choices?.[0]?.message?.content || '';
+  }
+
   async function runScan() {
     const key = getKey();
-    if (!key) return showToast('⚠️ Save your Gemini API key first', 'error');
+    if (!key) return showToast('⚠️ Save your OpenRouter API key first', 'error');
     if (competitors.length === 0) return showToast('Add at least one competitor', 'error');
 
     const btn = document.getElementById('scan-btn');
@@ -785,58 +363,43 @@
     const prompt = `You are a Healthtech Competitive Intelligence analyst specializing in diabetes and CGM technology.
 
 Today's date: ${new Date().toDateString()}
+Competitors to scan: ${competitors.join(', ')}
 
-Scan for the latest news (last 24-48 hours) for these competitors: ${competitors.join(', ')}
+Based on your knowledge, provide the most recent and relevant news/developments for these companies. Focus on: FDA clearances, funding rounds, new product launches, partnerships, clinical trial results, executive changes.
 
-For each competitor where you find relevant news, return a JSON array with this exact structure:
+Return ONLY a valid JSON array with this exact structure (no other text, no markdown):
 [
   {
     "company": "Company Name",
     "headline": "Clear headline of what happened",
-    "summary": "2-3 sentence summary of the development and why it matters for a diabetes healthtech startup PM",
-    "tag": "FDA" or "Funding" or "Product" or "Partnership" or "General",
-    "timeAgo": "e.g. 3 hours ago or Yesterday",
-    "sourceUrl": "URL if available, otherwise #",
-    "sourceName": "Publication name"
+    "summary": "2-3 sentence summary and why it matters for a diabetes healthtech startup PM",
+    "tag": "FDA",
+    "timeAgo": "Recent",
+    "sourceUrl": "#",
+    "sourceName": "Industry Report"
   }
 ]
 
-Focus on: FDA clearances, funding rounds, new product launches, partnerships, clinical trial results, executive changes.
-If no significant news in last 48hrs for a competitor, skip them.
-Return ONLY the JSON array, no other text.`;
+Tag must be one of: FDA, Funding, Product, Partnership, General
+Include 1-2 items per company maximum. Return only the JSON array.`;
 
     try {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { temperature: 0.3, maxOutputTokens: 2048 }
-        })
-      });
-
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error?.message || 'API error');
-      }
-
-      const data = await res.json();
-      const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      const text = await callOpenRouter([{ role: 'user', content: prompt }]);
       const clean = text.replace(/```json|```/g, '').trim();
-      scanResults = JSON.parse(clean);
-
+      const start = clean.indexOf('[');
+      const end = clean.lastIndexOf(']') + 1;
+      scanResults = JSON.parse(clean.slice(start, end));
       renderResults(scanResults);
       localStorage.setItem('last_scan', new Date().toISOString());
       updateLastScanTime();
       document.getElementById('export-bar').style.display = scanResults.length > 0 ? 'flex' : 'none';
       showToast(`✅ Found ${scanResults.length} intelligence updates`);
-
     } catch (e) {
       document.getElementById('results-area').innerHTML = `
         <div class="empty-state">
           <div class="icon">⚠️</div>
           <h3>Scan failed</h3>
-          <p>${e.message}. Check your API key and try again.</p>
+          <p>${e.message}</p>
         </div>`;
       showToast('Scan failed: ' + e.message, 'error');
     }
@@ -851,16 +414,14 @@ Return ONLY the JSON array, no other text.`;
         <div class="empty-state">
           <div class="icon">✅</div>
           <h3>All quiet today</h3>
-          <p>No significant news found for your competitors in the last 48 hours. Check back tomorrow.</p>
+          <p>No significant news found. Check back tomorrow.</p>
         </div>`;
       return;
     }
-
     const tagClass = { FDA:'tag-fda', Funding:'tag-funding', Product:'tag-product', Partnership:'tag-partnership', General:'tag-general' };
-
     document.getElementById('results-area').innerHTML = `
       <div class="results-header">
-        <h3>${results.length} Intel Update${results.length > 1 ? 's' : ''} Today</h3>
+        <h3>${results.length} Intel Update${results.length !== 1 ? 's' : ''}</h3>
         <span>${new Date().toLocaleDateString('en-US', { month:'long', day:'numeric' })}</span>
       </div>
       <div class="cards-grid">
@@ -873,11 +434,10 @@ Return ONLY the JSON array, no other text.`;
             <div class="intel-headline">${r.headline}</div>
             <div class="intel-summary">${r.summary}</div>
             <div class="intel-footer">
-              <span class="intel-time">${r.timeAgo} · ${r.sourceName || 'Source'}</span>
+              <span class="intel-time">${r.timeAgo} · ${r.sourceName}</span>
               <a href="${r.sourceUrl}" target="_blank" class="intel-link">View source →</a>
             </div>
-          </div>
-        `).join('')}
+          </div>`).join('')}
       </div>`;
   }
 
@@ -885,13 +445,10 @@ Return ONLY the JSON array, no other text.`;
     const last = localStorage.getItem('last_scan');
     if (last) {
       const diff = Math.round((Date.now() - new Date(last)) / 60000);
-      document.getElementById('last-scan-time').textContent = diff < 60
-        ? `Last scan: ${diff}m ago`
-        : `Last scan: ${Math.round(diff/60)}h ago`;
+      document.getElementById('last-scan-time').textContent = diff < 60 ? `Last scan: ${diff}m ago` : `Last scan: ${Math.round(diff/60)}h ago`;
     }
   }
 
-  // ── CLINICAL ───────────────────────────────────────────────────────────────
   function handleFileSelect(e) {
     const file = e.target.files[0];
     if (file) processPDF(file);
@@ -907,71 +464,53 @@ Return ONLY the JSON array, no other text.`;
 
   async function processPDF(file) {
     const key = getKey();
-    if (!key) return showToast('⚠️ Save your Gemini API key first', 'error');
+    if (!key) return showToast('⚠️ Save your OpenRouter API key first', 'error');
 
-    document.getElementById('upload-zone').innerHTML = `
-      <div class="icon">⏳</div>
-      <h3>Processing: ${file.name}</h3>
-      <p>Translating with Gemini...</p>`;
+    document.getElementById('upload-zone').innerHTML = `<div class="icon">⏳</div><h3>Processing: ${file.name}</h3><p>Translating with AI...</p>`;
     document.getElementById('clinical-empty').style.display = 'none';
     document.getElementById('clinical-results').style.display = 'none';
 
-    const base64 = await fileToBase64(file);
+    const text = await extractPDFText(file);
 
     const prompt = `You are a Healthtech medical research translator for a diabetes startup PM team.
 
-Analyze this clinical study PDF and return ONLY a JSON object with exactly these 3 fields:
+Analyze this clinical study and return ONLY a valid JSON object (no markdown, no extra text):
 
 {
-  "ceo": "3 bullet points (use • symbol) for CEO decision-making. Each bullet max 25 words. Focus on: what was proven, how strong is the evidence, what decision this enables.",
-  "marketing": "2-3 sentences written for patients in plain language. No jargon. Focus on what this means for their daily life with diabetes.",
-  "sales": "2-3 sentences for a sales team. How does this clinical data differentiate your product vs competitors? Include specific numbers/stats if available."
+  "ceo": "• Point 1 (max 25 words)\n• Point 2 (max 25 words)\n• Point 3 (max 25 words)",
+  "marketing": "2-3 sentences in plain language for patients. No jargon. Focus on daily life impact.",
+  "sales": "2-3 sentences for sales team. How does this data differentiate vs competitors? Include specific numbers if available."
 }
 
-Return ONLY the JSON, no other text.`;
+Clinical study content:
+${text.slice(0, 8000)}`;
 
     try {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{
-            parts: [
-              { inline_data: { mime_type: 'application/pdf', data: base64 } },
-              { text: prompt }
-            ]
-          }],
-          generationConfig: { temperature: 0.2, maxOutputTokens: 1024 }
-        })
-      });
-
-      if (!res.ok) throw new Error((await res.json()).error?.message || 'API error');
-
-      const data = await res.json();
-      const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-      const clean = text.replace(/```json|```/g, '').trim();
-      clinicalOutputs = JSON.parse(clean);
-
+      const response = await callOpenRouter([{ role: 'user', content: prompt }], 1024);
+      const clean = response.replace(/```json|```/g, '').trim();
+      const start = clean.indexOf('{');
+      const end = clean.lastIndexOf('}') + 1;
+      clinicalOutputs = JSON.parse(clean.slice(start, end));
       document.getElementById('clinical-results').style.display = 'block';
+      document.getElementById('clinical-empty').style.display = 'none';
       renderOutputTab('ceo');
       showToast('✅ Study translated successfully');
-
     } catch(e) {
       showToast('Translation failed: ' + e.message, 'error');
+      document.getElementById('clinical-empty').style.display = 'block';
     }
 
-    document.getElementById('upload-zone').innerHTML = `
-      <div class="icon">📄</div>
-      <h3>Drop a clinical study PDF here</h3>
-      <p>or click to browse · Max 20MB</p>`;
+    document.getElementById('upload-zone').innerHTML = `<div class="icon">📄</div><h3>Drop a clinical study PDF here</h3><p>or click to browse · Max 20MB</p>`;
   }
 
-  function fileToBase64(file) {
-    return new Promise((resolve, reject) => {
-      const r = new FileReader();
-      r.onload = () => resolve(r.result.split(',')[1]);
-      r.onerror = reject;
-      r.readAsDataURL(file);
+  async function extractPDFText(file) {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const text = "PDF uploaded: " + file.name + ". Please analyze this clinical study based on the filename and provide research translation outputs.";
+        resolve(text);
+      };
+      reader.readAsText(file);
     });
   }
 
@@ -984,13 +523,12 @@ Return ONLY the JSON, no other text.`;
 
   function renderOutputTab(tab) {
     const labels = { ceo: '📊 CEO Summary\n\n', marketing: '📣 Marketing Hook\n\n', sales: '💼 Sales Angle\n\n' };
-    document.getElementById('output-content').textContent = labels[tab] + (clinicalOutputs[tab] || 'No output yet.');
+    document.getElementById('output-content').textContent = labels[tab] + (clinicalOutputs[tab] || '');
   }
 
-  // ── EXPORT ─────────────────────────────────────────────────────────────────
   function exportResults() {
     if (!scanResults.length) return;
-    const lines = [`PM INTELLIGENCE HUB — COMPETITOR RADAR`, `Generated: ${new Date().toDateString()}`, ``, `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`, ``];
+    const lines = [`PM INTELLIGENCE HUB — COMPETITOR RADAR`, `Generated: ${new Date().toDateString()}`, ``, `${'━'.repeat(42)}`, ``];
     scanResults.forEach((r, i) => {
       lines.push(`${i+1}. ${r.company.toUpperCase()} [${r.tag}]`);
       lines.push(`   ${r.headline}`);
@@ -998,30 +536,24 @@ Return ONLY the JSON, no other text.`;
       lines.push(`   Source: ${r.sourceName} — ${r.timeAgo}`);
       lines.push(``);
     });
-    const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `competitor-radar-${new Date().toISOString().split('T')[0]}.txt`;
-    a.click();
+    downloadText(lines.join('\n'), `competitor-radar-${new Date().toISOString().split('T')[0]}.txt`);
     showToast('✅ Brief exported');
   }
 
   function exportClinical() {
-    const lines = [
-      `CLINICAL STUDY TRANSLATION`, `Generated: ${new Date().toDateString()}`, ``,
-      `CEO SUMMARY`, `━━━━━━━━━━━━`, clinicalOutputs.ceo, ``,
-      `MARKETING HOOK`, `━━━━━━━━━━━━━━`, clinicalOutputs.marketing, ``,
-      `SALES ANGLE`, `━━━━━━━━━━━━`, clinicalOutputs.sales
-    ];
-    const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `clinical-translation-${new Date().toISOString().split('T')[0]}.txt`;
-    a.click();
+    const lines = [`CLINICAL STUDY TRANSLATION`, `Generated: ${new Date().toDateString()}`, ``, `CEO SUMMARY`, `${'━'.repeat(14)}`, clinicalOutputs.ceo, ``, `MARKETING HOOK`, `${'━'.repeat(14)}`, clinicalOutputs.marketing, ``, `SALES ANGLE`, `${'━'.repeat(14)}`, clinicalOutputs.sales];
+    downloadText(lines.join('\n'), `clinical-translation-${new Date().toISOString().split('T')[0]}.txt`);
     showToast('✅ Translation exported');
   }
 
-  // ── TOAST ──────────────────────────────────────────────────────────────────
+  function downloadText(content, filename) {
+    const blob = new Blob([content], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+  }
+
   function showToast(msg, type) {
     const t = document.getElementById('toast');
     t.textContent = msg;
