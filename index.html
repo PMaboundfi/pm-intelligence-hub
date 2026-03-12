@@ -517,13 +517,21 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
     <div class="ph">
       <div>
         <h1>Market Trends</h1>
-        <p>On-demand digest · FDA · Funding · Clinical Trials · Emerging Tech · Generate and export as PDF</p>
+        <p>Live web search · India &amp; Global · FDA · Funding · Clinical Trials · Emerging Tech · Export PDF</p>
       </div>
     </div>
 
-    <!-- CONFIG ROW -->
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:22px;">
+    <!-- VIEW TOGGLE — India vs Global -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+      <div class="mtog" style="width:260px;">
+        <button class="mbtn active" id="view-global-btn" onclick="switchTrendsView('global',this)">🌍 Global</button>
+        <button class="mbtn" id="view-india-btn" onclick="switchTrendsView('india',this)">🇮🇳 India</button>
+      </div>
+      <div id="trends-view-hint" style="font-size:12px;color:var(--t3);">Global: FDA, worldwide funding &amp; clinical research</div>
+    </div>
 
+    <!-- CONFIG ROW -->
+    <div style="display:grid;grid-template-columns:200px 1fr;gap:14px;margin-bottom:20px;">
       <!-- Time window -->
       <div class="card accent">
         <div class="ct"><span class="ct-i">📅</span>Time Window</div>
@@ -536,31 +544,40 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
         </select>
       </div>
 
-      <!-- Signal types -->
-      <div class="card" style="grid-column:span 2;">
-        <div class="ct"><span class="ct-i">📡</span>Signal Types</div>
+      <!-- Signal types — global -->
+      <div class="card" id="global-signals-card">
+        <div class="ct"><span class="ct-i">📡</span>Global Signal Types</div>
         <div style="display:flex;flex-wrap:wrap;gap:10px;">
-          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;">
-            <input type="checkbox" id="sig-fda" checked style="accent-color:var(--a);width:14px;height:14px;"/> FDA &amp; Regulatory
-          </label>
-          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;">
-            <input type="checkbox" id="sig-funding" checked style="accent-color:var(--a);width:14px;height:14px;"/> Funding &amp; M&amp;A
-          </label>
-          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;">
-            <input type="checkbox" id="sig-clinical" checked style="accent-color:var(--a);width:14px;height:14px;"/> Clinical Trials
-          </label>
-          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;">
-            <input type="checkbox" id="sig-tech" checked style="accent-color:var(--a);width:14px;height:14px;"/> Emerging Tech
-          </label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="sig-fda" checked style="accent-color:var(--a);width:14px;height:14px;"/> FDA &amp; Regulatory</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="sig-funding" checked style="accent-color:var(--a);width:14px;height:14px;"/> Funding &amp; M&amp;A</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="sig-clinical" checked style="accent-color:var(--a);width:14px;height:14px;"/> Clinical Trials</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="sig-tech" checked style="accent-color:var(--a);width:14px;height:14px;"/> Emerging Tech</label>
         </div>
       </div>
+
+      <!-- Signal types — india -->
+      <div class="card" id="india-signals-card" style="display:none;">
+        <div class="ct"><span class="ct-i">🇮🇳</span>India Signal Types</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="sig-india-startups" checked style="accent-color:var(--a);width:14px;height:14px;"/> Healthtech &amp; Lifestyle Startups</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="sig-india-food" checked style="accent-color:var(--a);width:14px;height:14px;"/> Food Delivery &amp; Nutrition</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="sig-india-fssai" checked style="accent-color:var(--a);width:14px;height:14px;"/> FSSAI &amp; Indian Regulatory</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="sig-india-stats" checked style="accent-color:var(--a);width:14px;height:14px;"/> Lifestyle Disease Stats &amp; Reports</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEB SEARCH NOTICE -->
+    <div id="trends-search-notice" style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(0,229,255,0.04);border:1px solid var(--b1);border-radius:var(--r2);margin-bottom:18px;font-size:12px;color:var(--t2);">
+      <span style="font-size:15px;">🔍</span>
+      <span><strong style="color:var(--a);">Live web search enabled</strong> — results are grounded in real news, not AI memory. ~$0.005/run.</span>
     </div>
 
     <!-- GENERATE BUTTON -->
     <div class="flex" style="margin-bottom:24px;gap:12px;">
       <button class="btn-action" id="trends-btn" onclick="runTrends()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        Generate Market Digest
+        <span id="trends-btn-label">Generate Market Digest</span>
       </button>
       <span class="hint" id="trends-last-run"></span>
     </div>
@@ -570,7 +587,7 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
       <div class="sbox">
         <div class="sb-ico">📈</div>
         <h3>No digest generated yet</h3>
-        <p>Select your time window and signal types, then click Generate Market Digest.</p>
+        <p>Pick a view (India or Global), select signals, then click Generate.</p>
       </div>
     </div>
   </div>
@@ -1074,107 +1091,158 @@ function toast(msg,type='ok'){const t=document.getElementById('toast');t.textCon
    MARKET TRENDS
 ════════════════════════════════════ */
 let lastTrendsData=null;
+let trendsView='global'; // 'global' | 'india'
+
+function switchTrendsView(view, el){
+  trendsView=view;
+  document.querySelectorAll('#panel-trends .mbtn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  const isIndia=view==='india';
+  document.getElementById('global-signals-card').style.display=isIndia?'none':'block';
+  document.getElementById('india-signals-card').style.display=isIndia?'block':'none';
+  document.getElementById('trends-view-hint').textContent=isIndia
+    ? 'India: Healthtech startups, food delivery, FSSAI regulations, lifestyle disease trends'
+    : 'Global: FDA, worldwide funding & clinical research';
+  document.getElementById('trends-btn-label').textContent=isIndia?'Generate India Digest':'Generate Market Digest';
+}
+
+async function callORWithSearch(messages, maxTokens=4000){
+  const key=getKey();if(!key)throw new Error('No API key saved');
+  const body={
+    model: OR_MODEL,
+    messages,
+    max_tokens: maxTokens,
+    temperature: 0.2,
+    tools:[{
+      type:'function',
+      function:{
+        name:'web_search',
+        description:'Search the web for recent news and information',
+        parameters:{type:'object',properties:{query:{type:'string',description:'Search query'}},required:['query']}
+      }
+    }],
+    tool_choice:'auto'
+  };
+  const res=await fetch(OR_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${key}`,'HTTP-Referer':'https://pm-intelligence-hub.vercel.app','X-Title':'PM Intelligence Hub'},body:JSON.stringify(body)});
+  if(!res.ok){const e=await res.json();throw new Error(e.error?.message||`API ${res.status}`);}
+  const d=await res.json();
+  return d.choices?.[0]?.message?.content||'';
+}
 
 async function runTrends(){
   if(!getKey())return toast('Save your API key first','err');
 
-  const window=document.getElementById('trends-window').value;
-  const signals=[];
-  if(document.getElementById('sig-fda').checked)signals.push('FDA clearances and regulatory changes in diabetes/CGM technology');
-  if(document.getElementById('sig-funding').checked)signals.push('Funding rounds, M&A deals, and investment activity in digital health and diabetes tech');
-  if(document.getElementById('sig-clinical').checked)signals.push('Clinical trial results and peer-reviewed research relevant to diabetes management technology');
-  if(document.getElementById('sig-tech').checked)signals.push('Emerging technology signals including AI applications in diabetes, new sensor tech, and digital therapeutics');
+  const timeWindow=document.getElementById('trends-window').value;
+  const isIndia=trendsView==='india';
+  const myProduct=getProductCtx();
+
+  let signals=[];
+  if(isIndia){
+    if(document.getElementById('sig-india-startups').checked) signals.push('Indian healthtech and lifestyle disease startups — funding rounds, new launches, key players targeting diabetes, obesity, hypertension, PCOS in India');
+    if(document.getElementById('sig-india-food').checked)    signals.push('Food delivery and nutrition platforms in India — companies like Swiggy, Zomato, EatFit, Cure.fit, Nourish.ai, healthy meal delivery, curated diet food for lifestyle diseases');
+    if(document.getElementById('sig-india-fssai').checked)   signals.push('FSSAI regulatory changes, Indian government health policies, NHP initiatives related to lifestyle diseases and nutrition');
+    if(document.getElementById('sig-india-stats').checked)   signals.push('India-specific statistics and reports on diabetes, obesity, hypertension, PCOS, lifestyle diseases — prevalence, market size, patient behaviour');
+  } else {
+    if(document.getElementById('sig-fda').checked)     signals.push('FDA clearances and regulatory changes in diabetes and CGM technology');
+    if(document.getElementById('sig-funding').checked) signals.push('Global funding rounds and M&A in digital health and diabetes tech');
+    if(document.getElementById('sig-clinical').checked)signals.push('Clinical trial results and research relevant to diabetes management technology');
+    if(document.getElementById('sig-tech').checked)    signals.push('Emerging technology signals: AI in diabetes, new sensors, digital therapeutics');
+  }
   if(!signals.length)return toast('Select at least one signal type','err');
 
-  const myProduct=getProductCtx();
   const btn=document.getElementById('trends-btn');
   btn.disabled=true;
-  btn.innerHTML='<span class="spin" style="width:14px;height:14px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px"></span>Generating digest...';
+  btn.innerHTML=`<span class="spin" style="width:14px;height:14px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px"></span>${isIndia?'Searching India news...':'Searching live news...'}`;
 
   document.getElementById('trends-results').innerHTML=`
     <div class="sbox">
       <div class="spin"></div>
-      <h3>Generating market digest</h3>
-      <p>Analysing ${signals.length} signal categories · Last ${window} days · 20–40 seconds</p>
+      <h3>${isIndia?'Searching India market signals':'Searching global market signals'}</h3>
+      <p>🔍 Live web search · ${signals.length} categories · Last ${timeWindow} days · 30–60 seconds</p>
     </div>`;
 
-  const prompt=`You are a senior Healthtech market intelligence analyst specialising in diabetes and digital health.
+  const geoCtx = isIndia
+    ? `GEOGRAPHY: India only. Focus on Indian companies, Indian market, INR amounts where relevant, Indian regulatory bodies (FSSAI, CDSCO, MoHFW). Do NOT include US/EU news unless it directly impacts Indian market.`
+    : `GEOGRAPHY: Global, with emphasis on US and EU markets.`;
 
-Generate a comprehensive market trends digest covering the LAST ${window} DAYS for the diabetes/digital health sector.
-${myProduct?`\nContext — the reader's startup builds: "${myProduct}". Flag items especially relevant to them.`:''}
+  const searchInstructions = isIndia
+    ? `Before generating each section, search the web for recent India news using queries like:
+- "India healthtech startup funding 2024 2025 lifestyle disease diabetes"
+- "India food delivery nutrition healthy meal startup Bangalore Mumbai"
+- "FSSAI regulations 2024 2025 food health"
+- "India diabetes obesity statistics report 2024 2025"
+Use ONLY information found via web search. If you cannot find specific recent India news for a category, say so honestly rather than inventing details. For any company mentioned, accurately describe what they actually do based on search results.`
+    : `Before generating each section, search the web for recent news using queries like:
+- "FDA diabetes CGM digital health clearance 2024 2025"
+- "digital health diabetes funding round 2024 2025"  
+- "diabetes clinical trial results 2024 2025"
+- "AI diabetes technology startup 2024 2025"
+Use ONLY information found via web search. Do not invent company details or funding amounts.`;
 
-Signal categories to cover:
-${signals.map((s,i)=>`${i+1}. ${s}`).join('\n')}
+  const prompt=`You are a senior Healthtech market intelligence analyst.
+${geoCtx}
+${myProduct?`
+STARTUP CONTEXT: The reader builds "${myProduct}". They are now also planning to venture into curated food delivery for people with lifestyle diseases (diabetes, obesity, hypertension, PCOS) in India. Flag items especially relevant to both angles.`:''}
 
-Return ONLY valid JSON, no markdown:
+${searchInstructions}
+
+Generate a market trends digest for the LAST ${timeWindow} DAYS covering:
+${signals.map((s,i)=>`${i+1}. ${s}`).join('
+')}
+
+CRITICAL ACCURACY RULES:
+- ONLY report on companies/events you found via web search
+- For each company, accurately state what they actually do (e.g. Kenko is a healthy food subscription, not a CGM company)
+- If a funding amount is unknown, say "undisclosed" not a made-up number
+- Dates must be real approximate dates, not invented
+- Add a sourceHint field per item: a short note like "via TechCrunch" or "via FSSAI press release" so users can verify
+
+Return ONLY valid JSON:
 {
-  "period": "Last ${window} days",
+  "period": "Last ${timeWindow} days",
+  "geography": "${isIndia?'India':'Global'}",
   "generatedAt": "${new Date().toDateString()}",
-  "executiveSummary": "3-4 sentence overview of the most important market movements in this period. What should a diabetes startup PM know immediately?",
-  "keyTheme": "The single biggest macro theme across all signals in one sentence",
+  "executiveSummary": "3-4 sentence overview based only on verified web search results. Be honest if data was limited.",
+  "keyTheme": "Single biggest theme in one sentence",
   "totalSignals": <number>,
   "sections": [
     {
-      "id": "fda",
-      "title": "FDA & Regulatory",
-      "icon": "🏛️",
-      "summary": "2-sentence section summary",
+      "id": "${isIndia?'startups':'fda'}",
+      "title": "${isIndia?'Indian Healthtech & Lifestyle Startups':'FDA & Regulatory'}",
+      "icon": "${isIndia?'🚀':'🏛️'}",
+      "summary": "2-sentence summary based on search results",
       "items": [
         {
-          "title": "Clear, specific headline",
-          "body": "2-3 sentences explaining what happened and context",
-          "impact": "1 sentence on why this matters for a diabetes app startup PM",
-          "date": "Approximate date e.g. Mar 2025",
+          "title": "Accurate headline based on real news",
+          "body": "2-3 sentences. Only verified facts. Company description must be accurate.",
+          "impact": "Why this matters for a startup building a lifestyle disease food delivery + health app in India",
+          "date": "Approximate real date e.g. Feb 2025",
           "relevance": "High|Medium|Low",
-          "category": "FDA"
+          "category": "${isIndia?'India':'FDA'}",
+          "geo": "${isIndia?'🇮🇳 India':'🌍 Global'}",
+          "sourceHint": "Source name e.g. Economic Times, TechCrunch, FSSAI.gov.in"
         }
       ]
-    },
-    {
-      "id": "funding",
-      "title": "Funding & M&A",
-      "icon": "💰",
-      "summary": "2-sentence section summary",
-      "items": [ /* same structure, category: "Funding" */ ]
-    },
-    {
-      "id": "clinical",
-      "title": "Clinical Trials & Research",
-      "icon": "🔬",
-      "summary": "2-sentence section summary",
-      "items": [ /* same structure, category: "Clinical" */ ]
-    },
-    {
-      "id": "tech",
-      "title": "Emerging Tech Signals",
-      "icon": "⚡",
-      "summary": "2-sentence section summary",
-      "items": [ /* same structure, category: "Tech" */ ]
     }
   ]
 }
-
-Rules:
-- Only include sections for the requested signal categories: ${signals.map(s=>s.split(' ')[0]).join(', ')}
-- 3-5 items per section minimum
-- Be specific — real companies, real products, real amounts where known
-- relevance must be exactly "High", "Medium", or "Low"
-- Return only the JSON object`;
+Rules: 3-5 items per included section. relevance = exactly High/Medium/Low. Return only JSON.`;
 
   try{
     const text=await callOR([{role:'user',content:prompt}],4000);
     const c=text.replace(/```json|```/g,'').trim();
     lastTrendsData=JSON.parse(c.slice(c.indexOf('{'),c.lastIndexOf('}')+1));
+    lastTrendsData._isIndia=isIndia;
     renderTrends(lastTrendsData);
     localStorage.setItem('last_trends_run',new Date().toISOString());
     updateTrendsLastRun();
-    toast(`Digest ready · ${lastTrendsData.totalSignals||'—'} signals found`);
+    toast(`Digest ready · ${lastTrendsData.totalSignals||'—'} signals · ${isIndia?'🇮🇳 India':'🌍 Global'}`);
   }catch(e){
     document.getElementById('trends-results').innerHTML=`<div class="sbox"><div class="sb-ico">⚠️</div><h3>Generation failed</h3><p>${e.message}</p></div>`;
     toast('Failed: '+e.message,'err');
   }
   btn.disabled=false;
-  btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Generate Market Digest';
+  btn.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span id="trends-btn-label">${isIndia?'Generate India Digest':'Generate Market Digest'}</span>`;
 }
 
 function updateTrendsLastRun(){
@@ -1194,7 +1262,7 @@ function renderTrends(data){
   let html=`
     <div class="digest-summary">
       <div class="ds-left">
-        <h3>📈 ${data.period} · ${data.generatedAt}</h3>
+        <h3>📈 ${data.period} · ${data.geography||'Global'} · ${data.generatedAt}</h3>
         <p>${data.executiveSummary}</p>
         ${data.keyTheme?`<div style="margin-top:10px;font-size:12px;color:var(--a);font-weight:600;">Key theme: ${data.keyTheme}</div>`:''}
       </div>
@@ -1218,16 +1286,19 @@ function renderTrends(data){
       </div>
       <div class="trends-grid">
         ${(sec.items||[]).map(item=>`
-          <div class="trend-card ${catClass[item.category]||''}">
+          <div class="trend-card ${catClass[item.category]||'tc-tech'}">
             <div class="tc-top">
               <div class="tc-title">${item.title}</div>
-              <span class="tc-badge ${badgeClass[item.category]||''}">${item.category}</span>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;">
+                <span class="tc-badge ${badgeClass[item.category]||'tcb-tech'}">${item.category}</span>
+                ${item.geo?`<span style="font-size:9px;color:var(--t3);">${item.geo}</span>`:''}
+              </div>
             </div>
             <div class="tc-body">${item.body}</div>
             <div class="tc-impact">💡 ${item.impact}</div>
             <div class="tc-ft">
-              <span class="tc-date">${item.date}</span>
-              <span class="tc-relevance ${relClass[item.relevance]||''}">● ${item.relevance} relevance</span>
+              <span class="tc-date">${item.date}${item.sourceHint?` · <em style="color:var(--t3);">${item.sourceHint}</em>`:''}</span>
+              <span class="tc-relevance ${relClass[item.relevance]||'tc-r-low'}">● ${item.relevance} relevance</span>
             </div>
           </div>`).join('')}
       </div>
@@ -1288,7 +1359,7 @@ function exportTrendsPDF(){
   <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;padding-bottom:20px;border-bottom:3px solid #0088cc;">
     <div>
       <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#0088cc;margin-bottom:8px;">PM Intelligence Hub · Market Trends Digest</div>
-      <h1 style="font-size:26px;font-weight:700;color:#111;margin-bottom:6px;">${data.period}</h1>
+      <h1 style="font-size:26px;font-weight:700;color:#111;margin-bottom:6px;">${data.period} · ${data.geography||'Global'}</h1>
       <p style="font-size:13px;color:#555;line-height:1.6;max-width:560px;">${data.executiveSummary}</p>
       ${data.keyTheme?`<div style="margin-top:10px;font-size:12px;color:#0088cc;font-weight:600;">Key theme: ${data.keyTheme}</div>`:''}
     </div>
