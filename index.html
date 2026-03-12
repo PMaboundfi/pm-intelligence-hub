@@ -1187,8 +1187,7 @@ STARTUP CONTEXT: The reader builds "${myProduct}". They are now also planning to
 ${searchInstructions}
 
 Generate a market trends digest for the LAST ${timeWindow} DAYS covering:
-${signals.map((s,i)=>`${i+1}. ${s}`).join('
-')}
+${signals.map((s,i)=>`${i+1}. ${s}`).join('\n')}
 
 CRITICAL ACCURACY RULES:
 - ONLY report on companies/events you found via web search
