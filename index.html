@@ -1090,6 +1090,7 @@ function toast(msg,type='ok'){const t=document.getElementById('toast');t.textCon
 /* ════════════════════════════════════
    MARKET TRENDS
 ════════════════════════════════════ */
+let trendsData={global:null,india:null};
 let lastTrendsData=null;
 let trendsView='global'; // 'global' | 'india'
 
@@ -1104,6 +1105,15 @@ function switchTrendsView(view, el){
     ? 'India: Healthtech startups, food delivery, FSSAI regulations, lifestyle disease trends'
     : 'Global: FDA, worldwide funding & clinical research';
   document.getElementById('trends-btn-label').textContent=isIndia?'Generate India Digest':'Generate Market Digest';
+
+  // Show cached results for this view if available, otherwise show empty state
+  const cached=trendsData[view];
+  if(cached){
+    document.getElementById('trends-results').innerHTML=cached;
+  } else {
+    const emptyLabel=isIndia?'India digest':'Global digest';
+    document.getElementById('trends-results').innerHTML=`<div class="sbox"><div class="sb-ico">${isIndia?'🇮🇳':'🌍'}</div><h3>No ${emptyLabel} yet</h3><p>Click Generate to fetch ${isIndia?'India':'Global'} signals.</p></div>`;
+  }
 }
 
 async function callORWithSearch(messages, maxTokens=4000){
@@ -1370,6 +1380,9 @@ Sections: ${JSON.stringify(lastTrendsData.sections.map(s=>({title:s.title,summar
           <button class="btn btn-pdf sm" onclick="exportTrendsPDF()">⬇ Export PDF</button>
         </div>`;
     }
+    // Cache the rendered HTML for this view so toggling preserves it
+    trendsData[isIndia?'india':'global']=document.getElementById('trends-results').innerHTML;
+    lastTrendsData=lastTrendsData; // keep reference for PDF export
     localStorage.setItem('last_trends_run',new Date().toISOString());
     updateTrendsLastRun();
     toast(`Digest ready · ${lastTrendsData.totalSignals} signals · ${isIndia?'🇮🇳 India':'🌍 Global'}`);
