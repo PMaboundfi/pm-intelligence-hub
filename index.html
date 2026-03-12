@@ -1227,21 +1227,191 @@ Return ONLY valid JSON:
 }
 Rules: 3-5 items per included section. relevance = exactly High/Medium/Low. Return only JSON.`;
 
-  try{
-    const text=await callOR([{role:'user',content:prompt}],4000);
-    const c=text.replace(/```json|```/g,'').trim();
-    lastTrendsData=JSON.parse(c.slice(c.indexOf('{'),c.lastIndexOf('}')+1));
-    lastTrendsData._isIndia=isIndia;
-    renderTrends(lastTrendsData);
+  // ── Run one section at a time to avoid token cutoff ──
+  const sectionDefs = isIndia ? [
+    {id:'startups', title:'Indian Healthtech & Lifestyle Startups', icon:'🚀', category:'India', topic:'Indian healthtech and lifestyle disease startups: recent funding rounds, new product launches, key players targeting diabetes, obesity, hypertension, PCOS in India (e.g. Ultrahuman, HealthifyMe, GOQii, Fitterfly, BeatO, Dozee)'},
+    {id:'food',     title:'Food Delivery & Nutrition Platforms',    icon:'🍱', category:'Food',  topic:'Food delivery and nutrition platforms in India targeting health and lifestyle diseases: healthy meal delivery, diet food subscriptions, curated nutrition (e.g. EatFit, Kenko Health food plans, Cure.fit, Nourish Organics, Supr Daily, Wholsum Foods)'},
+    {id:'fssai',    title:'FSSAI & Indian Regulatory',             icon:'🏛️', category:'FSSAI', topic:'FSSAI regulatory updates, Indian government health policies (MoHFW, CDSCO, NHP), nutrition labelling rules, food safety standards related to health foods and lifestyle diseases'},
+    {id:'stats',    title:'Lifestyle Disease Stats & Reports',     icon:'📊', category:'Stats', topic:'India-specific data and reports on diabetes, obesity, hypertension, PCOS prevalence, digital health market size, patient behaviour trends, government health reports (ICMR, NFHS)'}
+  ] : [
+    {id:'fda',      title:'FDA & Regulatory',           icon:'🏛️', category:'FDA',     topic:'FDA clearances, 510(k) approvals, De Novo grants and regulatory guidance for diabetes devices, CGM, digital therapeutics and health apps'},
+    {id:'funding',  title:'Funding & M&A',              icon:'💰', category:'Funding', topic:'Venture capital funding rounds, Series A/B/C, M&A acquisitions in digital health, diabetes tech and chronic disease management globally'},
+    {id:'clinical', title:'Clinical Trials & Research', icon:'🔬', category:'Clinical',topic:'Published clinical trial results, peer-reviewed research and landmark studies on diabetes management technology, CGM accuracy, digital therapeutics outcomes'},
+    {id:'tech',     title:'Emerging Tech Signals',      icon:'⚡', category:'Tech',    topic:'Emerging technology in diabetes and chronic disease: AI/ML applications, new sensor hardware, digital therapeutics, wearables, precision nutrition'}
+  ];
+
+  const selectedDefs = sectionDefs.filter((_,i)=>{
+    const ids=['sig-fda','sig-funding','sig-clinical','sig-tech','sig-india-startups','sig-india-food','sig-india-fssai','sig-india-stats'];
+    const checkId = isIndia ? ['sig-india-startups','sig-india-food','sig-india-fssai','sig-india-stats'][i] : ['sig-fda','sig-funding','sig-clinical','sig-tech'][i];
+    const el=document.getElementById(checkId);
+    return el&&el.checked;
+  });
+
+  const geo = isIndia ? 'India' : 'Global';
+  lastTrendsData = {
+    period:`Last ${timeWindow} days`,
+    geography: geo,
+    generatedAt: new Date().toDateString(),
+    executiveSummary:'',
+    keyTheme:'',
+    totalSignals:0,
+    sections:[]
+  };
+
+  // Show empty shell immediately
+  document.getElementById('trends-results').innerHTML=`
+    <div id="digest-summary-shell" class="digest-summary" style="opacity:0.5;">
+      <div class="ds-left">
+        <h3>📈 Last ${timeWindow} days · ${geo} · ${new Date().toDateString()}</h3>
+        <p style="color:var(--t3);">Fetching sections one by one…</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;">
+        <div class="ds-stats">
+          <div class="ds-stat"><div class="dsn" id="live-signal-count">0</div><div class="dsl">Signals</div></div>
+          <div class="ds-stat"><div class="dsn" style="color:#4ade80;" id="live-high-count">0</div><div class="dsl">High impact</div></div>
+          <div class="ds-stat"><div class="dsn" id="live-cat-count">0</div><div class="dsl">Categories</div></div>
+        </div>
+      </div>
+    </div>
+    <div id="live-sections"></div>`;
+
+  let successCount=0;
+  for(let i=0;i<selectedDefs.length;i++){
+    const def=selectedDefs[i];
+    // Add loading placeholder for this section
+    const ph=document.createElement('div');
+    ph.id=`sec-ph-${def.id}`;
+    ph.innerHTML=`<div class="trends-section-header"><span class="tsh-icon">${def.icon}</span>${def.title}<span class="tsh-count" style="margin-left:auto;"><span class="spin" style="width:10px;height:10px;border-width:1.5px;display:inline-block;vertical-align:middle;"></span> fetching…</span></div>`;
+    document.getElementById('live-sections').appendChild(ph);
+
+    const sectionPrompt=`You are a Healthtech market intelligence analyst. Today: ${new Date().toDateString()}.
+Geography: ${geo}. Time window: last ${timeWindow} days.
+${myProduct?`Startup context: "${myProduct}" — also planning curated food delivery for lifestyle diseases in India.`:''}
+
+Generate a news digest section for: ${def.topic}
+
+Return ONLY a valid JSON object (no markdown, no extra text):
+{
+  "id": "${def.id}",
+  "title": "${def.title}",
+  "icon": "${def.icon}",
+  "summary": "2-sentence summary of key movements in this category",
+  "items": [
+    {
+      "title": "Specific accurate headline",
+      "body": "2-3 sentences of factual detail. Be specific about company names, amounts, dates.",
+      "impact": "1 sentence on why this matters for a lifestyle disease / food delivery health startup in India",
+      "date": "Month Year e.g. Feb 2025",
+      "relevance": "High",
+      "category": "${def.category}",
+      "geo": "${isIndia?'🇮🇳 India':'🌍 Global'}",
+      "sourceHint": "e.g. Economic Times or TechCrunch"
+    }
+  ]
+}
+Rules:
+- 3 to 4 items only
+- relevance must be exactly High, Medium, or Low
+- For Indian companies: describe what they ACTUALLY do accurately
+- If unsure of exact figures, use "approx" or "undisclosed"
+- Return only the JSON object, starting with {`;
+
+    try{
+      btn.innerHTML=`<span class="spin" style="width:14px;height:14px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px"></span>(${i+1}/${selectedDefs.length}) Fetching ${def.title}…`;
+      const text=await callOR([{role:'user',content:sectionPrompt}],1200);
+      const cleaned=text.replace(/```json|```/g,'').trim();
+      const jsonStr=cleaned.slice(cleaned.indexOf('{'),cleaned.lastIndexOf('}')+1);
+      const sec=JSON.parse(jsonStr);
+      lastTrendsData.sections.push(sec);
+      lastTrendsData.totalSignals+=(sec.items?.length||0);
+      successCount++;
+
+      // Update live counters
+      const high=lastTrendsData.sections.reduce((a,s)=>a+(s.items?.filter(x=>x.relevance==='High').length||0),0);
+      document.getElementById('live-signal-count').textContent=lastTrendsData.totalSignals;
+      document.getElementById('live-high-count').textContent=high;
+      document.getElementById('live-cat-count').textContent=lastTrendsData.sections.length;
+
+      // Render this section in place of placeholder
+      ph.outerHTML=buildSectionHTML(sec);
+    }catch(err){
+      ph.innerHTML=`<div style="padding:10px;font-size:12px;color:#f87171;">⚠️ ${def.title} failed: ${err.message}</div>`;
+    }
+  }
+
+  // Generate summary if we have sections
+  if(successCount>0){
+    try{
+      const summaryPrompt=`Based on these ${geo} healthtech market sections, write a 3-sentence executive summary and identify the single biggest key theme. Return JSON only: {"executiveSummary":"...","keyTheme":"..."}
+Sections: ${JSON.stringify(lastTrendsData.sections.map(s=>({title:s.title,summary:s.summary})))}`;
+      const st=await callOR([{role:'user',content:summaryPrompt}],400);
+      const sc=st.replace(/```json|```/g,'').trim();
+      const sd=JSON.parse(sc.slice(sc.indexOf('{'),sc.lastIndexOf('}')+1));
+      lastTrendsData.executiveSummary=sd.executiveSummary||'';
+      lastTrendsData.keyTheme=sd.keyTheme||'';
+    }catch(e){}
+    // Update summary shell
+    const shell=document.getElementById('digest-summary-shell');
+    if(shell){
+      const high=lastTrendsData.sections.reduce((a,s)=>a+(s.items?.filter(x=>x.relevance==='High').length||0),0);
+      shell.style.opacity='1';
+      shell.innerHTML=`
+        <div class="ds-left">
+          <h3>📈 ${lastTrendsData.period} · ${geo} · ${lastTrendsData.generatedAt}</h3>
+          <p>${lastTrendsData.executiveSummary||'Digest complete.'}</p>
+          ${lastTrendsData.keyTheme?`<div style="margin-top:10px;font-size:12px;color:var(--a);font-weight:600;">Key theme: ${lastTrendsData.keyTheme}</div>`:''}
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;">
+          <div class="ds-stats">
+            <div class="ds-stat"><div class="dsn">${lastTrendsData.totalSignals}</div><div class="dsl">Signals</div></div>
+            <div class="ds-stat"><div class="dsn" style="color:#4ade80;">${high}</div><div class="dsl">High impact</div></div>
+            <div class="ds-stat"><div class="dsn">${lastTrendsData.sections.length}</div><div class="dsl">Categories</div></div>
+          </div>
+          <button class="btn btn-pdf sm" onclick="exportTrendsPDF()">⬇ Export PDF</button>
+        </div>`;
+    }
     localStorage.setItem('last_trends_run',new Date().toISOString());
     updateTrendsLastRun();
-    toast(`Digest ready · ${lastTrendsData.totalSignals||'—'} signals · ${isIndia?'🇮🇳 India':'🌍 Global'}`);
-  }catch(e){
-    document.getElementById('trends-results').innerHTML=`<div class="sbox"><div class="sb-ico">⚠️</div><h3>Generation failed</h3><p>${e.message}</p></div>`;
-    toast('Failed: '+e.message,'err');
+    toast(`Digest ready · ${lastTrendsData.totalSignals} signals · ${isIndia?'🇮🇳 India':'🌍 Global'}`);
+  } else {
+    document.getElementById('trends-results').innerHTML=`<div class="sbox"><div class="sb-ico">⚠️</div><h3>All sections failed</h3><p>Check your API key and try again.</p></div>`;
+    toast('Generation failed','err');
   }
   btn.disabled=false;
   btn.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span id="trends-btn-label">${isIndia?'Generate India Digest':'Generate Market Digest'}</span>`;
+}
+
+function buildSectionHTML(sec){
+  const catClass={FDA:'tc-fda',Funding:'tc-fund',Clinical:'tc-clin',Tech:'tc-tech',India:'tc-fund',Food:'tc-tech',FSSAI:'tc-fda',Stats:'tc-clin'};
+  const badgeClass={FDA:'tcb-fda',Funding:'tcb-fund',Clinical:'tcb-clin',Tech:'tcb-tech',India:'tcb-fund',Food:'tcb-tech',FSSAI:'tcb-fda',Stats:'tcb-clin'};
+  const hdrClass={startups:'tsh-fund',food:'tsh-tech',fssai:'tsh-fda',stats:'tsh-clin',fda:'tsh-fda',funding:'tsh-fund',clinical:'tsh-clin',tech:'tsh-tech'};
+  const relClass={High:'tc-r-high',Medium:'tc-r-med',Low:'tc-r-low'};
+  return `<div class="trends-section">
+    <div class="trends-section-header">
+      <span class="tsh-icon ${hdrClass[sec.id]||''}">${sec.icon}</span>
+      ${sec.title}
+      <span style="font-size:11.5px;color:var(--t2);font-weight:400;text-transform:none;letter-spacing:0;">${sec.summary||''}</span>
+      <span class="tsh-count">${sec.items?.length||0} signals</span>
+    </div>
+    <div class="trends-grid">
+      ${(sec.items||[]).map(item=>`
+        <div class="trend-card ${catClass[item.category]||'tc-tech'}">
+          <div class="tc-top">
+            <div class="tc-title">${item.title}</div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;">
+              <span class="tc-badge ${badgeClass[item.category]||'tcb-tech'}">${item.category}</span>
+              ${item.geo?`<span style="font-size:9px;color:var(--t3);">${item.geo}</span>`:''}
+            </div>
+          </div>
+          <div class="tc-body">${item.body}</div>
+          <div class="tc-impact">💡 ${item.impact}</div>
+          <div class="tc-ft">
+            <span class="tc-date">${item.date}${item.sourceHint?` · <em style="color:var(--t3);">${item.sourceHint}</em>`:''}</span>
+            <span class="tc-relevance ${relClass[item.relevance]||'tc-r-low'}">● ${item.relevance}</span>
+          </div>
+        </div>`).join('')}
+    </div>
+  </div>`;
 }
 
 function updateTrendsLastRun(){
@@ -1250,62 +1420,7 @@ function updateTrendsLastRun(){
   const el=document.getElementById('trends-last-run');if(el)el.textContent=diff<60?`Last run ${diff}m ago`:`Last run ${Math.round(diff/60)}h ago`;
 }
 
-function renderTrends(data){
-  const catClass={FDA:'tc-fda',Funding:'tc-fund',Clinical:'tc-clin',Tech:'tc-tech'};
-  const badgeClass={FDA:'tcb-fda',Funding:'tcb-fund',Clinical:'tcb-clin',Tech:'tcb-tech'};
-  const hdrClass={fda:'tsh-fda',funding:'tsh-fund',clinical:'tsh-clin',tech:'tsh-tech'};
-  const relClass={High:'tc-r-high',Medium:'tc-r-med',Low:'tc-r-low'};
-  const totalItems=data.sections?.reduce((a,s)=>a+(s.items?.length||0),0)||0;
-  const highCount=data.sections?.reduce((a,s)=>a+(s.items?.filter(i=>i.relevance==='High').length||0),0)||0;
-
-  let html=`
-    <div class="digest-summary">
-      <div class="ds-left">
-        <h3>📈 ${data.period} · ${data.geography||'Global'} · ${data.generatedAt}</h3>
-        <p>${data.executiveSummary}</p>
-        ${data.keyTheme?`<div style="margin-top:10px;font-size:12px;color:var(--a);font-weight:600;">Key theme: ${data.keyTheme}</div>`:''}
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;">
-        <div class="ds-stats">
-          <div class="ds-stat"><div class="dsn">${totalItems}</div><div class="dsl">Signals</div></div>
-          <div class="ds-stat"><div class="dsn" style="color:#4ade80;">${highCount}</div><div class="dsl">High impact</div></div>
-          <div class="ds-stat"><div class="dsn">${data.sections?.length||0}</div><div class="dsl">Categories</div></div>
-        </div>
-        <button class="btn btn-pdf sm" onclick="exportTrendsPDF()">⬇ Export PDF</button>
-      </div>
-    </div>`;
-
-  data.sections?.forEach(sec=>{
-    html+=`<div class="trends-section">
-      <div class="trends-section-header">
-        <span class="tsh-icon ${hdrClass[sec.id]||''}">${sec.icon}</span>
-        ${sec.title}
-        <span style="font-size:11.5px;color:var(--t2);font-weight:400;text-transform:none;letter-spacing:0;">${sec.summary}</span>
-        <span class="tsh-count">${sec.items?.length||0} signals</span>
-      </div>
-      <div class="trends-grid">
-        ${(sec.items||[]).map(item=>`
-          <div class="trend-card ${catClass[item.category]||'tc-tech'}">
-            <div class="tc-top">
-              <div class="tc-title">${item.title}</div>
-              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;">
-                <span class="tc-badge ${badgeClass[item.category]||'tcb-tech'}">${item.category}</span>
-                ${item.geo?`<span style="font-size:9px;color:var(--t3);">${item.geo}</span>`:''}
-              </div>
-            </div>
-            <div class="tc-body">${item.body}</div>
-            <div class="tc-impact">💡 ${item.impact}</div>
-            <div class="tc-ft">
-              <span class="tc-date">${item.date}${item.sourceHint?` · <em style="color:var(--t3);">${item.sourceHint}</em>`:''}</span>
-              <span class="tc-relevance ${relClass[item.relevance]||'tc-r-low'}">● ${item.relevance} relevance</span>
-            </div>
-          </div>`).join('')}
-      </div>
-    </div>`;
-  });
-
-  document.getElementById('trends-results').innerHTML=html;
-}
+// renderTrends replaced by buildSectionHTML + progressive rendering
 
 /* ── TRENDS PDF EXPORT ── */
 function exportTrendsPDF(){
