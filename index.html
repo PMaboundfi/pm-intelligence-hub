@@ -8,10 +8,10 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --a:#00e5ff;--a2:#0088cc;--a3:#003060;
+  --a:#00e5ff;--a2:#0088cc;
   --glow:rgba(0,229,255,0.12);--glow2:rgba(0,229,255,0.05);
   --bg:#060a10;--s1:#0c1420;--s2:#101c2c;
-  --b1:rgba(0,229,255,0.12);--b2:rgba(255,255,255,0.06);
+  --b1:rgba(0,229,255,0.14);--b2:rgba(255,255,255,0.07);
   --t1:#e2eaf5;--t2:#7a9bb5;--t3:#3a5570;
   --r:12px;--r2:8px;
 }
@@ -19,78 +19,80 @@ html,body{height:100%;overflow:hidden;}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);display:flex;flex-direction:column;}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 600px 400px at 15% 0%,rgba(0,100,200,0.1) 0%,transparent 70%),radial-gradient(ellipse 400px 500px at 85% 100%,rgba(0,200,255,0.06) 0%,transparent 60%);pointer-events:none;z-index:0;}
 
-/* ─ CMD BAR ─ */
-#cmd{position:relative;z-index:200;flex-shrink:0;display:flex;align-items:center;background:rgba(6,10,16,0.96);border-bottom:1px solid var(--b1);backdrop-filter:blur(20px);height:54px;padding:0 20px;}
-.cmd-logo{display:flex;align-items:center;gap:9px;padding-right:24px;border-right:1px solid var(--b2);margin-right:6px;flex-shrink:0;}
-.cmd-dot{width:28px;height:28px;background:linear-gradient(135deg,#00e5ff,#0055cc);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 0 14px rgba(0,229,255,0.35);flex-shrink:0;}
-.cmd-name{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:#fff;white-space:nowrap;line-height:1.2;}
+/* ══════════════════════════════════
+   CMD BAR — taller, bigger text
+══════════════════════════════════ */
+#cmd{position:relative;z-index:200;flex-shrink:0;display:flex;align-items:center;background:rgba(6,10,16,0.97);border-bottom:1px solid var(--b1);backdrop-filter:blur(24px);height:68px;padding:0 28px;}
+.cmd-logo{display:flex;align-items:center;gap:11px;padding-right:28px;border-right:1px solid var(--b2);margin-right:8px;flex-shrink:0;}
+.cmd-dot{width:34px;height:34px;background:linear-gradient(135deg,#00e5ff,#0055cc);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 0 18px rgba(0,229,255,0.38);flex-shrink:0;}
+.cmd-name{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#fff;white-space:nowrap;line-height:1.2;}
 .cmd-name em{color:var(--a);font-style:normal;}
 .cmd-nav{display:flex;align-items:center;gap:0;flex:1;}
-.ctab{position:relative;display:flex;align-items:center;gap:7px;padding:0 14px;height:54px;font-size:12.5px;font-weight:500;color:var(--t3);cursor:pointer;border:none;background:transparent;font-family:'Inter',sans-serif;transition:color 0.18s;white-space:nowrap;}
+.ctab{position:relative;display:flex;align-items:center;gap:8px;padding:0 18px;height:68px;font-size:13.5px;font-weight:500;color:var(--t3);cursor:pointer;border:none;background:transparent;font-family:'Inter',sans-serif;transition:color 0.18s;white-space:nowrap;}
 .ctab:hover{color:var(--t2);}
 .ctab.active{color:var(--a);}
-.ctab.active::after{content:'';position:absolute;bottom:0;left:14px;right:14px;height:2px;background:linear-gradient(90deg,var(--a),var(--a2));border-radius:2px 2px 0 0;}
-.tab-pip{width:5px;height:5px;border-radius:50%;background:var(--a);box-shadow:0 0 5px var(--a);animation:blink 2s ease-in-out infinite;}
-.tab-soon{font-size:9px;font-weight:700;background:rgba(255,255,255,0.05);color:var(--t3);padding:2px 5px;border-radius:4px;letter-spacing:0.5px;text-transform:uppercase;}
+.ctab.active::after{content:'';position:absolute;bottom:0;left:18px;right:18px;height:2px;background:linear-gradient(90deg,var(--a),var(--a2));border-radius:2px 2px 0 0;}
+.tab-pip{width:6px;height:6px;border-radius:50%;background:var(--a);box-shadow:0 0 6px var(--a);animation:blink 2s ease-in-out infinite;}
+.tab-soon{font-size:9.5px;font-weight:700;background:rgba(255,255,255,0.06);color:var(--t3);padding:3px 7px;border-radius:4px;letter-spacing:0.5px;text-transform:uppercase;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
-.cmd-r{display:flex;align-items:center;gap:10px;padding-left:20px;border-left:1px solid var(--b2);flex-shrink:0;}
-.cmd-date{font-size:11px;color:var(--t3);font-weight:500;white-space:nowrap;}
-.cmd-live{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--t3);}
-.led{width:6px;height:6px;border-radius:50%;background:#00e676;box-shadow:0 0 5px #00e676;animation:blink 2s infinite;flex-shrink:0;}
+.cmd-r{display:flex;align-items:center;gap:12px;padding-left:24px;border-left:1px solid var(--b2);flex-shrink:0;}
+.cmd-date{font-size:12px;color:var(--t3);font-weight:500;white-space:nowrap;}
+.cmd-live{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--t3);}
+.led{width:7px;height:7px;border-radius:50%;background:#00e676;box-shadow:0 0 6px #00e676;animation:blink 2s infinite;flex-shrink:0;}
 
-/* ─ WORKSPACE ─ */
+/* ══════════════════════════════════
+   WORKSPACE
+══════════════════════════════════ */
 #ws{flex:1;overflow:hidden;position:relative;z-index:1;}
-.wp{display:none;height:100%;overflow-y:auto;overflow-x:hidden;padding:26px 30px;animation:fu 0.2s ease;}
+.wp{display:none;height:100%;overflow-y:auto;overflow-x:hidden;padding:28px 32px;animation:fu 0.22s ease;}
 .wp.active{display:block;}
 @keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.wp::-webkit-scrollbar{width:4px}
-.wp::-webkit-scrollbar-thumb{background:var(--t3);border-radius:2px}
+.wp::-webkit-scrollbar{width:4px}.wp::-webkit-scrollbar-thumb{background:var(--t3);border-radius:2px}
 
-/* ─ PANEL HEADER ─ */
-.ph{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--b2);}
-.ph h1{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:#fff;letter-spacing:-0.3px;margin-bottom:3px;}
-.ph p{font-size:12px;color:var(--t2);}
+/* PANEL HEADER */
+.ph{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--b2);}
+.ph h1{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.3px;margin-bottom:4px;}
+.ph p{font-size:12.5px;color:var(--t2);}
 
-/* ─ CARD ─ */
+/* CARDS */
 .card{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r);padding:18px;}
 .card.accent{border-color:var(--b1);background:linear-gradient(135deg,rgba(0,229,255,0.04),var(--s1));}
 .ct{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--t3);margin-bottom:12px;display:flex;align-items:center;gap:7px;}
 .ct-i{width:18px;height:18px;border-radius:4px;background:rgba(0,229,255,0.1);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;}
 
-/* ─ INPUTS ─ */
+/* INPUTS */
 .field{background:var(--bg);border:1px solid var(--b2);color:var(--t1);padding:9px 13px;border-radius:var(--r2);font-size:13px;font-family:'Inter',sans-serif;outline:none;width:100%;transition:border-color 0.18s,box-shadow 0.18s;}
 .field:focus{border-color:rgba(0,229,255,0.35);box-shadow:0 0 0 3px rgba(0,229,255,0.06);}
 .field::placeholder{color:var(--t3);}
 textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
-.frow{display:flex;gap:8px;}
-.frow .field{flex:1;}
+.frow{display:flex;gap:8px;}.frow .field{flex:1;}
 
-/* ─ BUTTONS ─ */
-.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--r2);font-size:12.5px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;border:none;transition:all 0.2s;white-space:nowrap;}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 17px;border-radius:var(--r2);font-size:13px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;border:none;transition:all 0.2s;white-space:nowrap;}
 .btn-p{background:linear-gradient(135deg,var(--a),var(--a2));color:#000;font-weight:700;}
 .btn-p:hover{filter:brightness(1.1);box-shadow:0 4px 18px rgba(0,229,255,0.28);transform:translateY(-1px);}
 .btn-p:disabled{background:var(--s2);color:var(--t3);cursor:not-allowed;transform:none;box-shadow:none;filter:none;}
 .btn-o{background:transparent;color:var(--t2);border:1px solid var(--b2);}
 .btn-o:hover{border-color:var(--b1);color:var(--a);background:var(--glow2);}
+.btn-pdf{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;font-weight:700;}
+.btn-pdf:hover{filter:brightness(1.15);box-shadow:0 4px 18px rgba(124,58,237,0.3);transform:translateY(-1px);}
 .sm{padding:6px 11px;font-size:11.5px;}
 
-/* BIG ACTION */
-.btn-action{display:inline-flex;align-items:center;gap:9px;padding:10px 24px;border-radius:var(--r2);background:var(--s1);border:1px solid var(--b1);color:var(--a);font-size:13.5px;font-weight:700;font-family:'Space Grotesk',sans-serif;cursor:pointer;transition:all 0.22s;position:relative;overflow:hidden;}
+.btn-action{display:inline-flex;align-items:center;gap:9px;padding:11px 26px;border-radius:var(--r2);background:var(--s1);border:1px solid var(--b1);color:var(--a);font-size:14px;font-weight:700;font-family:'Space Grotesk',sans-serif;cursor:pointer;transition:all 0.22s;position:relative;overflow:hidden;}
 .btn-action::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,229,255,0.07),transparent);opacity:0;transition:opacity 0.2s;}
 .btn-action:hover::before{opacity:1;}
 .btn-action:hover{border-color:rgba(0,229,255,0.35);box-shadow:0 0 22px rgba(0,229,255,0.1);transform:translateY(-1px);}
 .btn-action:disabled{opacity:0.4;cursor:not-allowed;transform:none;box-shadow:none;}
 
-/* ─ COMPETITOR TAGS ─ */
+/* TAGS */
 .tlist{display:flex;flex-wrap:wrap;gap:6px;}
-.ctag{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.14);border-radius:20px;font-size:11.5px;font-weight:500;color:var(--t2);transition:all 0.15s;}
+.ctag{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.14);border-radius:20px;font-size:12px;font-weight:500;color:var(--t2);transition:all 0.15s;}
 .ctag:hover{background:rgba(0,229,255,0.1);color:var(--a);}
-.rx{cursor:pointer;color:var(--t3);font-size:14px;line-height:1;margin-left:2px;}
-.rx:hover{color:#f87171;}
+.rx{cursor:pointer;color:var(--t3);font-size:14px;line-height:1;margin-left:2px;}.rx:hover{color:#f87171;}
 
-/* ─ INTEL CARDS ─ */
-.igrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:13px;}
-.ic{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r);padding:17px;transition:all 0.2s;position:relative;overflow:hidden;}
+/* INTEL CARDS */
+.igrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;}
+.ic{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r);padding:18px;transition:all 0.2s;position:relative;overflow:hidden;}
 .ic::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity 0.2s;}
 .ic:hover{border-color:var(--b1);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,0.28);}
 .ic:hover::before{opacity:1;}
@@ -102,19 +104,16 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 .ic-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:9px;gap:8px;}
 .ic-co{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:#fff;}
 .ictag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;letter-spacing:0.5px;text-transform:uppercase;flex-shrink:0;}
-.t-fda{background:rgba(167,139,250,0.12);color:#c4b5fd;}
-.t-fund{background:rgba(0,229,255,0.1);color:var(--a);}
-.t-prod{background:rgba(56,189,248,0.1);color:#7dd3fc;}
-.t-part{background:rgba(251,191,36,0.1);color:#fcd34d;}
+.t-fda{background:rgba(167,139,250,0.12);color:#c4b5fd;}.t-fund{background:rgba(0,229,255,0.1);color:var(--a);}
+.t-prod{background:rgba(56,189,248,0.1);color:#7dd3fc;}.t-part{background:rgba(251,191,36,0.1);color:#fcd34d;}
 .t-gen{background:rgba(255,255,255,0.05);color:var(--t3);}
 .ic-hl{font-size:13px;font-weight:500;color:var(--t1);line-height:1.5;margin-bottom:7px;}
 .ic-sm{font-size:11.5px;color:var(--t2);line-height:1.65;}
 .ic-ft{display:flex;align-items:center;justify-content:space-between;margin-top:13px;padding-top:11px;border-top:1px solid var(--b2);}
 .ic-meta{font-size:11px;color:var(--t3);}
-.ic-link{font-size:11px;color:var(--a);text-decoration:none;font-weight:600;transition:color 0.15s;}
-.ic-link:hover{color:#fff;}
+.ic-link{font-size:11px;color:var(--a);text-decoration:none;font-weight:600;transition:color 0.15s;}.ic-link:hover{color:#fff;}
 
-/* ─ STATES ─ */
+/* STATES */
 .sbox{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;text-align:center;color:var(--t3);}
 .sb-ico{font-size:34px;margin-bottom:14px;opacity:0.45;}
 .sbox h3{font-family:'Space Grotesk',sans-serif;font-size:15px;color:var(--t2);margin-bottom:7px;}
@@ -122,18 +121,18 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 .spin{width:30px;height:30px;border:2.5px solid rgba(0,229,255,0.14);border-top-color:var(--a);border-radius:50%;animation:rot 0.7s linear infinite;margin:0 auto 13px;}
 @keyframes rot{to{transform:rotate(360deg)}}
 
-/* ─ RESULTS BAR ─ */
+/* RESULTS BAR */
 .rbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
 .rbar h3{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:#fff;}
 .rbar span{font-size:12px;color:var(--t3);}
 
-/* ─ RADAR SETUP GRID ─ */
+/* RADAR SETUP */
 .radar-top{display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-bottom:22px;}
 
-/* ─ CLINICAL ─ */
-.clin-ws{display:grid;grid-template-columns:300px 1fr;gap:18px;height:calc(100vh - 54px - 28px - 120px);min-height:380px;}
+/* CLINICAL */
+.clin-ws{display:grid;grid-template-columns:300px 1fr;gap:18px;height:calc(100vh - 68px - 32px - 130px);min-height:380px;}
 .uzn{border:2px dashed rgba(0,229,255,0.14);border-radius:var(--r);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;transition:all 0.22s;padding:30px 20px;background:var(--s1);}
-.uzn:hover,.uzn.dg{border-color:rgba(0,229,255,0.38);background:rgba(0,229,255,0.03);box-shadow:0 0 28px rgba(0,229,255,0.05);}
+.uzn:hover,.uzn.dg{border-color:rgba(0,229,255,0.38);background:rgba(0,229,255,0.03);}
 .uz-ico{font-size:36px;margin-bottom:12px;opacity:0.55;}
 .uzn h3{font-size:14px;font-weight:600;color:var(--t1);margin-bottom:5px;}
 .uzn p{font-size:11.5px;color:var(--t2);}
@@ -141,76 +140,170 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 .cout{display:flex;flex-direction:column;background:var(--s1);border:1px solid var(--b2);border-radius:var(--r);overflow:hidden;}
 .co-tabs{display:flex;border-bottom:1px solid var(--b2);flex-shrink:0;}
 .co-tab{flex:1;padding:13px;font-size:12px;font-weight:600;color:var(--t3);cursor:pointer;border:none;background:transparent;font-family:'Inter',sans-serif;transition:all 0.15s;border-bottom:2px solid transparent;margin-bottom:-1px;}
-.co-tab:hover{color:var(--t2);background:rgba(255,255,255,0.02);}
+.co-tab:hover{color:var(--t2);}
 .co-tab.active{color:var(--a);border-bottom-color:var(--a);}
 .co-body{flex:1;padding:22px;font-size:13px;line-height:1.8;color:var(--t1);white-space:pre-wrap;overflow-y:auto;}
 .co-ft{padding:11px 18px;border-top:1px solid var(--b2);display:flex;justify-content:flex-end;flex-shrink:0;}
 
-/* ─ SWOT ─ */
-.swot-ws{display:grid;grid-template-columns:260px 1fr;gap:18px;height:calc(100vh - 54px - 28px - 120px);min-height:380px;}
+/* ══════════════════════════════════
+   SWOT WORKSPACE
+══════════════════════════════════ */
+.swot-ws{display:grid;grid-template-columns:270px 1fr;gap:18px;height:calc(100vh - 68px - 32px - 130px);min-height:380px;}
 .swot-side{display:flex;flex-direction:column;gap:12px;overflow-y:auto;}
-.swot-side::-webkit-scrollbar{width:3px}
-.swot-side::-webkit-scrollbar-thumb{background:var(--t3);border-radius:2px}
+.swot-side::-webkit-scrollbar{width:3px}.swot-side::-webkit-scrollbar-thumb{background:var(--t3);border-radius:2px}
 .swot-main{overflow-y:auto;border-radius:var(--r);}
-.swot-main::-webkit-scrollbar{width:4px}
-.swot-main::-webkit-scrollbar-thumb{background:var(--t3);border-radius:2px}
-
+.swot-main::-webkit-scrollbar{width:4px}.swot-main::-webkit-scrollbar-thumb{background:var(--t3);border-radius:2px}
 .mtog{display:flex;background:var(--bg);border:1px solid var(--b2);border-radius:var(--r2);padding:3px;gap:2px;}
-.mbtn{flex:1;padding:6px 8px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--t3);font-family:'Inter',sans-serif;transition:all 0.18s;text-align:center;}
+.mbtn{flex:1;padding:7px 8px;border-radius:6px;font-size:11.5px;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--t3);font-family:'Inter',sans-serif;transition:all 0.18s;text-align:center;}
 .mbtn.active{background:rgba(0,229,255,0.1);color:var(--a);}
 
-.sch{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r) var(--r) 0 0;padding:17px 20px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:none;}
-.sch-name{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff;}
-.sch-ov{font-size:12px;color:var(--t2);margin-top:3px;line-height:1.5;}
-.swot-body{background:var(--s1);border:1px solid var(--b2);border-top:1px solid var(--b1);border-radius:0 0 var(--r) var(--r);padding:18px;}
+/* SWOT COMPANY HEADER */
+.sch{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r) var(--r) 0 0;padding:20px 24px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:none;}
+.sch-name{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:#fff;}
+.sch-ov{font-size:12.5px;color:var(--t2);margin-top:4px;line-height:1.5;max-width:560px;}
+.swot-body{background:var(--s1);border:1px solid var(--b2);border-top:1px solid var(--b1);border-radius:0 0 var(--r) var(--r);padding:20px;}
 
-.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:18px;}
-.sq{border-radius:var(--r2);padding:15px;border:1px solid;}
-.sq-s{background:rgba(0,229,255,0.04);border-color:rgba(0,229,255,0.14);}
-.sq-w{background:rgba(255,80,80,0.04);border-color:rgba(255,80,80,0.14);}
-.sq-o{background:rgba(56,189,248,0.04);border-color:rgba(56,189,248,0.14);}
-.sq-t{background:rgba(251,191,36,0.04);border-color:rgba(251,191,36,0.14);}
-.sq-lbl{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:9px;display:flex;align-items:center;gap:5px;}
+/* SWOT 4 QUADRANTS */
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.sq{border-radius:var(--r2);padding:16px;border:1px solid;}
+.sq-s{background:rgba(0,229,255,0.04);border-color:rgba(0,229,255,0.15);}
+.sq-w{background:rgba(255,80,80,0.04);border-color:rgba(255,80,80,0.15);}
+.sq-o{background:rgba(56,189,248,0.04);border-color:rgba(56,189,248,0.15);}
+.sq-t{background:rgba(251,191,36,0.04);border-color:rgba(251,191,36,0.15);}
+.sq-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
 .sq-s .sq-lbl{color:var(--a)}.sq-w .sq-lbl{color:#f87171}.sq-o .sq-lbl{color:#7dd3fc}.sq-t .sq-lbl{color:#fcd34d}
 .sq ul{list-style:none;}
-.sq ul li{font-size:11.5px;color:var(--t1);line-height:1.55;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:7px;}
+.sq ul li{font-size:12px;color:var(--t1);line-height:1.55;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:8px;}
 .sq ul li:last-child{border:none;}
 .sq ul li::before{content:'–';color:var(--t3);flex-shrink:0;}
 
-.dlbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--t3);margin-bottom:10px;}
-.dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;}
-.dc{background:var(--bg);border:1px solid var(--b2);border-radius:var(--r2);padding:13px;transition:border-color 0.18s;}
-.dc:hover{border-color:var(--b1);}
-.dc h5{font-size:9.5px;font-weight:700;color:var(--a);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
-.dc p{font-size:11px;color:var(--t2);line-height:1.6;}
+/* SECTION DIVIDER */
+.sec-hdr{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--t3);margin:24px 0 12px;display:flex;align-items:center;gap:10px;}
+.sec-hdr::after{content:'';flex:1;height:1px;background:var(--b2);}
 
-.acc{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r);margin-bottom:9px;overflow:hidden;transition:border-color 0.18s;}
+/* DIMENSION GRID */
+.dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px;}
+.dc{background:var(--bg);border:1px solid var(--b2);border-radius:var(--r2);padding:14px;transition:border-color 0.18s;}
+.dc:hover{border-color:var(--b1);}
+.dc h5{font-size:10px;font-weight:700;color:var(--a);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:7px;}
+.dc p{font-size:11.5px;color:var(--t2);line-height:1.6;}
+
+/* ══════════════════════════════════
+   NEW: COMPETITOR DEEP DIVE SECTIONS
+══════════════════════════════════ */
+
+/* Pricing table */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:6px;}
+.price-card{background:var(--bg);border:1px solid var(--b2);border-radius:var(--r2);padding:14px;text-align:center;}
+.price-card .pc-tier{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--t3);margin-bottom:6px;}
+.price-card .pc-price{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:4px;}
+.price-card .pc-period{font-size:10.5px;color:var(--t3);}
+.price-card .pc-note{font-size:11px;color:var(--t2);margin-top:7px;line-height:1.5;}
+.price-card.highlight{border-color:var(--b1);background:rgba(0,229,255,0.04);}
+
+/* News feed */
+.news-list{display:flex;flex-direction:column;gap:8px;margin-bottom:6px;}
+.news-item{background:var(--bg);border:1px solid var(--b2);border-radius:var(--r2);padding:13px 16px;display:flex;align-items:flex-start;gap:12px;transition:border-color 0.18s;}
+.news-item:hover{border-color:var(--b1);}
+.news-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.nd-fund{background:#00e5ff;box-shadow:0 0 6px rgba(0,229,255,0.4);}
+.nd-fda{background:#a78bfa;box-shadow:0 0 6px rgba(167,139,250,0.4);}
+.nd-prod{background:#38bdf8;box-shadow:0 0 6px rgba(56,189,248,0.4);}
+.nd-part{background:#fbbf24;box-shadow:0 0 6px rgba(251,191,36,0.4);}
+.nd-gen{background:var(--t3);}
+.news-body{flex:1;}
+.news-hl{font-size:12.5px;font-weight:600;color:var(--t1);line-height:1.45;margin-bottom:3px;}
+.news-meta{font-size:11px;color:var(--t3);}
+
+/* Market position bar */
+.mktpos-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px;}
+.mktpos-card{background:var(--bg);border:1px solid var(--b2);border-radius:var(--r2);padding:14px;}
+.mktpos-label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;color:var(--t3);margin-bottom:8px;}
+.mktpos-val{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:4px;}
+.mktpos-sub{font-size:11px;color:var(--t2);}
+.bar-wrap{height:5px;background:rgba(255,255,255,0.07);border-radius:3px;margin-top:8px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--a),var(--a2));transition:width 0.8s ease;}
+
+/* ACCORDION for auto-discover */
+.acc{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r);margin-bottom:10px;overflow:hidden;transition:border-color 0.18s;}
 .acc:hover{border-color:var(--b1);}
-.acc-h{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;}
-.acc-name{font-family:'Space Grotesk',sans-serif;font-size:13.5px;font-weight:700;color:#fff;}
-.acc-ov{font-size:11px;color:var(--t2);margin-top:2px;line-height:1.4;}
+.acc-h{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;cursor:pointer;user-select:none;}
+.acc-name{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#fff;}
+.acc-ov{font-size:11.5px;color:var(--t2);margin-top:2px;line-height:1.4;}
 .acc-chev{color:var(--t3);font-size:11px;transition:transform 0.2s;flex-shrink:0;}
 .acc-chev.open{transform:rotate(180deg);}
-.acc-b{display:none;padding:0 18px 18px;}
+.acc-b{display:none;padding:0 20px 20px;}
 .acc-b.open{display:block;}
 
-/* ─ COMING SOON ─ */
+/* COMING SOON */
 .cs{display:flex;flex-direction:column;align-items:center;justify-content:center;height:calc(100vh - 200px);text-align:center;}
-.cs-ring{width:72px;height:72px;border-radius:50%;border:1px solid var(--b1);display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:18px;background:var(--glow2);box-shadow:0 0 36px var(--glow2);}
+.cs-ring{width:72px;height:72px;border-radius:50%;border:1px solid var(--b1);display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:18px;background:var(--glow2);}
 .cs h2{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:9px;}
 .cs p{font-size:12.5px;color:var(--t2);max-width:400px;line-height:1.7;margin-bottom:18px;}
 .pbadge{display:inline-block;background:rgba(0,229,255,0.07);border:1px solid var(--b1);color:var(--a);font-size:10px;font-weight:700;padding:4px 13px;border-radius:20px;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:18px;}
 
-/* ─ TOAST ─ */
-#toast{position:fixed;bottom:22px;right:22px;padding:10px 17px;border-radius:var(--r2);font-size:12px;font-weight:500;opacity:0;transform:translateY(7px) scale(0.97);transition:all 0.22s ease;z-index:9999;pointer-events:none;}
+/* TOAST */
+#toast{position:fixed;bottom:22px;right:22px;padding:11px 18px;border-radius:var(--r2);font-size:12.5px;font-weight:500;opacity:0;transform:translateY(7px) scale(0.97);transition:all 0.22s ease;z-index:9999;pointer-events:none;}
 #toast.show{opacity:1;transform:translateY(0) scale(1);}
 #toast.ok{background:rgba(0,180,120,0.14);border:1px solid rgba(0,180,120,0.28);color:#4ade80;}
 #toast.err{background:rgba(255,80,80,0.11);border:1px solid rgba(255,80,80,0.24);color:#f87171;}
 
+/* UTILS */
 .mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}
-.fend{justify-content:flex-end}
 .flex{display:flex;align-items:center;gap:8px;}
-.hint{font-size:11px;color:var(--t3);}
+.fend{justify-content:flex-end;}
+.hint{font-size:11.5px;color:var(--t3);}
+
+/* ══════════════════════════════════
+   PRINT / PDF STYLES
+══════════════════════════════════ */
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html,body { height:auto !important; overflow:visible !important; background:#fff !important; color:#111 !important; }
+  body::before { display:none !important; }
+  #cmd,#ws { display:block !important; height:auto !important; overflow:visible !important; }
+  #cmd { display:none !important; }
+  .wp { display:none !important; }
+  .wp.print-target { display:block !important; height:auto !important; overflow:visible !important; padding:0 !important; }
+  .swot-ws { display:block !important; height:auto !important; }
+  .swot-side { display:none !important; }
+  .swot-main { height:auto !important; overflow:visible !important; }
+  .ph { border-bottom:2px solid #ddd !important; margin-bottom:20px !important; }
+  .ph h1 { color:#111 !important; font-size:26px !important; }
+  .ph p { color:#555 !important; }
+  .sch { background:#f8f9fa !important; border:1px solid #ddd !important; border-radius:8px 8px 0 0 !important; }
+  .sch-name { color:#111 !important; }
+  .sch-ov { color:#555 !important; }
+  .swot-body { background:#fff !important; border:1px solid #ddd !important; border-top:2px solid #0088cc !important; }
+  .qgrid { page-break-inside:avoid; }
+  .sq { border:1px solid #ddd !important; background:#f8f9fa !important; }
+  .sq-s { background:#f0fffe !important; border-color:#a7f3d0 !important; }
+  .sq-w { background:#fff5f5 !important; border-color:#fecaca !important; }
+  .sq-o { background:#f0f9ff !important; border-color:#bae6fd !important; }
+  .sq-t { background:#fffbeb !important; border-color:#fde68a !important; }
+  .sq-lbl,.sq-s .sq-lbl { color:#0d9488 !important; }
+  .sq-w .sq-lbl { color:#dc2626 !important; }
+  .sq-o .sq-lbl { color:#0284c7 !important; }
+  .sq-t .sq-lbl { color:#d97706 !important; }
+  .sq ul li { color:#333 !important; border-bottom:1px solid #eee !important; }
+  .sq ul li::before { color:#999 !important; }
+  .sec-hdr { color:#0088cc !important; font-size:11px !important; }
+  .sec-hdr::after { background:#ddd !important; }
+  .dgrid,.pricing-grid,.mktpos-grid { page-break-inside:avoid; }
+  .dc,.price-card,.mktpos-card,.news-item { background:#f8f9fa !important; border:1px solid #ddd !important; }
+  .dc h5 { color:#0088cc !important; }
+  .dc p,.news-hl,.news-meta,.mktpos-val,.mktpos-sub,.mktpos-label,.price-card .pc-tier,.price-card .pc-note,.price-card .pc-period { color:#333 !important; }
+  .price-card .pc-price { color:#111 !important; }
+  .news-list { page-break-inside:avoid; }
+  .print-header { display:block !important; margin-bottom:24px; }
+  .btn-action,.btn-pdf,.btn-o,.acc-chev,.swot-side { display:none !important; }
+  .sch { padding:16px 20px !important; }
+  .print-footer { display:block !important; margin-top:32px; padding-top:16px; border-top:1px solid #ddd; font-size:11px; color:#999; }
+  .bar-fill { background:#0088cc !important; }
+  .acc-b { display:block !important; }
+}
+
+.print-header,.print-footer { display:none; }
 </style>
 </head>
 <body>
@@ -240,58 +333,36 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
   <!-- RADAR -->
   <div class="wp active" id="panel-radar">
     <div class="ph">
-      <div>
-        <h1>Competitor Radar</h1>
-        <p>Daily intelligence scan · Track FDA clearances, funding, product launches, partnerships</p>
-      </div>
+      <div><h1>Competitor Radar</h1><p>Daily intelligence scan · Track FDA clearances, funding, product launches, partnerships</p></div>
       <div class="flex">
         <span class="hint" id="last-scan-time"></span>
         <button class="btn-action" id="scan-btn" onclick="runScan()">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3"/></svg>
           Run Morning Scan
         </button>
       </div>
     </div>
-
     <div class="radar-top">
       <div class="card accent">
         <div class="ct"><span class="ct-i">🔑</span>API Key</div>
-        <div class="frow">
-          <input type="password" class="field" id="api-key-input" placeholder="sk-or-v1-..."/>
-          <button class="btn btn-p sm" onclick="saveKey()">Save</button>
-        </div>
+        <div class="frow"><input type="password" class="field" id="api-key-input" placeholder="sk-or-v1-..."/><button class="btn btn-p sm" onclick="saveKey()">Save</button></div>
         <div class="mt8 hint">openrouter.ai/keys · ~$0.001/scan</div>
       </div>
       <div class="card">
         <div class="ct"><span class="ct-i">🎯</span>Tracked Competitors</div>
         <div class="tlist" id="competitor-tags" style="margin-bottom:10px;"></div>
-        <div class="flex">
-          <input type="text" class="field" id="new-competitor" placeholder="Add competitor..." style="max-width:200px" onkeydown="if(event.key==='Enter') addCompetitor()"/>
-          <button class="btn btn-o sm" onclick="addCompetitor()">+ Add</button>
-        </div>
+        <div class="flex"><input type="text" class="field" id="new-competitor" placeholder="Add competitor..." style="max-width:200px" onkeydown="if(event.key==='Enter') addCompetitor()"/><button class="btn btn-o sm" onclick="addCompetitor()">+ Add</button></div>
       </div>
     </div>
-
-    <div id="radar-ebar" style="display:none;" class="flex fend" style="margin-bottom:12px;">
-      <button class="btn btn-o sm" onclick="exportResults()">↓ Export Brief</button>
-    </div>
+    <div id="radar-ebar" style="display:none;" class="flex fend mt8"><button class="btn btn-o sm" onclick="exportResults()">↓ Export Brief (.txt)</button></div>
     <div id="results-area">
-      <div class="sbox">
-        <div class="sb-ico">📡</div>
-        <h3>Ready to scan</h3>
-        <p>Save your API key, confirm tracked competitors, then click Run Morning Scan.</p>
-      </div>
+      <div class="sbox"><div class="sb-ico">📡</div><h3>Ready to scan</h3><p>Save your API key, confirm tracked competitors, then click Run Morning Scan.</p></div>
     </div>
   </div>
 
   <!-- CLINICAL -->
   <div class="wp" id="panel-clinical">
-    <div class="ph">
-      <div>
-        <h1>Clinical Translator</h1>
-        <p>Upload a clinical study PDF · Instantly get CEO summary, marketing hook, and sales angle</p>
-      </div>
-    </div>
+    <div class="ph"><div><h1>Clinical Translator</h1><p>Upload a clinical study PDF · Get CEO summary, marketing hook, and sales angle instantly</p></div></div>
     <div class="card accent flex" style="margin-bottom:18px;padding:14px 18px;">
       <div class="ct" style="margin:0;flex-shrink:0;"><span class="ct-i">🔑</span>API Key</div>
       <input type="password" class="field" id="api-key-clinical" placeholder="sk-or-v1-..." style="max-width:340px;"/>
@@ -300,38 +371,22 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
     </div>
     <div class="clin-ws">
       <div style="display:flex;flex-direction:column;gap:12px;">
-        <div class="uzn" id="upload-zone"
-          onclick="document.getElementById('pdf-input').click()"
-          ondragover="event.preventDefault();this.classList.add('dg')"
-          ondragleave="this.classList.remove('dg')"
-          ondrop="handleDrop(event)">
-          <div class="uz-ico">📄</div>
-          <h3>Drop PDF here</h3>
-          <p>or click to browse</p>
+        <div class="uzn" id="upload-zone" onclick="document.getElementById('pdf-input').click()" ondragover="event.preventDefault();this.classList.add('dg')" ondragleave="this.classList.remove('dg')" ondrop="handleDrop(event)">
+          <div class="uz-ico">📄</div><h3>Drop PDF here</h3><p>or click to browse</p>
           <p style="margin-top:7px;font-size:10.5px;color:var(--t3);">Clinical studies · Research papers · Trial results</p>
         </div>
         <input type="file" id="pdf-input" accept=".pdf" onchange="handleFileSelect(event)"/>
         <div class="card" style="flex:1;">
           <div class="ct">What you get</div>
           <div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="padding:10px;background:var(--bg);border-radius:var(--r2);font-size:11.5px;color:var(--t2);line-height:1.5;">
-              <strong style="color:var(--a);font-size:10px;display:block;margin-bottom:3px;">📊 CEO SUMMARY</strong>3 bullet points for quick decisions
-            </div>
-            <div style="padding:10px;background:var(--bg);border-radius:var(--r2);font-size:11.5px;color:var(--t2);line-height:1.5;">
-              <strong style="color:#7dd3fc;font-size:10px;display:block;margin-bottom:3px;">📣 MARKETING HOOK</strong>Plain language for patients, no jargon
-            </div>
-            <div style="padding:10px;background:var(--bg);border-radius:var(--r2);font-size:11.5px;color:var(--t2);line-height:1.5;">
-              <strong style="color:#fcd34d;font-size:10px;display:block;margin-bottom:3px;">💼 SALES ANGLE</strong>Differentiation points with data
-            </div>
+            <div style="padding:10px;background:var(--bg);border-radius:var(--r2);font-size:11.5px;color:var(--t2);line-height:1.5;"><strong style="color:var(--a);font-size:10px;display:block;margin-bottom:3px;">📊 CEO SUMMARY</strong>3 bullet points for quick decisions</div>
+            <div style="padding:10px;background:var(--bg);border-radius:var(--r2);font-size:11.5px;color:var(--t2);line-height:1.5;"><strong style="color:#7dd3fc;font-size:10px;display:block;margin-bottom:3px;">📣 MARKETING HOOK</strong>Plain language for patients, no jargon</div>
+            <div style="padding:10px;background:var(--bg);border-radius:var(--r2);font-size:11.5px;color:var(--t2);line-height:1.5;"><strong style="color:#fcd34d;font-size:10px;display:block;margin-bottom:3px;">💼 SALES ANGLE</strong>Differentiation points with data</div>
           </div>
         </div>
       </div>
       <div class="cout">
-        <div id="clinical-empty" class="sbox" style="flex:1;">
-          <div class="sb-ico">🧬</div>
-          <h3>No study uploaded</h3>
-          <p>Drop a clinical PDF on the left to generate translations.</p>
-        </div>
+        <div id="clinical-empty" class="sbox" style="flex:1;"><div class="sb-ico">🧬</div><h3>No study uploaded</h3><p>Drop a clinical PDF on the left to generate translations.</p></div>
         <div id="clinical-results" style="display:none;height:100%;flex-direction:column;">
           <div class="co-tabs">
             <button class="co-tab active" onclick="switchOutputTab('ceo',this)">📊 CEO Summary</button>
@@ -345,15 +400,13 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
     </div>
   </div>
 
-  <!-- SWOT -->
+  <!-- SWOT ANALYZER -->
   <div class="wp" id="panel-swot">
     <div class="ph">
-      <div>
-        <h1>SWOT Analyzer</h1>
-        <p>Deep competitive analysis · 4 SWOT quadrants + 6 strategic dimensions · Search or auto-discover</p>
-      </div>
+      <div><h1>SWOT Analyzer</h1><p>Full competitor profile · SWOT · Pricing · Latest News · Market Position · 6 Strategic Dimensions</p></div>
     </div>
     <div class="swot-ws">
+      <!-- SIDE PANEL -->
       <div class="swot-side">
         <div class="mtog">
           <button class="mbtn active" id="swot-tab-search" onclick="switchSwotMode('search',this)">🔍 By Name</button>
@@ -364,10 +417,7 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
             <div class="ct"><span class="ct-i">🔍</span>Search Company</div>
             <input type="text" class="field" id="swot-search-input" placeholder="Any company..." onkeydown="if(event.key==='Enter') runSwotSearch()" style="margin-bottom:9px;"/>
             <button class="btn btn-p" style="width:100%;justify-content:center;" id="swot-search-btn" onclick="runSwotSearch()">Analyze</button>
-            <div style="margin-top:13px;">
-              <div class="hint" style="margin-bottom:7px;">Quick pick:</div>
-              <div class="tlist" id="swot-quick-tags"></div>
-            </div>
+            <div style="margin-top:13px;"><div class="hint" style="margin-bottom:7px;">Quick pick:</div><div class="tlist" id="swot-quick-tags"></div></div>
           </div>
         </div>
         <div id="swot-mode-discover" style="display:none;">
@@ -375,18 +425,16 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
             <div class="ct"><span class="ct-i">🤖</span>Your Product</div>
             <textarea class="field" id="product-description" rows="5">A mobile app that collects pre and post glucose readings from users and generates personalized diet plans based on their data. Currently in early validation with 10-15 users in the diabetes management space.</textarea>
             <button class="btn btn-p mt12" style="width:100%;justify-content:center;" id="discover-btn" onclick="runAutoDiscover()">Find My Competitors</button>
-            <div class="mt8 hint">Finds top 5 · SWOT for each</div>
+            <div class="mt8 hint">Finds top 5 · Full profile for each</div>
           </div>
         </div>
         <span class="hint" id="swot-status"></span>
       </div>
+
+      <!-- MAIN RESULTS -->
       <div class="swot-main">
         <div id="swot-results-area">
-          <div class="sbox">
-            <div class="sb-ico">🔬</div>
-            <h3>No analysis yet</h3>
-            <p>Search a company or use Auto-Discover to map your competitive landscape.</p>
-          </div>
+          <div class="sbox"><div class="sb-ico">🔬</div><h3>No analysis yet</h3><p>Search a company or use Auto-Discover to generate a full competitive profile.</p></div>
         </div>
         <div id="discover-results-area" style="display:none;"></div>
       </div>
@@ -395,31 +443,25 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 
   <!-- TRENDS -->
   <div class="wp" id="panel-trends">
-    <div class="cs">
-      <div class="cs-ring">📈</div>
-      <div class="pbadge">Phase 2</div>
-      <h2>Market Trends</h2>
-      <p>Weekly digest of healthtech funding rounds, FDA regulatory changes, and emerging diabetes technology signals.</p>
-    </div>
+    <div class="cs"><div class="cs-ring">📈</div><div class="pbadge">Phase 2</div><h2>Market Trends</h2><p>Weekly digest of healthtech funding rounds, FDA regulatory changes, and emerging diabetes technology signals.</p></div>
   </div>
 
   <!-- BRIEFS -->
   <div class="wp" id="panel-briefs">
-    <div class="cs">
-      <div class="cs-ring">✍️</div>
-      <div class="pbadge">Phase 2</div>
-      <h2>Brief Writer</h2>
-      <p>Auto-generate investor updates, internal briefs, and marketing copy from your Radar and SWOT data.</p>
-    </div>
+    <div class="cs"><div class="cs-ring">✍️</div><div class="pbadge">Phase 2</div><h2>Brief Writer</h2><p>Auto-generate investor updates, internal briefs, and marketing copy from your Radar and SWOT data.</p></div>
   </div>
-
 </div>
+
 <div id="toast"></div>
+
+<!-- HIDDEN PRINT CONTAINER -->
+<div id="print-container" style="display:none;position:fixed;inset:0;background:#fff;z-index:99999;overflow:auto;padding:40px;" class="print-target"></div>
 
 <script>
 const OR_MODEL='anthropic/claude-3.5-haiku',OR_ENDPOINT='https://openrouter.ai/api/v1/chat/completions';
 let competitors=['Dexcom','Abbott','One Drop','Livongo','Virta Health'];
 let scanResults=[],clinicalOutputs={ceo:'',marketing:'',sales:''},activeTab='ceo';
+let lastSwotData=null;
 
 document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('cmd-date').textContent=new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
@@ -428,6 +470,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   renderCompetitors();updateLastScanTime();
 });
 
+/* ── NAV ── */
 function switchTab(id,el){
   document.querySelectorAll('.wp').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));
@@ -435,10 +478,12 @@ function switchTab(id,el){
   el.classList.add('active');
 }
 
+/* ── KEYS ── */
 function saveKey(){const k=document.getElementById('api-key-input').value.trim();if(!k)return toast('Enter an API key','err');localStorage.setItem('or_key',k);document.getElementById('api-key-clinical').value=k;toast('API key saved');}
 function saveKeyClinical(){const k=document.getElementById('api-key-clinical').value.trim();if(!k)return toast('Enter an API key','err');localStorage.setItem('or_key',k);document.getElementById('api-key-input').value=k;toast('API key saved');}
 function getKey(){return localStorage.getItem('or_key')||'';}
 
+/* ── COMPETITORS ── */
 function renderCompetitors(){
   document.getElementById('competitor-tags').innerHTML=competitors.map((c,i)=>`<span class="ctag">${c}<span class="rx" onclick="removeCompetitor(${i})">×</span></span>`).join('');
   const qt=document.getElementById('swot-quick-tags');
@@ -447,26 +492,27 @@ function renderCompetitors(){
 function addCompetitor(){const i=document.getElementById('new-competitor'),v=i.value.trim();if(!v)return;if(competitors.includes(v))return toast('Already tracking');competitors.push(v);i.value='';renderCompetitors();}
 function removeCompetitor(i){competitors.splice(i,1);renderCompetitors();}
 
-async function callOR(messages,maxTokens=2048){
+/* ── API ── */
+async function callOR(messages,maxTokens=3000){
   const key=getKey();if(!key)throw new Error('No API key saved');
   const res=await fetch(OR_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${key}`,'HTTP-Referer':'https://pm-intelligence-hub.vercel.app','X-Title':'PM Intelligence Hub'},body:JSON.stringify({model:OR_MODEL,messages,max_tokens:maxTokens,temperature:0.3})});
   if(!res.ok){const e=await res.json();throw new Error(e.error?.message||`API ${res.status}`);}
   const d=await res.json();return d.choices?.[0]?.message?.content||'';
 }
 
+/* ── RADAR ── */
 async function runScan(){
   if(!getKey())return toast('Save your API key first','err');
   if(!competitors.length)return toast('Add at least one competitor','err');
   const btn=document.getElementById('scan-btn');
-  btn.disabled=true;btn.innerHTML='<span class="spin" style="width:13px;height:13px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:7px"></span>Scanning...';
+  btn.disabled=true;btn.innerHTML='<span class="spin" style="width:14px;height:14px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px"></span>Scanning...';
   document.getElementById('results-area').innerHTML=`<div class="sbox"><div class="spin"></div><h3>Scanning ${competitors.length} competitors</h3><p>15–30 seconds</p></div>`;
   document.getElementById('radar-ebar').style.display='none';
   const prompt=`You are a Healthtech Competitive Intelligence analyst specializing in diabetes/CGM.
-Today: ${new Date().toDateString()}
-Competitors: ${competitors.join(', ')}
+Today: ${new Date().toDateString()}. Competitors: ${competitors.join(', ')}.
 Return ONLY a valid JSON array, no markdown:
 [{"company":"","headline":"","summary":"2-3 sentences + why it matters for a diabetes startup PM","tag":"FDA","timeAgo":"Recent","sourceUrl":"#","sourceName":"Industry Report"}]
-tag ∈ {FDA,Funding,Product,Partnership,General}. 1-2 items per company. Return only the JSON array.`;
+tag ∈ {FDA,Funding,Product,Partnership,General}. 1-2 items per company.`;
   try{
     const text=await callOR([{role:'user',content:prompt}]);
     const c=text.replace(/```json|```/g,'').trim();
@@ -474,11 +520,8 @@ tag ∈ {FDA,Funding,Product,Partnership,General}. 1-2 items per company. Return
     renderResults(scanResults);localStorage.setItem('last_scan',new Date().toISOString());updateLastScanTime();
     document.getElementById('radar-ebar').style.display=scanResults.length?'flex':'none';
     toast(`${scanResults.length} intel updates found`);
-  }catch(e){
-    document.getElementById('results-area').innerHTML=`<div class="sbox"><div class="sb-ico">⚠️</div><h3>Scan failed</h3><p>${e.message}</p></div>`;
-    toast('Scan failed: '+e.message,'err');
-  }
-  btn.disabled=false;btn.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3"/></svg>Run Morning Scan';
+  }catch(e){document.getElementById('results-area').innerHTML=`<div class="sbox"><div class="sb-ico">⚠️</div><h3>Scan failed</h3><p>${e.message}</p></div>`;toast('Scan failed: '+e.message,'err');}
+  btn.disabled=false;btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3"/></svg>Run Morning Scan';
 }
 
 function renderResults(results){
@@ -489,11 +532,9 @@ function renderResults(results){
     <div class="igrid">${results.map(r=>`
       <div class="ic" data-tag="${r.tag}">
         <div class="ic-top"><div class="ic-co">${r.company}</div><span class="ictag ${tc[r.tag]||'t-gen'}">${r.tag}</span></div>
-        <div class="ic-hl">${r.headline}</div>
-        <div class="ic-sm">${r.summary}</div>
+        <div class="ic-hl">${r.headline}</div><div class="ic-sm">${r.summary}</div>
         <div class="ic-ft"><span class="ic-meta">${r.timeAgo} · ${r.sourceName}</span><a href="${r.sourceUrl}" target="_blank" class="ic-link">Source →</a></div>
-      </div>`).join('')}
-    </div>`;
+      </div>`).join('')}</div>`;
 }
 
 function updateLastScanTime(){
@@ -502,17 +543,13 @@ function updateLastScanTime(){
   document.getElementById('last-scan-time').textContent=diff<60?`Last scan ${diff}m ago`:`Last scan ${Math.round(diff/60)}h ago`;
 }
 
+/* ── CLINICAL ── */
 function handleFileSelect(e){const f=e.target.files[0];if(f)processPDF(f);}
-function handleDrop(e){
-  e.preventDefault();document.getElementById('upload-zone').classList.remove('dg');
-  const f=e.dataTransfer.files[0];
-  if(f?.type==='application/pdf')processPDF(f);else toast('Please upload a PDF','err');
-}
+function handleDrop(e){e.preventDefault();document.getElementById('upload-zone').classList.remove('dg');const f=e.dataTransfer.files[0];if(f?.type==='application/pdf')processPDF(f);else toast('Please upload a PDF','err');}
 async function processPDF(file){
   if(!getKey())return toast('Save your API key first','err');
   document.getElementById('upload-zone').innerHTML=`<div class="uz-ico">⏳</div><h3>Processing ${file.name}</h3><p>Translating with AI...</p>`;
-  document.getElementById('clinical-empty').style.display='none';
-  document.getElementById('clinical-results').style.display='none';
+  document.getElementById('clinical-empty').style.display='none';document.getElementById('clinical-results').style.display='none';
   const text=await extractPDFText(file);
   const prompt=`You are a Healthtech medical research translator for a diabetes startup PM team.
 Analyze this clinical study. Return ONLY valid JSON, no markdown:
@@ -522,8 +559,7 @@ Study: ${text.slice(0,8000)}`;
     const r=await callOR([{role:'user',content:prompt}],1024);
     const c=r.replace(/```json|```/g,'').trim();
     clinicalOutputs=JSON.parse(c.slice(c.indexOf('{'),c.lastIndexOf('}')+1));
-    document.getElementById('clinical-results').style.display='flex';
-    document.getElementById('clinical-empty').style.display='none';
+    document.getElementById('clinical-results').style.display='flex';document.getElementById('clinical-empty').style.display='none';
     renderOutputTab('ceo');toast('Study translated');
   }catch(e){toast('Translation failed: '+e.message,'err');document.getElementById('clinical-empty').style.display='flex';}
   document.getElementById('upload-zone').innerHTML=`<div class="uz-ico">📄</div><h3>Drop PDF here</h3><p>or click to browse</p><p style="margin-top:7px;font-size:10.5px;color:var(--t3);">Clinical studies · Research papers · Trial results</p>`;
@@ -532,6 +568,7 @@ async function extractPDFText(file){return new Promise(r=>{const fr=new FileRead
 function switchOutputTab(tab,el){activeTab=tab;document.querySelectorAll('.co-tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderOutputTab(tab);}
 function renderOutputTab(tab){const l={ceo:'📊 CEO Summary\n\n',marketing:'📣 Marketing Hook\n\n',sales:'💼 Sales Angle\n\n'};document.getElementById('output-content').textContent=l[tab]+(clinicalOutputs[tab]||'');}
 
+/* ── SWOT MODE TOGGLE ── */
 function switchSwotMode(mode,el){
   document.querySelectorAll('.mbtn').forEach(b=>b.classList.remove('active'));el.classList.add('active');
   document.getElementById('swot-mode-search').style.display=mode==='search'?'block':'none';
@@ -540,22 +577,25 @@ function switchSwotMode(mode,el){
   document.getElementById('discover-results-area').style.display=mode==='discover'?'block':'none';
 }
 function quickSwot(c){document.getElementById('swot-search-input').value=c;runSwotSearch();}
+
 async function runSwotSearch(){
   if(!getKey())return toast('Save your API key first','err');
   const company=document.getElementById('swot-search-input').value.trim();if(!company)return toast('Enter a company name','err');
   const btn=document.getElementById('swot-search-btn');btn.disabled=true;btn.textContent='Analyzing...';
   document.getElementById('swot-status').textContent='';
-  document.getElementById('swot-results-area').innerHTML=`<div class="sbox"><div class="spin"></div><h3>Analyzing ${company}</h3><p>6 dimensions · 20–40 seconds</p></div>`;
+  document.getElementById('swot-results-area').innerHTML=`<div class="sbox"><div class="spin"></div><h3>Building full profile for ${company}</h3><p>SWOT · Pricing · News · Market data · 30–50 seconds</p></div>`;
   try{
-    const data=await fetchSwot(company);renderSwot(data,'swot-results-area');
+    const data=await fetchFullProfile(company);
+    renderFullProfile(data,'swot-results-area');
     document.getElementById('swot-status').textContent=`✓ Updated ${new Date().toLocaleTimeString()}`;
-    toast(`SWOT ready for ${company}`);
+    toast(`Full profile ready for ${company}`);
   }catch(e){
     document.getElementById('swot-results-area').innerHTML=`<div class="sbox"><div class="sb-ico">⚠️</div><h3>Failed</h3><p>${e.message}</p></div>`;
     toast('Failed: '+e.message,'err');
   }
   btn.disabled=false;btn.textContent='Analyze';
 }
+
 async function runAutoDiscover(){
   if(!getKey())return toast('Save your API key first','err');
   const desc=document.getElementById('product-description').value.trim();if(!desc)return toast('Add a product description','err');
@@ -567,57 +607,307 @@ async function runAutoDiscover(){
     const list=JSON.parse(c.slice(c.indexOf('['),c.lastIndexOf(']')+1));
     list.forEach(co=>{if(!competitors.includes(co))competitors.push(co);});renderCompetitors();
     toast(`${list.length} competitors found and added`);
-    document.getElementById('discover-results-area').innerHTML=`<p style="font-size:13px;color:var(--t2);margin-bottom:14px;">Found <strong style="color:#fff">${list.length} competitors</strong>. Generating analyses...</p><div id="discover-swot-list"></div>`;
+    document.getElementById('discover-results-area').innerHTML=`<p style="font-size:13px;color:var(--t2);margin-bottom:14px;">Found <strong style="color:#fff">${list.length} competitors</strong>. Building full profiles...</p><div id="discover-swot-list"></div>`;
     for(let i=0;i<list.length;i++){
       const co=list[i];const ph=document.createElement('div');ph.id=`swot-card-${i}`;
-      ph.innerHTML=`<div class="sbox" style="padding:22px;"><div class="spin"></div><p>Analyzing ${co} (${i+1}/${list.length})</p></div>`;
+      ph.innerHTML=`<div class="sbox" style="padding:22px;"><div class="spin"></div><p>Profiling ${co} (${i+1}/${list.length})</p></div>`;
       document.getElementById('discover-swot-list').appendChild(ph);
-      try{const data=await fetchSwot(co);ph.innerHTML='';renderSwotAcc(data,`swot-card-${i}`);}
+      try{const data=await fetchFullProfile(co);ph.innerHTML='';renderAccordionProfile(data,`swot-card-${i}`);}
       catch(e){ph.innerHTML=`<p style="color:#f87171;font-size:12px;padding:10px;">Failed: ${co} — ${e.message}</p>`;}
     }
-    toast('All analyses complete');
+    toast('All profiles complete');
   }catch(e){
     document.getElementById('discover-results-area').innerHTML=`<div class="sbox"><div class="sb-ico">⚠️</div><h3>Discovery failed</h3><p>${e.message}</p></div>`;
     toast('Discovery failed: '+e.message,'err');
   }
   btn.disabled=false;btn.textContent='Find My Competitors';
 }
-async function fetchSwot(company){
-  const text=await callOR([{role:'user',content:`You are a senior Healthtech strategy analyst.\nGenerate a comprehensive SWOT for "${company}" in diabetes/digital health.\nReturn ONLY valid JSON, no markdown:\n{"company":"${company}","overview":"One sentence","swot":{"strengths":["p1","p2","p3","p4"],"weaknesses":["p1","p2","p3","p4"],"opportunities":["p1","p2","p3","p4"],"threats":["p1","p2","p3","p4"]},"dimensions":{"productFeatures":"2 sentences","pricingModel":"2 sentences","clinicalEvidence":"2 sentences","marketPositioning":"2 sentences","fdaApprovals":"2 sentences","fundingFinancials":"2 sentences"}}`}],2048);
+
+/* ══════════════════════════════════
+   FULL PROFILE FETCH — enriched prompt
+══════════════════════════════════ */
+async function fetchFullProfile(company){
+  const prompt=`You are a senior Healthtech strategy analyst specializing in diabetes/digital health markets.
+Generate a comprehensive competitive profile for "${company}".
+Return ONLY valid JSON, no markdown, no extra text:
+{
+  "company": "${company}",
+  "overview": "2-sentence description of what ${company} does in healthtech/diabetes",
+  "founded": "year or 'N/A'",
+  "hq": "City, Country",
+  "employees": "approximate headcount e.g. '500-1000' or 'N/A'",
+  "swot": {
+    "strengths": ["point 1","point 2","point 3","point 4"],
+    "weaknesses": ["point 1","point 2","point 3","point 4"],
+    "opportunities": ["point 1","point 2","point 3","point 4"],
+    "threats": ["point 1","point 2","point 3","point 4"]
+  },
+  "dimensions": {
+    "productFeatures": "2 sentences on product capabilities",
+    "pricingModel": "2 sentences on their pricing approach",
+    "clinicalEvidence": "2 sentences on clinical validation",
+    "marketPositioning": "2 sentences on positioning",
+    "fdaApprovals": "2 sentences on regulatory status",
+    "fundingFinancials": "2 sentences on funding/financials"
+  },
+  "pricing": [
+    {"tier": "Tier name", "price": "$X/mo", "note": "Who it's for or key features", "highlight": false},
+    {"tier": "Tier name", "price": "$X/mo", "note": "Who it's for or key features", "highlight": true}
+  ],
+  "news": [
+    {"headline": "Recent news headline", "category": "Funding", "date": "Q1 2025", "impact": "Why it matters for diabetes startup PMs"},
+    {"headline": "Recent news headline", "category": "Product", "date": "Q4 2024", "impact": "Why it matters"},
+    {"headline": "Recent news headline", "category": "FDA", "date": "Q3 2024", "impact": "Why it matters"}
+  ],
+  "market": {
+    "estimatedMarketShare": "X% of diabetes app market (or 'N/A')",
+    "shareScore": 45,
+    "primarySegment": "e.g. Type 2 diabetes self-management",
+    "keyGeographies": "e.g. US, EU",
+    "revenueEstimate": "e.g. $50M ARR (estimated) or 'Undisclosed'",
+    "growthRate": "e.g. ~30% YoY or 'N/A'",
+    "competitiveThreat": 75,
+    "marketFit": 60
+  }
+}
+pricing: include 2-4 tiers (use "N/A" if pricing not public — still include an entry).
+news: include 3 recent newsworthy items (funding rounds, product launches, FDA clearances, partnerships, etc.).
+shareScore/competitiveThreat/marketFit: 0-100 integers.`;
+  const text=await callOR([{role:'user',content:prompt}],3000);
   const c=text.replace(/```json|```/g,'').trim();
   return JSON.parse(c.slice(c.indexOf('{'),c.lastIndexOf('}')+1));
 }
+
+/* ══════════════════════════════════
+   RENDER HELPERS
+══════════════════════════════════ */
 const DL={productFeatures:{e:'🧩',l:'Product Features'},pricingModel:{e:'💰',l:'Pricing & Business Model'},clinicalEvidence:{e:'🔬',l:'Clinical Evidence'},marketPositioning:{e:'🎯',l:'Market Positioning'},fdaApprovals:{e:'✅',l:'FDA Approvals'},fundingFinancials:{e:'📊',l:'Funding & Financials'}};
-function swotBodyHTML(d){
-  return `<div class="qgrid">
+const NC={Funding:'nd-fund',FDA:'nd-fda',Product:'nd-prod',Partnership:'nd-part',General:'nd-gen'};
+
+function metaBadge(d){
+  const items=[];
+  if(d.founded&&d.founded!=='N/A')items.push(`🗓 Founded ${d.founded}`);
+  if(d.hq&&d.hq!=='N/A')items.push(`📍 ${d.hq}`);
+  if(d.employees&&d.employees!=='N/A')items.push(`👥 ${d.employees} employees`);
+  return items.length?`<div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;">${items.map(i=>`<span style="font-size:11px;color:var(--t3);">${i}</span>`).join('')}</div>`:'';
+}
+
+function swotHTML(d){return `
+  <div class="sec-hdr">SWOT Analysis</div>
+  <div class="qgrid">
     <div class="sq sq-s"><div class="sq-lbl">💪 Strengths</div><ul>${d.swot.strengths.map(s=>`<li>${s}</li>`).join('')}</ul></div>
     <div class="sq sq-w"><div class="sq-lbl">⚠️ Weaknesses</div><ul>${d.swot.weaknesses.map(s=>`<li>${s}</li>`).join('')}</ul></div>
     <div class="sq sq-o"><div class="sq-lbl">🚀 Opportunities</div><ul>${d.swot.opportunities.map(s=>`<li>${s}</li>`).join('')}</ul></div>
     <div class="sq sq-t"><div class="sq-lbl">🔥 Threats</div><ul>${d.swot.threats.map(s=>`<li>${s}</li>`).join('')}</ul></div>
-  </div>
-  <div class="dlbl">Dimension Analysis</div>
-  <div class="dgrid">${Object.entries(d.dimensions).map(([k,v])=>`<div class="dc"><h5>${DL[k]?.e} ${DL[k]?.l}</h5><p>${v}</p></div>`).join('')}</div>`;
+  </div>`;}
+
+function dimensionsHTML(d){return `
+  <div class="sec-hdr">Strategic Dimensions</div>
+  <div class="dgrid">${Object.entries(d.dimensions).map(([k,v])=>`<div class="dc"><h5>${DL[k]?.e} ${DL[k]?.l}</h5><p>${v}</p></div>`).join('')}</div>`;}
+
+function pricingHTML(d){
+  if(!d.pricing?.length)return '';
+  return `<div class="sec-hdr">Pricing</div>
+  <div class="pricing-grid">${d.pricing.map(p=>`
+    <div class="price-card${p.highlight?' highlight':''}">
+      <div class="pc-tier">${p.tier}</div>
+      <div class="pc-price">${p.price}</div>
+      <div class="pc-note">${p.note}</div>
+    </div>`).join('')}</div>`;}
+
+function newsHTML(d){
+  if(!d.news?.length)return '';
+  return `<div class="sec-hdr">Latest News & Developments</div>
+  <div class="news-list">${d.news.map(n=>`
+    <div class="news-item">
+      <div class="news-dot ${NC[n.category]||'nd-gen'}"></div>
+      <div class="news-body">
+        <div class="news-hl">${n.headline}</div>
+        <div class="news-meta">${n.date} · ${n.category} · <em style="color:var(--t2)">${n.impact}</em></div>
+      </div>
+    </div>`).join('')}</div>`;}
+
+function marketHTML(d){
+  if(!d.market)return '';
+  const m=d.market;
+  return `<div class="sec-hdr">Market Position</div>
+  <div class="mktpos-grid">
+    <div class="mktpos-card"><div class="mktpos-label">Market Share</div><div class="mktpos-val">${m.estimatedMarketShare}</div><div class="mktpos-sub">Primary: ${m.primarySegment}</div><div class="bar-wrap"><div class="bar-fill" style="width:${m.shareScore||30}%"></div></div></div>
+    <div class="mktpos-card"><div class="mktpos-label">Revenue Estimate</div><div class="mktpos-val">${m.revenueEstimate}</div><div class="mktpos-sub">Growth: ${m.growthRate}</div></div>
+    <div class="mktpos-card"><div class="mktpos-label">Competitive Threat</div><div class="mktpos-val">${m.competitiveThreat}/100</div><div class="mktpos-sub">To your diabetes startup</div><div class="bar-wrap"><div class="bar-fill" style="width:${m.competitiveThreat}%;background:linear-gradient(90deg,#f87171,#ef4444)"></div></div></div>
+    <div class="mktpos-card"><div class="mktpos-label">Key Geographies</div><div class="mktpos-val" style="font-size:14px;">${m.keyGeographies}</div><div class="mktpos-sub">Core markets</div></div>
+  </div>`;}
+
+function profileBodyHTML(d){
+  return swotHTML(d)+dimensionsHTML(d)+pricingHTML(d)+newsHTML(d)+marketHTML(d);
 }
-function renderSwot(data,cid){
-  document.getElementById(cid).innerHTML=`
-    <div class="sch"><div><div class="sch-name">${data.company}</div><div class="sch-ov">${data.overview}</div></div>
-    <button class="btn btn-o sm" onclick="exportSwotData(${JSON.stringify(data).replace(/"/g,'&quot;')})">↓ Export</button></div>
-    <div class="swot-body">${swotBodyHTML(data)}</div>`;
-  window._lastSwotData=data;
+
+function renderFullProfile(data,containerId){
+  lastSwotData=data;
+  document.getElementById(containerId).innerHTML=`
+    <div class="sch">
+      <div>
+        <div class="sch-name">${data.company}</div>
+        <div class="sch-ov">${data.overview}</div>
+        ${metaBadge(data)}
+      </div>
+      <div class="flex">
+        <button class="btn btn-o sm" onclick="exportTxt()">↓ .txt</button>
+        <button class="btn btn-pdf sm" onclick="exportPDF()">⬇ PDF</button>
+      </div>
+    </div>
+    <div class="swot-body">${profileBodyHTML(data)}</div>`;
+  // animate bars after render
+  setTimeout(()=>{document.querySelectorAll('.bar-fill').forEach(b=>{const w=b.style.width;b.style.width='0';setTimeout(()=>b.style.width=w,50);});},100);
 }
-function renderSwotAcc(data,cid){
+
+function renderAccordionProfile(data,cid){
   const uid=data.company.replace(/\s/g,'_');
   document.getElementById(cid).innerHTML=`
     <div class="acc">
       <div class="acc-h" onclick="toggleAcc('${uid}')">
         <div><div class="acc-name">${data.company}</div><div class="acc-ov">${data.overview}</div></div>
-        <div class="flex"><button class="btn btn-o sm" onclick="event.stopPropagation();exportSwotData(${JSON.stringify(data).replace(/"/g,'&quot;')})">↓</button>
-        <span class="acc-chev" id="chev-${uid}">▼</span></div>
+        <div class="flex">
+          <button class="btn btn-o sm" onclick="event.stopPropagation();exportTxtData(${JSON.stringify(data).replace(/"/g,'&quot;')})">↓ .txt</button>
+          <button class="btn btn-pdf sm" onclick="event.stopPropagation();exportPDFData(${JSON.stringify(data).replace(/"/g,'&quot;')})">⬇ PDF</button>
+          <span class="acc-chev" id="chev-${uid}">▼</span>
+        </div>
       </div>
-      <div class="acc-b" id="sab-${uid}">${swotBodyHTML(data)}</div>
+      <div class="acc-b" id="sab-${uid}">${profileBodyHTML(data)}</div>
     </div>`;
 }
+
 function toggleAcc(uid){document.getElementById(`sab-${uid}`).classList.toggle('open');document.getElementById(`chev-${uid}`).classList.toggle('open');}
+
+/* ══════════════════════════════════
+   PDF EXPORT — print-based
+══════════════════════════════════ */
+function buildPrintHTML(data){
+  const m=data.market||{};
+  const barStyle=(pct,color='#0088cc')=>`<div style="height:5px;background:#eee;border-radius:3px;margin-top:6px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:${color};border-radius:3px;"></div></div>`;
+
+  const pricingRows=data.pricing?.length?`
+    <h3 style="font-size:13px;font-weight:700;color:#0088cc;text-transform:uppercase;letter-spacing:1px;margin:24px 0 12px;border-bottom:1px solid #ddd;padding-bottom:8px;">💰 Pricing</h3>
+    <div style="display:grid;grid-template-columns:repeat(${Math.min(data.pricing.length,4)},1fr);gap:10px;">
+      ${data.pricing.map(p=>`<div style="background:#f8f9fa;border:1px solid${p.highlight?'#0088cc':'#ddd'};border-radius:8px;padding:14px;text-align:center;">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#666;margin-bottom:5px;">${p.tier}</div>
+        <div style="font-size:22px;font-weight:700;color:#111;margin-bottom:3px;">${p.price}</div>
+        <div style="font-size:11px;color:#555;">${p.note}</div>
+      </div>`).join('')}
+    </div>`:''
+
+  const newsRows=data.news?.length?`
+    <h3 style="font-size:13px;font-weight:700;color:#0088cc;text-transform:uppercase;letter-spacing:1px;margin:24px 0 12px;border-bottom:1px solid #ddd;padding-bottom:8px;">📰 Latest News</h3>
+    ${data.news.map(n=>`<div style="background:#f8f9fa;border:1px solid #ddd;border-radius:6px;padding:12px 14px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;">
+      <div style="width:8px;height:8px;border-radius:50%;background:#0088cc;flex-shrink:0;margin-top:5px;"></div>
+      <div><div style="font-size:12.5px;font-weight:600;color:#111;margin-bottom:3px;">${n.headline}</div>
+      <div style="font-size:11px;color:#666;">${n.date} · ${n.category} · ${n.impact}</div></div>
+    </div>`).join('')}`:''
+
+  const marketRows=data.market?`
+    <h3 style="font-size:13px;font-weight:700;color:#0088cc;text-transform:uppercase;letter-spacing:1px;margin:24px 0 12px;border-bottom:1px solid #ddd;padding-bottom:8px;">📊 Market Position</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:14px;"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#888;margin-bottom:6px;">Market Share</div><div style="font-size:18px;font-weight:700;color:#111;">${m.estimatedMarketShare}</div><div style="font-size:11px;color:#555;margin-top:3px;">${m.primarySegment}</div>${barStyle(m.shareScore||30)}</div>
+      <div style="background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:14px;"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#888;margin-bottom:6px;">Revenue Estimate</div><div style="font-size:18px;font-weight:700;color:#111;">${m.revenueEstimate}</div><div style="font-size:11px;color:#555;margin-top:3px;">Growth: ${m.growthRate}</div></div>
+      <div style="background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:14px;"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#888;margin-bottom:6px;">Competitive Threat Score</div><div style="font-size:18px;font-weight:700;color:#dc2626;">${m.competitiveThreat}/100</div>${barStyle(m.competitiveThreat,'#dc2626')}</div>
+      <div style="background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:14px;"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#888;margin-bottom:6px;">Key Geographies</div><div style="font-size:16px;font-weight:700;color:#111;">${m.keyGeographies}</div></div>
+    </div>`:''
+
+  const quadColor={strengths:'#0d9488',weaknesses:'#dc2626',opportunities:'#0284c7',threats:'#d97706'};
+  const quadBg={strengths:'#f0fffe',weaknesses:'#fff5f5',opportunities:'#f0f9ff',threats:'#fffbeb'};
+  const quadBorder={strengths:'#a7f3d0',weaknesses:'#fecaca',opportunities:'#bae6fd',threats:'#fde68a'};
+  const quadLabel={strengths:'💪 Strengths',weaknesses:'⚠️ Weaknesses',opportunities:'🚀 Opportunities',threats:'🔥 Threats'};
+
+  const swotGrid=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px;">
+    ${['strengths','weaknesses','opportunities','threats'].map(q=>`
+      <div style="background:${quadBg[q]};border:1px solid ${quadBorder[q]};border-radius:8px;padding:16px;">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:${quadColor[q]};margin-bottom:10px;">${quadLabel[q]}</div>
+        <ul style="list-style:none;padding:0;">${data.swot[q].map(s=>`<li style="font-size:12px;color:#333;padding:5px 0;border-bottom:1px solid rgba(0,0,0,0.05);display:flex;gap:8px;"><span style="color:#999;">–</span>${s}</li>`).join('')}</ul>
+      </div>`).join('')}
+  </div>`;
+
+  const dimGrid=`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+    ${Object.entries(data.dimensions).map(([k,v])=>`<div style="background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:14px;">
+      <div style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#0088cc;margin-bottom:7px;">${DL[k]?.e} ${DL[k]?.l}</div>
+      <div style="font-size:11.5px;color:#444;line-height:1.6;">${v}</div>
+    </div>`).join('')}
+  </div>`;
+
+  const metaLine=[data.founded!=='N/A'?`Founded: ${data.founded}`:'',data.hq!=='N/A'?`HQ: ${data.hq}`:'',data.employees!=='N/A'?`Employees: ${data.employees}`:''].filter(Boolean).join(' &nbsp;·&nbsp; ');
+
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Helvetica Neue',Arial,sans-serif;color:#111;background:#fff;padding:40px;max-width:960px;margin:0 auto;}
+    @media print{body{padding:20px;}@page{margin:15mm;}}
+  </style></head><body>
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;padding-bottom:18px;border-bottom:2px solid #0088cc;">
+    <div>
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#0088cc;margin-bottom:6px;">PM Intelligence Hub · Competitive Profile</div>
+      <h1 style="font-size:28px;font-weight:700;color:#111;margin-bottom:6px;">${data.company}</h1>
+      <p style="font-size:13px;color:#555;line-height:1.5;max-width:580px;">${data.overview}</p>
+      ${metaLine?`<p style="font-size:11px;color:#888;margin-top:8px;">${metaLine}</p>`:''}
+    </div>
+    <div style="text-align:right;flex-shrink:0;padding-left:20px;">
+      <div style="font-size:11px;color:#888;">Generated</div>
+      <div style="font-size:12px;font-weight:600;color:#333;">${new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:13px;font-weight:700;color:#0088cc;text-transform:uppercase;letter-spacing:1px;margin:0 0 14px;border-bottom:1px solid #ddd;padding-bottom:8px;">🔬 SWOT Analysis</h3>
+  ${swotGrid}
+
+  <h3 style="font-size:13px;font-weight:700;color:#0088cc;text-transform:uppercase;letter-spacing:1px;margin:24px 0 12px;border-bottom:1px solid #ddd;padding-bottom:8px;">📋 Strategic Dimensions</h3>
+  ${dimGrid}
+
+  ${pricingRows}
+  ${newsRows}
+  ${marketRows}
+
+  <div style="margin-top:32px;padding-top:14px;border-top:1px solid #ddd;font-size:10px;color:#aaa;">Generated by PM IntelHub · ${new Date().toISOString()} · Data based on AI analysis — verify with primary sources before strategic decisions.</div>
+  </body></html>`;
+}
+
+function exportPDF(){if(!lastSwotData)return toast('No profile loaded','err');openPrintWindow(lastSwotData);}
+function exportPDFData(data){openPrintWindow(typeof data==='string'?JSON.parse(data):data);}
+
+function openPrintWindow(data){
+  const html=buildPrintHTML(data);
+  const w=window.open('','_blank','width=1000,height=800');
+  w.document.write(html);
+  w.document.close();
+  w.onload=()=>{
+    setTimeout(()=>{w.print();},400);
+  };
+  toast('PDF export opened — use browser Print dialog');
+}
+
+/* ── TEXT EXPORT ── */
+function exportTxt(){if(!lastSwotData)return toast('No profile loaded','err');exportTxtData(lastSwotData);}
+function exportTxtData(data){
+  const m=data.market||{};
+  const lines=[`COMPETITIVE PROFILE: ${data.company.toUpperCase()}`,`Generated: ${new Date()}`,``,data.overview,``,
+    `COMPANY INFO`,'─'.repeat(20),`Founded: ${data.founded||'N/A'} | HQ: ${data.hq||'N/A'} | Employees: ${data.employees||'N/A'}`,``,
+    `SWOT ANALYSIS`,'─'.repeat(20),
+    `STRENGTHS:`,...data.swot.strengths.map(s=>`  → ${s}`),``,
+    `WEAKNESSES:`,...data.swot.weaknesses.map(s=>`  → ${s}`),``,
+    `OPPORTUNITIES:`,...data.swot.opportunities.map(s=>`  → ${s}`),``,
+    `THREATS:`,...data.swot.threats.map(s=>`  → ${s}`),``,
+    `STRATEGIC DIMENSIONS`,'─'.repeat(20),
+    ...Object.entries(data.dimensions).map(([k,v])=>`${DL[k]?.l}:\n  ${v}\n`),
+    `PRICING`,'─'.repeat(20),
+    ...(data.pricing||[]).map(p=>`${p.tier}: ${p.price} — ${p.note}`),``,
+    `LATEST NEWS`,'─'.repeat(20),
+    ...(data.news||[]).map(n=>`[${n.date}] ${n.headline}\n  Impact: ${n.impact}`),``,
+    `MARKET POSITION`,'─'.repeat(20),
+    `Market Share: ${m.estimatedMarketShare||'N/A'}`,
+    `Revenue: ${m.revenueEstimate||'N/A'} | Growth: ${m.growthRate||'N/A'}`,
+    `Competitive Threat Score: ${m.competitiveThreat||'N/A'}/100`,
+    `Key Geographies: ${m.keyGeographies||'N/A'}`,
+  ];
+  dl(lines.join('\n'),`profile-${data.company.toLowerCase().replace(/\s/g,'-')}-${today()}.txt`);
+  toast('Text export downloaded');
+}
 
 function exportResults(){
   if(!scanResults.length)return;
@@ -628,13 +918,9 @@ function exportClinical(){
   const lines=['CLINICAL STUDY TRANSLATION',`Generated: ${new Date()}`,'','CEO SUMMARY','─'.repeat(20),clinicalOutputs.ceo,'','MARKETING HOOK','─'.repeat(20),clinicalOutputs.marketing,'','SALES ANGLE','─'.repeat(20),clinicalOutputs.sales];
   dl(lines.join('\n'),`clinical-${today()}.txt`);toast('Translation exported');
 }
-function exportSwotData(data){
-  const lines=[`SWOT: ${data.company}`,`Generated: ${new Date()}`,'','STRENGTHS','─'.repeat(20),...data.swot.strengths.map(s=>`  → ${s}`),'','WEAKNESSES','─'.repeat(20),...data.swot.weaknesses.map(s=>`  → ${s}`),'','OPPORTUNITIES','─'.repeat(20),...data.swot.opportunities.map(s=>`  → ${s}`),'','THREATS','─'.repeat(20),...data.swot.threats.map(s=>`  → ${s}`),'','DIMENSIONS','─'.repeat(20),...Object.entries(data.dimensions).map(([k,v])=>`${DL[k]?.l}:\n  ${v}\n`)];
-  dl(lines.join('\n'),`swot-${data.company.toLowerCase().replace(/\s/g,'-')}-${today()}.txt`);toast('SWOT exported');
-}
 function dl(content,filename){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type:'text/plain'}));a.download=filename;a.click();}
 function today(){return new Date().toISOString().split('T')[0];}
-function toast(msg,type='ok'){const t=document.getElementById('toast');t.textContent=msg;t.className=`toast show ${type}`;setTimeout(()=>t.classList.remove('show'),3000);}
+function toast(msg,type='ok'){const t=document.getElementById('toast');t.textContent=msg;t.className=`toast show ${type}`;setTimeout(()=>t.classList.remove('show'),3500);}
 </script>
 </body>
 </html>
