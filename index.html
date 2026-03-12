@@ -304,6 +304,67 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 }
 
 .print-header,.print-footer { display:none; }
+
+/* ── TRENDS ── */
+.trends-section { margin-bottom:28px; }
+.trends-section-header {
+  display:flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;
+  color:var(--t3);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--b2);
+}
+.trends-section-header .tsh-icon {
+  width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;
+}
+.tsh-fda    { background:rgba(167,139,250,0.12); }
+.tsh-fund   { background:rgba(0,229,255,0.10); }
+.tsh-clin   { background:rgba(56,189,248,0.10); }
+.tsh-tech   { background:rgba(251,191,36,0.10); }
+.tsh-count  { margin-left:auto;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,0.06);color:var(--t3); }
+
+.trends-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px; }
+
+.trend-card {
+  background:var(--s1);border:1px solid var(--b2);border-radius:var(--r);
+  padding:16px 18px;transition:all 0.2s;position:relative;overflow:hidden;
+}
+.trend-card::before { content:'';position:absolute;top:0;left:0;right:0;height:2px; }
+.trend-card:hover { border-color:var(--b1);transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,0,0,0.25); }
+
+.tc-fda::before   { background:linear-gradient(90deg,#a78bfa,transparent); }
+.tc-fund::before  { background:linear-gradient(90deg,var(--a),transparent); }
+.tc-clin::before  { background:linear-gradient(90deg,#38bdf8,transparent); }
+.tc-tech::before  { background:linear-gradient(90deg,#fbbf24,transparent); }
+
+.tc-top { display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px; }
+.tc-title { font-size:13px;font-weight:600;color:var(--t1);line-height:1.45;flex:1; }
+.tc-badge { font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px;flex-shrink:0; }
+.tcb-fda  { background:rgba(167,139,250,0.12);color:#c4b5fd; }
+.tcb-fund { background:rgba(0,229,255,0.10);color:var(--a); }
+.tcb-clin { background:rgba(56,189,248,0.10);color:#7dd3fc; }
+.tcb-tech { background:rgba(251,191,36,0.10);color:#fcd34d; }
+
+.tc-body { font-size:12px;color:var(--t2);line-height:1.65;margin-bottom:10px; }
+.tc-impact { font-size:11.5px;color:var(--t3);padding:8px 10px;background:rgba(0,229,255,0.04);border-left:2px solid rgba(0,229,255,0.25);border-radius:0 4px 4px 0;line-height:1.5; }
+.tc-ft { display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:9px;border-top:1px solid var(--b2); }
+.tc-date { font-size:10.5px;color:var(--t3); }
+.tc-relevance { font-size:10.5px;font-weight:600; }
+.tc-r-high { color:#4ade80; }
+.tc-r-med  { color:#fbbf24; }
+.tc-r-low  { color:var(--t3); }
+
+/* Digest summary bar */
+.digest-summary {
+  background:linear-gradient(135deg,rgba(0,229,255,0.06),rgba(0,136,204,0.04));
+  border:1px solid var(--b1);border-radius:var(--r);
+  padding:18px 22px;margin-bottom:24px;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+}
+.ds-left h3 { font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:4px; }
+.ds-left p  { font-size:12.5px;color:var(--t2);line-height:1.6;max-width:560px; }
+.ds-stats { display:flex;gap:16px;flex-shrink:0; }
+.ds-stat { text-align:center; }
+.ds-stat .dsn { font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--a); }
+.ds-stat .dsl { font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px; }
 </style>
 </head>
 <body>
@@ -318,7 +379,7 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
     <button class="ctab active" onclick="switchTab('radar',this)"><span>📡</span>Competitor Radar<span class="tab-pip"></span></button>
     <button class="ctab" onclick="switchTab('clinical',this)"><span>🧬</span>Clinical Translator<span class="tab-pip"></span></button>
     <button class="ctab" onclick="switchTab('swot',this)"><span>🔬</span>SWOT Analyzer<span class="tab-pip"></span></button>
-    <button class="ctab" onclick="switchTab('trends',this)"><span>📈</span>Market Trends<span class="tab-soon">Phase 2</span></button>
+    <button class="ctab" onclick="switchTab('trends',this)"><span>📈</span>Market Trends<span class="tab-pip"></span></button>
     <button class="ctab" onclick="switchTab('briefs',this)"><span>✍️</span>Brief Writer<span class="tab-soon">Phase 2</span></button>
   </div>
   <div class="cmd-r">
@@ -412,6 +473,16 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
           <button class="mbtn active" id="swot-tab-search" onclick="switchSwotMode('search',this)">🔍 By Name</button>
           <button class="mbtn" id="swot-tab-discover" onclick="switchSwotMode('discover',this)">🤖 Auto-Discover</button>
         </div>
+        <!-- YOUR PRODUCT CONTEXT — always visible, used for threat scoring -->
+        <div class="card accent" id="my-product-card">
+          <div class="ct"><span class="ct-i">🎯</span>Your Product <span style="color:#f87171;font-size:9px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-left:4px;">Required for threat score</span></div>
+          <textarea class="field" id="my-product-ctx" rows="3" placeholder="Describe what you're building so the AI can score competitive threat accurately...&#10;&#10;e.g. A mobile app that collects glucose readings and generates personalised diet plans for diabetes patients." style="font-size:12px;min-height:72px;"></textarea>
+          <div class="flex mt8" style="justify-content:space-between;align-items:center;">
+            <button class="btn btn-p sm" onclick="saveProductCtx()" style="font-size:11.5px;">Save Context</button>
+            <span class="hint" id="ctx-saved-note" style="font-size:11px;color:var(--a);display:none;">✓ Saved</span>
+          </div>
+        </div>
+
         <div id="swot-mode-search">
           <div class="card">
             <div class="ct"><span class="ct-i">🔍</span>Search Company</div>
@@ -443,7 +514,65 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 
   <!-- TRENDS -->
   <div class="wp" id="panel-trends">
-    <div class="cs"><div class="cs-ring">📈</div><div class="pbadge">Phase 2</div><h2>Market Trends</h2><p>Weekly digest of healthtech funding rounds, FDA regulatory changes, and emerging diabetes technology signals.</p></div>
+    <div class="ph">
+      <div>
+        <h1>Market Trends</h1>
+        <p>On-demand digest · FDA · Funding · Clinical Trials · Emerging Tech · Generate and export as PDF</p>
+      </div>
+    </div>
+
+    <!-- CONFIG ROW -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:22px;">
+
+      <!-- Time window -->
+      <div class="card accent">
+        <div class="ct"><span class="ct-i">📅</span>Time Window</div>
+        <select class="field" id="trends-window" style="cursor:pointer;">
+          <option value="30">Last 30 days</option>
+          <option value="60">Last 60 days</option>
+          <option value="90" selected>Last 90 days</option>
+          <option value="180">Last 6 months</option>
+          <option value="365">Last 12 months</option>
+        </select>
+      </div>
+
+      <!-- Signal types -->
+      <div class="card" style="grid-column:span 2;">
+        <div class="ct"><span class="ct-i">📡</span>Signal Types</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;">
+            <input type="checkbox" id="sig-fda" checked style="accent-color:var(--a);width:14px;height:14px;"/> FDA &amp; Regulatory
+          </label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;">
+            <input type="checkbox" id="sig-funding" checked style="accent-color:var(--a);width:14px;height:14px;"/> Funding &amp; M&amp;A
+          </label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;">
+            <input type="checkbox" id="sig-clinical" checked style="accent-color:var(--a);width:14px;height:14px;"/> Clinical Trials
+          </label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;">
+            <input type="checkbox" id="sig-tech" checked style="accent-color:var(--a);width:14px;height:14px;"/> Emerging Tech
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- GENERATE BUTTON -->
+    <div class="flex" style="margin-bottom:24px;gap:12px;">
+      <button class="btn-action" id="trends-btn" onclick="runTrends()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Generate Market Digest
+      </button>
+      <span class="hint" id="trends-last-run"></span>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="trends-results">
+      <div class="sbox">
+        <div class="sb-ico">📈</div>
+        <h3>No digest generated yet</h3>
+        <p>Select your time window and signal types, then click Generate Market Digest.</p>
+      </div>
+    </div>
   </div>
 
   <!-- BRIEFS -->
@@ -468,7 +597,23 @@ document.addEventListener('DOMContentLoaded',()=>{
   const k=localStorage.getItem('or_key');
   if(k){document.getElementById('api-key-input').value=k;document.getElementById('api-key-clinical').value=k;}
   renderCompetitors();updateLastScanTime();
+  const savedCtx=localStorage.getItem('my_product_ctx');
+  if(savedCtx)document.getElementById('my-product-ctx').value=savedCtx;
+  updateTrendsLastRun();
 });
+
+function saveProductCtx(){
+  const v=document.getElementById('my-product-ctx').value.trim();
+  if(!v)return toast('Add a product description first','err');
+  localStorage.setItem('my_product_ctx',v);
+  const note=document.getElementById('ctx-saved-note');
+  note.style.display='inline';
+  setTimeout(()=>note.style.display='none',2500);
+}
+
+function getProductCtx(){
+  return localStorage.getItem('my_product_ctx')||document.getElementById('my-product-ctx').value.trim()||'';
+}
 
 /* ── NAV ── */
 function switchTab(id,el){
@@ -581,11 +726,13 @@ function quickSwot(c){document.getElementById('swot-search-input').value=c;runSw
 async function runSwotSearch(){
   if(!getKey())return toast('Save your API key first','err');
   const company=document.getElementById('swot-search-input').value.trim();if(!company)return toast('Enter a company name','err');
+  const myProduct=getProductCtx();
+  if(!myProduct)return toast('Add your product description above first — it powers the Threat Score','err');
   const btn=document.getElementById('swot-search-btn');btn.disabled=true;btn.textContent='Analyzing...';
   document.getElementById('swot-status').textContent='';
   document.getElementById('swot-results-area').innerHTML=`<div class="sbox"><div class="spin"></div><h3>Building full profile for ${company}</h3><p>SWOT · Pricing · News · Market data · 30–50 seconds</p></div>`;
   try{
-    const data=await fetchFullProfile(company);
+    const data=await fetchFullProfile(company,myProduct);
     renderFullProfile(data,'swot-results-area');
     document.getElementById('swot-status').textContent=`✓ Updated ${new Date().toLocaleTimeString()}`;
     toast(`Full profile ready for ${company}`);
@@ -612,7 +759,7 @@ async function runAutoDiscover(){
       const co=list[i];const ph=document.createElement('div');ph.id=`swot-card-${i}`;
       ph.innerHTML=`<div class="sbox" style="padding:22px;"><div class="spin"></div><p>Profiling ${co} (${i+1}/${list.length})</p></div>`;
       document.getElementById('discover-swot-list').appendChild(ph);
-      try{const data=await fetchFullProfile(co);ph.innerHTML='';renderAccordionProfile(data,`swot-card-${i}`);}
+      try{const data=await fetchFullProfile(co,desc);ph.innerHTML='';renderAccordionProfile(data,`swot-card-${i}`);}
       catch(e){ph.innerHTML=`<p style="color:#f87171;font-size:12px;padding:10px;">Failed: ${co} — ${e.message}</p>`;}
     }
     toast('All profiles complete');
@@ -626,9 +773,10 @@ async function runAutoDiscover(){
 /* ══════════════════════════════════
    FULL PROFILE FETCH — enriched prompt
 ══════════════════════════════════ */
-async function fetchFullProfile(company){
+async function fetchFullProfile(company,myProduct){
+  const threatCtx=myProduct?`\n\nYOUR STARTUP'S PRODUCT (use this to score competitiveThreat accurately):\n"${myProduct}"\n\ncompetitiveThreat: Score 0-100 based on DIRECT overlap with the above product. Consider: same target users? same core feature (glucose tracking/diet)? same market segment? same geography? High overlap = high threat (70-100). Different segment or approach = lower threat (20-50).`:'';
   const prompt=`You are a senior Healthtech strategy analyst specializing in diabetes/digital health markets.
-Generate a comprehensive competitive profile for "${company}".
+Generate a comprehensive competitive profile for "${company}".${threatCtx}
 Return ONLY valid JSON, no markdown, no extra text:
 {
   "company": "${company}",
@@ -921,6 +1069,252 @@ function exportClinical(){
 function dl(content,filename){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type:'text/plain'}));a.download=filename;a.click();}
 function today(){return new Date().toISOString().split('T')[0];}
 function toast(msg,type='ok'){const t=document.getElementById('toast');t.textContent=msg;t.className=`toast show ${type}`;setTimeout(()=>t.classList.remove('show'),3500);}
+
+/* ════════════════════════════════════
+   MARKET TRENDS
+════════════════════════════════════ */
+let lastTrendsData=null;
+
+async function runTrends(){
+  if(!getKey())return toast('Save your API key first','err');
+
+  const window=document.getElementById('trends-window').value;
+  const signals=[];
+  if(document.getElementById('sig-fda').checked)signals.push('FDA clearances and regulatory changes in diabetes/CGM technology');
+  if(document.getElementById('sig-funding').checked)signals.push('Funding rounds, M&A deals, and investment activity in digital health and diabetes tech');
+  if(document.getElementById('sig-clinical').checked)signals.push('Clinical trial results and peer-reviewed research relevant to diabetes management technology');
+  if(document.getElementById('sig-tech').checked)signals.push('Emerging technology signals including AI applications in diabetes, new sensor tech, and digital therapeutics');
+  if(!signals.length)return toast('Select at least one signal type','err');
+
+  const myProduct=getProductCtx();
+  const btn=document.getElementById('trends-btn');
+  btn.disabled=true;
+  btn.innerHTML='<span class="spin" style="width:14px;height:14px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px"></span>Generating digest...';
+
+  document.getElementById('trends-results').innerHTML=`
+    <div class="sbox">
+      <div class="spin"></div>
+      <h3>Generating market digest</h3>
+      <p>Analysing ${signals.length} signal categories · Last ${window} days · 20–40 seconds</p>
+    </div>`;
+
+  const prompt=`You are a senior Healthtech market intelligence analyst specialising in diabetes and digital health.
+
+Generate a comprehensive market trends digest covering the LAST ${window} DAYS for the diabetes/digital health sector.
+${myProduct?`\nContext — the reader's startup builds: "${myProduct}". Flag items especially relevant to them.`:''}
+
+Signal categories to cover:
+${signals.map((s,i)=>`${i+1}. ${s}`).join('\n')}
+
+Return ONLY valid JSON, no markdown:
+{
+  "period": "Last ${window} days",
+  "generatedAt": "${new Date().toDateString()}",
+  "executiveSummary": "3-4 sentence overview of the most important market movements in this period. What should a diabetes startup PM know immediately?",
+  "keyTheme": "The single biggest macro theme across all signals in one sentence",
+  "totalSignals": <number>,
+  "sections": [
+    {
+      "id": "fda",
+      "title": "FDA & Regulatory",
+      "icon": "🏛️",
+      "summary": "2-sentence section summary",
+      "items": [
+        {
+          "title": "Clear, specific headline",
+          "body": "2-3 sentences explaining what happened and context",
+          "impact": "1 sentence on why this matters for a diabetes app startup PM",
+          "date": "Approximate date e.g. Mar 2025",
+          "relevance": "High|Medium|Low",
+          "category": "FDA"
+        }
+      ]
+    },
+    {
+      "id": "funding",
+      "title": "Funding & M&A",
+      "icon": "💰",
+      "summary": "2-sentence section summary",
+      "items": [ /* same structure, category: "Funding" */ ]
+    },
+    {
+      "id": "clinical",
+      "title": "Clinical Trials & Research",
+      "icon": "🔬",
+      "summary": "2-sentence section summary",
+      "items": [ /* same structure, category: "Clinical" */ ]
+    },
+    {
+      "id": "tech",
+      "title": "Emerging Tech Signals",
+      "icon": "⚡",
+      "summary": "2-sentence section summary",
+      "items": [ /* same structure, category: "Tech" */ ]
+    }
+  ]
+}
+
+Rules:
+- Only include sections for the requested signal categories: ${signals.map(s=>s.split(' ')[0]).join(', ')}
+- 3-5 items per section minimum
+- Be specific — real companies, real products, real amounts where known
+- relevance must be exactly "High", "Medium", or "Low"
+- Return only the JSON object`;
+
+  try{
+    const text=await callOR([{role:'user',content:prompt}],4000);
+    const c=text.replace(/```json|```/g,'').trim();
+    lastTrendsData=JSON.parse(c.slice(c.indexOf('{'),c.lastIndexOf('}')+1));
+    renderTrends(lastTrendsData);
+    localStorage.setItem('last_trends_run',new Date().toISOString());
+    updateTrendsLastRun();
+    toast(`Digest ready · ${lastTrendsData.totalSignals||'—'} signals found`);
+  }catch(e){
+    document.getElementById('trends-results').innerHTML=`<div class="sbox"><div class="sb-ico">⚠️</div><h3>Generation failed</h3><p>${e.message}</p></div>`;
+    toast('Failed: '+e.message,'err');
+  }
+  btn.disabled=false;
+  btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Generate Market Digest';
+}
+
+function updateTrendsLastRun(){
+  const last=localStorage.getItem('last_trends_run');if(!last)return;
+  const diff=Math.round((Date.now()-new Date(last))/60000);
+  const el=document.getElementById('trends-last-run');if(el)el.textContent=diff<60?`Last run ${diff}m ago`:`Last run ${Math.round(diff/60)}h ago`;
+}
+
+function renderTrends(data){
+  const catClass={FDA:'tc-fda',Funding:'tc-fund',Clinical:'tc-clin',Tech:'tc-tech'};
+  const badgeClass={FDA:'tcb-fda',Funding:'tcb-fund',Clinical:'tcb-clin',Tech:'tcb-tech'};
+  const hdrClass={fda:'tsh-fda',funding:'tsh-fund',clinical:'tsh-clin',tech:'tsh-tech'};
+  const relClass={High:'tc-r-high',Medium:'tc-r-med',Low:'tc-r-low'};
+  const totalItems=data.sections?.reduce((a,s)=>a+(s.items?.length||0),0)||0;
+  const highCount=data.sections?.reduce((a,s)=>a+(s.items?.filter(i=>i.relevance==='High').length||0),0)||0;
+
+  let html=`
+    <div class="digest-summary">
+      <div class="ds-left">
+        <h3>📈 ${data.period} · ${data.generatedAt}</h3>
+        <p>${data.executiveSummary}</p>
+        ${data.keyTheme?`<div style="margin-top:10px;font-size:12px;color:var(--a);font-weight:600;">Key theme: ${data.keyTheme}</div>`:''}
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;">
+        <div class="ds-stats">
+          <div class="ds-stat"><div class="dsn">${totalItems}</div><div class="dsl">Signals</div></div>
+          <div class="ds-stat"><div class="dsn" style="color:#4ade80;">${highCount}</div><div class="dsl">High impact</div></div>
+          <div class="ds-stat"><div class="dsn">${data.sections?.length||0}</div><div class="dsl">Categories</div></div>
+        </div>
+        <button class="btn btn-pdf sm" onclick="exportTrendsPDF()">⬇ Export PDF</button>
+      </div>
+    </div>`;
+
+  data.sections?.forEach(sec=>{
+    html+=`<div class="trends-section">
+      <div class="trends-section-header">
+        <span class="tsh-icon ${hdrClass[sec.id]||''}">${sec.icon}</span>
+        ${sec.title}
+        <span style="font-size:11.5px;color:var(--t2);font-weight:400;text-transform:none;letter-spacing:0;">${sec.summary}</span>
+        <span class="tsh-count">${sec.items?.length||0} signals</span>
+      </div>
+      <div class="trends-grid">
+        ${(sec.items||[]).map(item=>`
+          <div class="trend-card ${catClass[item.category]||''}">
+            <div class="tc-top">
+              <div class="tc-title">${item.title}</div>
+              <span class="tc-badge ${badgeClass[item.category]||''}">${item.category}</span>
+            </div>
+            <div class="tc-body">${item.body}</div>
+            <div class="tc-impact">💡 ${item.impact}</div>
+            <div class="tc-ft">
+              <span class="tc-date">${item.date}</span>
+              <span class="tc-relevance ${relClass[item.relevance]||''}">● ${item.relevance} relevance</span>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  });
+
+  document.getElementById('trends-results').innerHTML=html;
+}
+
+/* ── TRENDS PDF EXPORT ── */
+function exportTrendsPDF(){
+  if(!lastTrendsData)return toast('No digest generated yet','err');
+  const data=lastTrendsData;
+  const catColor={FDA:'#a78bfa',Funding:'#00e5ff',Clinical:'#38bdf8',Tech:'#fbbf24'};
+  const catBg={FDA:'#f5f3ff',Funding:'#ecfeff',Clinical:'#f0f9ff',Tech:'#fffbeb'};
+  const catBorder={FDA:'#ddd6fe',Funding:'#a5f3fc',Clinical:'#bae6fd',Tech:'#fde68a'};
+  const relColor={High:'#16a34a',Medium:'#d97706',Low:'#9ca3af'};
+  const totalItems=data.sections?.reduce((a,s)=>a+(s.items?.length||0),0)||0;
+  const highCount=data.sections?.reduce((a,s)=>a+(s.items?.filter(i=>i.relevance==='High').length||0),0)||0;
+
+  let sectionsHTML='';
+  data.sections?.forEach(sec=>{
+    sectionsHTML+=`
+      <div style="margin-bottom:28px;page-break-inside:avoid;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #e5e7eb;">
+          <span style="font-size:18px;">${sec.icon}</span>
+          <div>
+            <div style="font-size:14px;font-weight:700;color:#111;">${sec.title}</div>
+            <div style="font-size:12px;color:#555;margin-top:2px;">${sec.summary}</div>
+          </div>
+          <span style="margin-left:auto;font-size:11px;background:#f3f4f6;color:#6b7280;padding:3px 10px;border-radius:12px;">${sec.items?.length||0} signals</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          ${(sec.items||[]).map(item=>`
+            <div style="background:${catBg[item.category]||'#f9fafb'};border:1px solid ${catBorder[item.category]||'#e5e7eb'};border-radius:8px;padding:14px;border-left:3px solid ${catColor[item.category]||'#6b7280'};">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:7px;">
+                <div style="font-size:12.5px;font-weight:600;color:#111;line-height:1.4;flex:1;">${item.title}</div>
+                <span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;background:${catColor[item.category]}22;color:${catColor[item.category]};text-transform:uppercase;flex-shrink:0;">${item.category}</span>
+              </div>
+              <div style="font-size:11.5px;color:#444;line-height:1.6;margin-bottom:8px;">${item.body}</div>
+              <div style="font-size:11px;color:#0088cc;background:#eff6ff;padding:6px 9px;border-radius:4px;line-height:1.5;margin-bottom:8px;">💡 ${item.impact}</div>
+              <div style="display:flex;justify-content:space-between;font-size:10.5px;color:#6b7280;">
+                <span>${item.date}</span>
+                <span style="font-weight:600;color:${relColor[item.relevance]||'#6b7280'};">● ${item.relevance} relevance</span>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>`;
+  });
+
+  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Helvetica Neue',Arial,sans-serif;color:#111;background:#fff;padding:40px;max-width:1000px;margin:0 auto;}
+    @media print{body{padding:20px;}@page{margin:15mm;size:A4;}}
+  </style></head><body>
+
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;padding-bottom:20px;border-bottom:3px solid #0088cc;">
+    <div>
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#0088cc;margin-bottom:8px;">PM Intelligence Hub · Market Trends Digest</div>
+      <h1 style="font-size:26px;font-weight:700;color:#111;margin-bottom:6px;">${data.period}</h1>
+      <p style="font-size:13px;color:#555;line-height:1.6;max-width:560px;">${data.executiveSummary}</p>
+      ${data.keyTheme?`<div style="margin-top:10px;font-size:12px;color:#0088cc;font-weight:600;">Key theme: ${data.keyTheme}</div>`:''}
+    </div>
+    <div style="text-align:right;flex-shrink:0;padding-left:20px;">
+      <div style="font-size:11px;color:#888;margin-bottom:4px;">Generated</div>
+      <div style="font-size:12px;font-weight:600;color:#333;">${data.generatedAt}</div>
+      <div style="display:flex;gap:16px;margin-top:12px;">
+        <div style="text-align:center;"><div style="font-size:22px;font-weight:700;color:#0088cc;">${totalItems}</div><div style="font-size:10px;color:#888;text-transform:uppercase;">Signals</div></div>
+        <div style="text-align:center;"><div style="font-size:22px;font-weight:700;color:#16a34a;">${highCount}</div><div style="font-size:10px;color:#888;text-transform:uppercase;">High Impact</div></div>
+        <div style="text-align:center;"><div style="font-size:22px;font-weight:700;color:#0088cc;">${data.sections?.length||0}</div><div style="font-size:10px;color:#888;text-transform:uppercase;">Categories</div></div>
+      </div>
+    </div>
+  </div>
+
+  ${sectionsHTML}
+
+  <div style="margin-top:32px;padding-top:14px;border-top:1px solid #e5e7eb;font-size:10px;color:#aaa;">
+    Generated by PM IntelHub · ${new Date().toISOString()} · Based on AI analysis — verify with primary sources before strategic decisions.
+  </div>
+  </body></html>`;
+
+  const w=window.open('','_blank','width=1100,height=900');
+  w.document.write(html);w.document.close();
+  w.onload=()=>setTimeout(()=>w.print(),400);
+  toast('PDF export opened — use browser Print dialog');
+}
 </script>
 </body>
 </html>
