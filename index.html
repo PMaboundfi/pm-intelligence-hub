@@ -19,19 +19,17 @@ html,body{height:100%;overflow:hidden;}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);display:flex;flex-direction:column;}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 600px 400px at 15% 0%,rgba(0,100,200,0.1) 0%,transparent 70%),radial-gradient(ellipse 400px 500px at 85% 100%,rgba(0,200,255,0.06) 0%,transparent 60%);pointer-events:none;z-index:0;}
 
-/* ══════════════════════════════════
-   CMD BAR — taller, bigger text
-══════════════════════════════════ */
+/* CMD BAR */
 #cmd{position:relative;z-index:200;flex-shrink:0;display:flex;align-items:center;background:rgba(6,10,16,0.97);border-bottom:1px solid var(--b1);backdrop-filter:blur(24px);height:68px;padding:0 28px;}
 .cmd-logo{display:flex;align-items:center;gap:11px;padding-right:28px;border-right:1px solid var(--b2);margin-right:8px;flex-shrink:0;}
 .cmd-dot{width:34px;height:34px;background:linear-gradient(135deg,#00e5ff,#0055cc);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 0 18px rgba(0,229,255,0.38);flex-shrink:0;}
-.cmd-name{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#fff;white-space:nowrap;line-height:1.2;}
+.cmd-name{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#fff;white-space:nowrap;}
 .cmd-name em{color:var(--a);font-style:normal;}
 .cmd-nav{display:flex;align-items:center;gap:0;flex:1;}
-.ctab{position:relative;display:flex;align-items:center;gap:8px;padding:0 18px;height:68px;font-size:13.5px;font-weight:500;color:var(--t3);cursor:pointer;border:none;background:transparent;font-family:'Inter',sans-serif;transition:color 0.18s;white-space:nowrap;}
+.ctab{position:relative;display:flex;align-items:center;gap:8px;padding:0 16px;height:68px;font-size:13px;font-weight:500;color:var(--t3);cursor:pointer;border:none;background:transparent;font-family:'Inter',sans-serif;transition:color 0.18s;white-space:nowrap;}
 .ctab:hover{color:var(--t2);}
 .ctab.active{color:var(--a);}
-.ctab.active::after{content:'';position:absolute;bottom:0;left:18px;right:18px;height:2px;background:linear-gradient(90deg,var(--a),var(--a2));border-radius:2px 2px 0 0;}
+.ctab.active::after{content:'';position:absolute;bottom:0;left:16px;right:16px;height:2px;background:linear-gradient(90deg,var(--a),var(--a2));border-radius:2px 2px 0 0;}
 .tab-pip{width:6px;height:6px;border-radius:50%;background:var(--a);box-shadow:0 0 6px var(--a);animation:blink 2s ease-in-out infinite;}
 .tab-soon{font-size:9.5px;font-weight:700;background:rgba(255,255,255,0.06);color:var(--t3);padding:3px 7px;border-radius:4px;letter-spacing:0.5px;text-transform:uppercase;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
@@ -40,9 +38,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .cmd-live{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--t3);}
 .led{width:7px;height:7px;border-radius:50%;background:#00e676;box-shadow:0 0 6px #00e676;animation:blink 2s infinite;flex-shrink:0;}
 
-/* ══════════════════════════════════
-   WORKSPACE
-══════════════════════════════════ */
+/* WORKSPACE */
 #ws{flex:1;overflow:hidden;position:relative;z-index:1;}
 .wp{display:none;height:100%;overflow-y:auto;overflow-x:hidden;padding:28px 32px;animation:fu 0.22s ease;}
 .wp.active{display:block;}
@@ -77,8 +73,7 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 .btn-pdf{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;font-weight:700;}
 .btn-pdf:hover{filter:brightness(1.15);box-shadow:0 4px 18px rgba(124,58,237,0.3);transform:translateY(-1px);}
 .sm{padding:6px 11px;font-size:11.5px;}
-
-.btn-action{display:inline-flex;align-items:center;gap:9px;padding:11px 26px;border-radius:var(--r2);background:var(--s1);border:1px solid var(--b1);color:var(--a);font-size:14px;font-weight:700;font-family:'Space Grotesk',sans-serif;cursor:pointer;transition:all 0.22s;position:relative;overflow:hidden;}
+.btn-action{display:inline-flex;align-items:center;gap:9px;padding:11px 22px;border-radius:var(--r2);background:var(--s1);border:1px solid var(--b1);color:var(--a);font-size:13.5px;font-weight:700;font-family:'Space Grotesk',sans-serif;cursor:pointer;transition:all 0.22s;position:relative;overflow:hidden;}
 .btn-action::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,229,255,0.07),transparent);opacity:0;transition:opacity 0.2s;}
 .btn-action:hover::before{opacity:1;}
 .btn-action:hover{border-color:rgba(0,229,255,0.35);box-shadow:0 0 22px rgba(0,229,255,0.1);transform:translateY(-1px);}
@@ -111,7 +106,7 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 .ic-sm{font-size:11.5px;color:var(--t2);line-height:1.65;}
 .ic-ft{display:flex;align-items:center;justify-content:space-between;margin-top:13px;padding-top:11px;border-top:1px solid var(--b2);}
 .ic-meta{font-size:11px;color:var(--t3);}
-.ic-link{font-size:11px;color:var(--a);text-decoration:none;font-weight:600;transition:color 0.15s;}.ic-link:hover{color:#fff;}
+.ic-link{font-size:11px;color:var(--a);text-decoration:none;font-weight:600;}.ic-link:hover{color:#fff;}
 
 /* STATES */
 .sbox{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;text-align:center;color:var(--t3);}
@@ -120,13 +115,11 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 .sbox p{font-size:12.5px;max-width:330px;line-height:1.7;}
 .spin{width:30px;height:30px;border:2.5px solid rgba(0,229,255,0.14);border-top-color:var(--a);border-radius:50%;animation:rot 0.7s linear infinite;margin:0 auto 13px;}
 @keyframes rot{to{transform:rotate(360deg)}}
-
-/* RESULTS BAR */
 .rbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
 .rbar h3{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:#fff;}
 .rbar span{font-size:12px;color:var(--t3);}
 
-/* RADAR SETUP */
+/* RADAR */
 .radar-top{display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-bottom:22px;}
 
 /* CLINICAL */
@@ -145,9 +138,7 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 .co-body{flex:1;padding:22px;font-size:13px;line-height:1.8;color:var(--t1);white-space:pre-wrap;overflow-y:auto;}
 .co-ft{padding:11px 18px;border-top:1px solid var(--b2);display:flex;justify-content:flex-end;flex-shrink:0;}
 
-/* ══════════════════════════════════
-   SWOT WORKSPACE
-══════════════════════════════════ */
+/* SWOT */
 .swot-ws{display:grid;grid-template-columns:270px 1fr;gap:18px;height:calc(100vh - 68px - 32px - 130px);min-height:380px;}
 .swot-side{display:flex;flex-direction:column;gap:12px;overflow-y:auto;}
 .swot-side::-webkit-scrollbar{width:3px}.swot-side::-webkit-scrollbar-thumb{background:var(--t3);border-radius:2px}
@@ -156,14 +147,10 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 .mtog{display:flex;background:var(--bg);border:1px solid var(--b2);border-radius:var(--r2);padding:3px;gap:2px;}
 .mbtn{flex:1;padding:7px 8px;border-radius:6px;font-size:11.5px;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--t3);font-family:'Inter',sans-serif;transition:all 0.18s;text-align:center;}
 .mbtn.active{background:rgba(0,229,255,0.1);color:var(--a);}
-
-/* SWOT COMPANY HEADER */
 .sch{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r) var(--r) 0 0;padding:20px 24px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:none;}
 .sch-name{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:#fff;}
 .sch-ov{font-size:12.5px;color:var(--t2);margin-top:4px;line-height:1.5;max-width:560px;}
 .swot-body{background:var(--s1);border:1px solid var(--b2);border-top:1px solid var(--b1);border-radius:0 0 var(--r) var(--r);padding:20px;}
-
-/* SWOT 4 QUADRANTS */
 .qgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
 .sq{border-radius:var(--r2);padding:16px;border:1px solid;}
 .sq-s{background:rgba(0,229,255,0.04);border-color:rgba(0,229,255,0.15);}
@@ -175,24 +162,14 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 .sq ul{list-style:none;}
 .sq ul li{font-size:12px;color:var(--t1);line-height:1.55;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:8px;}
 .sq ul li:last-child{border:none;}
-.sq ul li::before{content:'–';color:var(--t3);flex-shrink:0;}
-
-/* SECTION DIVIDER */
+.sq ul li::before{content:'--';color:var(--t3);flex-shrink:0;}
 .sec-hdr{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--t3);margin:24px 0 12px;display:flex;align-items:center;gap:10px;}
 .sec-hdr::after{content:'';flex:1;height:1px;background:var(--b2);}
-
-/* DIMENSION GRID */
 .dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px;}
 .dc{background:var(--bg);border:1px solid var(--b2);border-radius:var(--r2);padding:14px;transition:border-color 0.18s;}
 .dc:hover{border-color:var(--b1);}
 .dc h5{font-size:10px;font-weight:700;color:var(--a);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:7px;}
 .dc p{font-size:11.5px;color:var(--t2);line-height:1.6;}
-
-/* ══════════════════════════════════
-   NEW: COMPETITOR DEEP DIVE SECTIONS
-══════════════════════════════════ */
-
-/* Pricing table */
 .pricing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:6px;}
 .price-card{background:var(--bg);border:1px solid var(--b2);border-radius:var(--r2);padding:14px;text-align:center;}
 .price-card .pc-tier{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--t3);margin-bottom:6px;}
@@ -200,22 +177,14 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 .price-card .pc-period{font-size:10.5px;color:var(--t3);}
 .price-card .pc-note{font-size:11px;color:var(--t2);margin-top:7px;line-height:1.5;}
 .price-card.highlight{border-color:var(--b1);background:rgba(0,229,255,0.04);}
-
-/* News feed */
 .news-list{display:flex;flex-direction:column;gap:8px;margin-bottom:6px;}
 .news-item{background:var(--bg);border:1px solid var(--b2);border-radius:var(--r2);padding:13px 16px;display:flex;align-items:flex-start;gap:12px;transition:border-color 0.18s;}
 .news-item:hover{border-color:var(--b1);}
 .news-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;}
-.nd-fund{background:#00e5ff;box-shadow:0 0 6px rgba(0,229,255,0.4);}
-.nd-fda{background:#a78bfa;box-shadow:0 0 6px rgba(167,139,250,0.4);}
-.nd-prod{background:#38bdf8;box-shadow:0 0 6px rgba(56,189,248,0.4);}
-.nd-part{background:#fbbf24;box-shadow:0 0 6px rgba(251,191,36,0.4);}
-.nd-gen{background:var(--t3);}
+.nd-fund{background:#00e5ff;}.nd-fda{background:#a78bfa;}.nd-prod{background:#38bdf8;}.nd-part{background:#fbbf24;}.nd-gen{background:var(--t3);}
 .news-body{flex:1;}
 .news-hl{font-size:12.5px;font-weight:600;color:var(--t1);line-height:1.45;margin-bottom:3px;}
 .news-meta{font-size:11px;color:var(--t3);}
-
-/* Market position bar */
 .mktpos-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px;}
 .mktpos-card{background:var(--bg);border:1px solid var(--b2);border-radius:var(--r2);padding:14px;}
 .mktpos-label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;color:var(--t3);margin-bottom:8px;}
@@ -223,8 +192,6 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 .mktpos-sub{font-size:11px;color:var(--t2);}
 .bar-wrap{height:5px;background:rgba(255,255,255,0.07);border-radius:3px;margin-top:8px;overflow:hidden;}
 .bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--a),var(--a2));transition:width 0.8s ease;}
-
-/* ACCORDION for auto-discover */
 .acc{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r);margin-bottom:10px;overflow:hidden;transition:border-color 0.18s;}
 .acc:hover{border-color:var(--b1);}
 .acc-h{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;cursor:pointer;user-select:none;}
@@ -234,13 +201,69 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 .acc-chev.open{transform:rotate(180deg);}
 .acc-b{display:none;padding:0 20px 20px;}
 .acc-b.open{display:block;}
-
-/* COMING SOON */
 .cs{display:flex;flex-direction:column;align-items:center;justify-content:center;height:calc(100vh - 200px);text-align:center;}
 .cs-ring{width:72px;height:72px;border-radius:50%;border:1px solid var(--b1);display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:18px;background:var(--glow2);}
 .cs h2{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:9px;}
 .cs p{font-size:12.5px;color:var(--t2);max-width:400px;line-height:1.7;margin-bottom:18px;}
 .pbadge{display:inline-block;background:rgba(0,229,255,0.07);border:1px solid var(--b1);color:var(--a);font-size:10px;font-weight:700;padding:4px 13px;border-radius:20px;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:18px;}
+
+/* TRENDS */
+.trends-section{margin-bottom:28px;}
+.trends-section-header{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--t3);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--b2);}
+.trends-section-header .tsh-icon{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.tsh-fda{background:rgba(167,139,250,0.12);}.tsh-fund{background:rgba(0,229,255,0.10);}.tsh-clin{background:rgba(56,189,248,0.10);}.tsh-tech{background:rgba(251,191,36,0.10);}
+.tsh-count{margin-left:auto;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,0.06);color:var(--t3);}
+.trends-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;}
+.trend-card{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r);padding:16px 18px;transition:all 0.2s;position:relative;overflow:hidden;}
+.trend-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.trend-card:hover{border-color:var(--b1);transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,0,0,0.25);}
+.tc-fda::before{background:linear-gradient(90deg,#a78bfa,transparent);}
+.tc-fund::before{background:linear-gradient(90deg,var(--a),transparent);}
+.tc-clin::before{background:linear-gradient(90deg,#38bdf8,transparent);}
+.tc-tech::before{background:linear-gradient(90deg,#fbbf24,transparent);}
+.tc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px;}
+.tc-title{font-size:13px;font-weight:600;color:var(--t1);line-height:1.45;flex:1;}
+.tc-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px;flex-shrink:0;}
+.tcb-fda{background:rgba(167,139,250,0.12);color:#c4b5fd;}.tcb-fund{background:rgba(0,229,255,0.10);color:var(--a);}
+.tcb-clin{background:rgba(56,189,248,0.10);color:#7dd3fc;}.tcb-tech{background:rgba(251,191,36,0.10);color:#fcd34d;}
+.tc-body{font-size:12px;color:var(--t2);line-height:1.65;margin-bottom:10px;}
+.tc-impact{font-size:11.5px;color:var(--t3);padding:8px 10px;background:rgba(0,229,255,0.04);border-left:2px solid rgba(0,229,255,0.25);border-radius:0 4px 4px 0;line-height:1.5;}
+.tc-ft{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:9px;border-top:1px solid var(--b2);}
+.tc-date{font-size:10.5px;color:var(--t3);}
+.tc-relevance{font-size:10.5px;font-weight:600;}
+.tc-r-high{color:#4ade80;}.tc-r-med{color:#fbbf24;}.tc-r-low{color:var(--t3);}
+.digest-summary{background:linear-gradient(135deg,rgba(0,229,255,0.06),rgba(0,136,204,0.04));border:1px solid var(--b1);border-radius:var(--r);padding:18px 22px;margin-bottom:24px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
+.ds-left h3{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:4px;}
+.ds-left p{font-size:12.5px;color:var(--t2);line-height:1.6;max-width:560px;}
+.ds-stats{display:flex;gap:16px;flex-shrink:0;}
+.ds-stat{text-align:center;}
+.ds-stat .dsn{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--a);}
+.ds-stat .dsl{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
+
+/* VIRAL FEED */
+.viral-grid{display:flex;flex-direction:column;gap:12px;}
+.viral-card{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r);padding:18px 20px;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:start;transition:all 0.2s;position:relative;overflow:hidden;}
+.viral-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.viral-card:hover{border-color:var(--b1);transform:translateX(2px);box-shadow:0 4px 24px rgba(0,0,0,0.25);}
+.vc-tech::before{background:#00e5ff;}.vc-privacy::before{background:#a78bfa;}.vc-startup::before{background:#fbbf24;}.vc-health::before{background:#4ade80;}.vc-india::before{background:#f97316;}
+.vc-rank{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;flex-shrink:0;}
+.vcr-tech{background:rgba(0,229,255,0.12);color:var(--a);}.vcr-privacy{background:rgba(167,139,250,0.12);color:#c4b5fd;}
+.vcr-startup{background:rgba(251,191,36,0.12);color:#fcd34d;}.vcr-health{background:rgba(74,222,128,0.12);color:#4ade80;}.vcr-india{background:rgba(249,115,22,0.12);color:#fb923c;}
+.vc-body{flex:1;min-width:0;}
+.vc-meta{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap;}
+.vc-cat{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;padding:2px 8px;border-radius:4px;}
+.vcc-tech{background:rgba(0,229,255,0.08);color:var(--a);}.vcc-privacy{background:rgba(167,139,250,0.08);color:#c4b5fd;}
+.vcc-startup{background:rgba(251,191,36,0.08);color:#fcd34d;}.vcc-health{background:rgba(74,222,128,0.08);color:#4ade80;}.vcc-india{background:rgba(249,115,22,0.08);color:#fb923c;}
+.vc-platform{font-size:10.5px;color:var(--t3);font-weight:500;}
+.vc-heat{font-size:10.5px;font-weight:700;}
+.vh-fire{color:#f87171;}.vh-hot{color:#fbbf24;}.vh-warm{color:var(--t2);}
+.vc-headline{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#fff;line-height:1.4;margin-bottom:8px;}
+.vc-why{font-size:12.5px;color:var(--t2);line-height:1.65;margin-bottom:10px;}
+.vc-angle{font-size:12px;color:var(--a);line-height:1.55;padding:8px 12px;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.1);border-radius:var(--r2);font-style:italic;}
+.vc-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0;}
+.vc-viral-score{text-align:center;padding:8px 12px;background:var(--bg);border:1px solid var(--b2);border-radius:var(--r2);min-width:58px;}
+.vvs-num{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff;line-height:1;}
+.vvs-lbl{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
 
 /* TOAST */
 #toast{position:fixed;bottom:22px;right:22px;padding:11px 18px;border-radius:var(--r2);font-size:12.5px;font-weight:500;opacity:0;transform:translateY(7px) scale(0.97);transition:all 0.22s ease;z-index:9999;pointer-events:none;}
@@ -250,196 +273,37 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 
 /* UTILS */
 .mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}
-.flex{display:flex;align-items:center;gap:8px;}
-.fend{justify-content:flex-end;}
+.flex{display:flex;align-items:center;gap:8px;}.fend{justify-content:flex-end;}
 .hint{font-size:11.5px;color:var(--t3);}
+.print-header,.print-footer{display:none;}
 
-/* ══════════════════════════════════
-   PRINT / PDF STYLES
-══════════════════════════════════ */
-@media print {
-  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-  html,body { height:auto !important; overflow:visible !important; background:#fff !important; color:#111 !important; }
-  body::before { display:none !important; }
-  #cmd,#ws { display:block !important; height:auto !important; overflow:visible !important; }
-  #cmd { display:none !important; }
-  .wp { display:none !important; }
-  .wp.print-target { display:block !important; height:auto !important; overflow:visible !important; padding:0 !important; }
-  .swot-ws { display:block !important; height:auto !important; }
-  .swot-side { display:none !important; }
-  .swot-main { height:auto !important; overflow:visible !important; }
-  .ph { border-bottom:2px solid #ddd !important; margin-bottom:20px !important; }
-  .ph h1 { color:#111 !important; font-size:26px !important; }
-  .ph p { color:#555 !important; }
-  .sch { background:#f8f9fa !important; border:1px solid #ddd !important; border-radius:8px 8px 0 0 !important; }
-  .sch-name { color:#111 !important; }
-  .sch-ov { color:#555 !important; }
-  .swot-body { background:#fff !important; border:1px solid #ddd !important; border-top:2px solid #0088cc !important; }
-  .qgrid { page-break-inside:avoid; }
-  .sq { border:1px solid #ddd !important; background:#f8f9fa !important; }
-  .sq-s { background:#f0fffe !important; border-color:#a7f3d0 !important; }
-  .sq-w { background:#fff5f5 !important; border-color:#fecaca !important; }
-  .sq-o { background:#f0f9ff !important; border-color:#bae6fd !important; }
-  .sq-t { background:#fffbeb !important; border-color:#fde68a !important; }
-  .sq-lbl,.sq-s .sq-lbl { color:#0d9488 !important; }
-  .sq-w .sq-lbl { color:#dc2626 !important; }
-  .sq-o .sq-lbl { color:#0284c7 !important; }
-  .sq-t .sq-lbl { color:#d97706 !important; }
-  .sq ul li { color:#333 !important; border-bottom:1px solid #eee !important; }
-  .sq ul li::before { color:#999 !important; }
-  .sec-hdr { color:#0088cc !important; font-size:11px !important; }
-  .sec-hdr::after { background:#ddd !important; }
-  .dgrid,.pricing-grid,.mktpos-grid { page-break-inside:avoid; }
-  .dc,.price-card,.mktpos-card,.news-item { background:#f8f9fa !important; border:1px solid #ddd !important; }
-  .dc h5 { color:#0088cc !important; }
-  .dc p,.news-hl,.news-meta,.mktpos-val,.mktpos-sub,.mktpos-label,.price-card .pc-tier,.price-card .pc-note,.price-card .pc-period { color:#333 !important; }
-  .price-card .pc-price { color:#111 !important; }
-  .news-list { page-break-inside:avoid; }
-  .print-header { display:block !important; margin-bottom:24px; }
-  .btn-action,.btn-pdf,.btn-o,.acc-chev,.swot-side { display:none !important; }
-  .sch { padding:16px 20px !important; }
-  .print-footer { display:block !important; margin-top:32px; padding-top:16px; border-top:1px solid #ddd; font-size:11px; color:#999; }
-  .bar-fill { background:#0088cc !important; }
-  .acc-b { display:block !important; }
+@media print{
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+  html,body{height:auto!important;overflow:visible!important;background:#fff!important;color:#111!important;}
+  body::before{display:none!important;}
+  #cmd{display:none!important;}
+  .wp{display:none!important;}
+  .wp.print-target{display:block!important;height:auto!important;overflow:visible!important;padding:0!important;}
+  .swot-ws{display:block!important;height:auto!important;}
+  .swot-side{display:none!important;}
+  .swot-main{height:auto!important;overflow:visible!important;}
 }
-
-/* ── VIRAL FEED ── */
-.viral-grid { display:flex;flex-direction:column;gap:12px; }
-.viral-card {
-  background:var(--s1);border:1px solid var(--b2);border-radius:var(--r);
-  padding:18px 20px;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:start;
-  transition:all 0.2s;position:relative;overflow:hidden;
-}
-.viral-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
-.viral-card:hover{border-color:var(--b1);transform:translateX(2px);box-shadow:0 4px 24px rgba(0,0,0,0.25);}
-.vc-tech::before    {background:#00e5ff;}
-.vc-privacy::before {background:#a78bfa;}
-.vc-startup::before {background:#fbbf24;}
-.vc-health::before  {background:#4ade80;}
-.vc-india::before   {background:#f97316;}
-
-.vc-rank {
-  width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;
-  font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#fff;flex-shrink:0;
-}
-.vcr-tech    {background:rgba(0,229,255,0.12);color:var(--a);}
-.vcr-privacy {background:rgba(167,139,250,0.12);color:#c4b5fd;}
-.vcr-startup {background:rgba(251,191,36,0.12);color:#fcd34d;}
-.vcr-health  {background:rgba(74,222,128,0.12);color:#4ade80;}
-.vcr-india   {background:rgba(249,115,22,0.12);color:#fb923c;}
-
-.vc-body { flex:1;min-width:0; }
-.vc-meta { display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap; }
-.vc-cat  { font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;padding:2px 8px;border-radius:4px; }
-.vcc-tech    {background:rgba(0,229,255,0.08);color:var(--a);}
-.vcc-privacy {background:rgba(167,139,250,0.08);color:#c4b5fd;}
-.vcc-startup {background:rgba(251,191,36,0.08);color:#fcd34d;}
-.vcc-health  {background:rgba(74,222,128,0.08);color:#4ade80;}
-.vcc-india   {background:rgba(249,115,22,0.08);color:#fb923c;}
-
-.vc-platform {font-size:10.5px;color:var(--t3);font-weight:500;}
-.vc-heat     {font-size:10.5px;font-weight:700;}
-.vh-fire     {color:#f87171;}
-.vh-hot      {color:#fbbf24;}
-.vh-warm     {color:var(--t2);}
-.vc-headline {font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#fff;line-height:1.4;margin-bottom:8px;}
-.vc-why      {font-size:12.5px;color:var(--t2);line-height:1.65;margin-bottom:10px;}
-.vc-angle    {
-  font-size:12px;color:var(--a);line-height:1.55;
-  padding:8px 12px;background:rgba(0,229,255,0.04);
-  border:1px solid rgba(0,229,255,0.1);border-radius:var(--r2);
-  font-style:italic;
-}
-.vc-angle::before{content:'"';margin-right:3px;opacity:0.5;}
-.vc-angle::after{content:'"';margin-left:3px;opacity:0.5;}
-.vc-right { display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0; }
-.vc-viral-score {
-  text-align:center;padding:8px 12px;
-  background:var(--bg);border:1px solid var(--b2);border-radius:var(--r2);
-  min-width:58px;
-}
-.vvs-num  {font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff;line-height:1;}
-.vvs-lbl  {font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
-
-.print-header,.print-footer { display:none; }
-
-/* ── TRENDS ── */
-.trends-section { margin-bottom:28px; }
-.trends-section-header {
-  display:flex;align-items:center;gap:10px;
-  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;
-  color:var(--t3);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--b2);
-}
-.trends-section-header .tsh-icon {
-  width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;
-}
-.tsh-fda    { background:rgba(167,139,250,0.12); }
-.tsh-fund   { background:rgba(0,229,255,0.10); }
-.tsh-clin   { background:rgba(56,189,248,0.10); }
-.tsh-tech   { background:rgba(251,191,36,0.10); }
-.tsh-count  { margin-left:auto;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,0.06);color:var(--t3); }
-
-.trends-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px; }
-
-.trend-card {
-  background:var(--s1);border:1px solid var(--b2);border-radius:var(--r);
-  padding:16px 18px;transition:all 0.2s;position:relative;overflow:hidden;
-}
-.trend-card::before { content:'';position:absolute;top:0;left:0;right:0;height:2px; }
-.trend-card:hover { border-color:var(--b1);transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,0,0,0.25); }
-
-.tc-fda::before   { background:linear-gradient(90deg,#a78bfa,transparent); }
-.tc-fund::before  { background:linear-gradient(90deg,var(--a),transparent); }
-.tc-clin::before  { background:linear-gradient(90deg,#38bdf8,transparent); }
-.tc-tech::before  { background:linear-gradient(90deg,#fbbf24,transparent); }
-
-.tc-top { display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px; }
-.tc-title { font-size:13px;font-weight:600;color:var(--t1);line-height:1.45;flex:1; }
-.tc-badge { font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:0.5px;flex-shrink:0; }
-.tcb-fda  { background:rgba(167,139,250,0.12);color:#c4b5fd; }
-.tcb-fund { background:rgba(0,229,255,0.10);color:var(--a); }
-.tcb-clin { background:rgba(56,189,248,0.10);color:#7dd3fc; }
-.tcb-tech { background:rgba(251,191,36,0.10);color:#fcd34d; }
-
-.tc-body { font-size:12px;color:var(--t2);line-height:1.65;margin-bottom:10px; }
-.tc-impact { font-size:11.5px;color:var(--t3);padding:8px 10px;background:rgba(0,229,255,0.04);border-left:2px solid rgba(0,229,255,0.25);border-radius:0 4px 4px 0;line-height:1.5; }
-.tc-ft { display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:9px;border-top:1px solid var(--b2); }
-.tc-date { font-size:10.5px;color:var(--t3); }
-.tc-relevance { font-size:10.5px;font-weight:600; }
-.tc-r-high { color:#4ade80; }
-.tc-r-med  { color:#fbbf24; }
-.tc-r-low  { color:var(--t3); }
-
-/* Digest summary bar */
-.digest-summary {
-  background:linear-gradient(135deg,rgba(0,229,255,0.06),rgba(0,136,204,0.04));
-  border:1px solid var(--b1);border-radius:var(--r);
-  padding:18px 22px;margin-bottom:24px;
-  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
-}
-.ds-left h3 { font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:4px; }
-.ds-left p  { font-size:12.5px;color:var(--t2);line-height:1.6;max-width:560px; }
-.ds-stats { display:flex;gap:16px;flex-shrink:0; }
-.ds-stat { text-align:center; }
-.ds-stat .dsn { font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--a); }
-.ds-stat .dsl { font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px; }
 </style>
 </head>
 <body>
 
-<!-- CMD BAR -->
 <div id="cmd">
   <div class="cmd-logo">
-    <div class="cmd-dot">⚡</div>
+    <div class="cmd-dot">&#9889;</div>
     <div class="cmd-name">PM Intel<em>Hub</em></div>
   </div>
   <div class="cmd-nav">
-    <button class="ctab active" onclick="switchTab('radar',this)"><span>📡</span>Competitor Radar<span class="tab-pip"></span></button>
-    <button class="ctab" onclick="switchTab('clinical',this)"><span>🧬</span>Clinical Translator<span class="tab-pip"></span></button>
-    <button class="ctab" onclick="switchTab('swot',this)"><span>🔬</span>SWOT Analyzer<span class="tab-pip"></span></button>
-    <button class="ctab" onclick="switchTab('trends',this)"><span>📈</span>Market Trends<span class="tab-pip"></span></button>
-    <button class="ctab" onclick="switchTab('briefs',this)"><span>✍️</span>Brief Writer<span class="tab-soon">Phase 2</span></button>
-    <button class="ctab" onclick="switchTab('viral',this)"><span>🔥</span>Viral Feed<span class="tab-pip"></span></button>
+    <button class="ctab active" onclick="switchTab('radar',this)"><span>&#128225;</span>Competitor Radar<span class="tab-pip"></span></button>
+    <button class="ctab" onclick="switchTab('clinical',this)"><span>&#129516;</span>Clinical Translator<span class="tab-pip"></span></button>
+    <button class="ctab" onclick="switchTab('swot',this)"><span>&#128300;</span>SWOT Analyzer<span class="tab-pip"></span></button>
+    <button class="ctab" onclick="switchTab('trends',this)"><span>&#128200;</span>Market Trends<span class="tab-pip"></span></button>
+    <button class="ctab" onclick="switchTab('viral',this)"><span>&#128293;</span>Viral Feed<span class="tab-pip"></span></button>
+    <button class="ctab" onclick="switchTab('briefs',this)"><span>&#9997;&#65039;</span>Brief Writer<span class="tab-soon">Phase 2</span></button>
   </div>
   <div class="cmd-r">
     <div class="cmd-date" id="cmd-date"></div>
@@ -447,13 +311,12 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
   </div>
 </div>
 
-<!-- WORKSPACE -->
 <div id="ws">
 
   <!-- RADAR -->
   <div class="wp active" id="panel-radar">
     <div class="ph">
-      <div><h1>Competitor Radar</h1><p>Daily intelligence scan · Track FDA clearances, funding, product launches, partnerships</p></div>
+      <div><h1>Competitor Radar</h1><p>Daily intelligence scan &middot; Track FDA clearances, funding, product launches, partnerships</p></div>
       <div class="flex">
         <span class="hint" id="last-scan-time"></span>
         <button class="btn-action" id="scan-btn" onclick="runScan()">
@@ -464,27 +327,25 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
     </div>
     <div class="radar-top">
       <div class="card accent">
-        <div class="ct"><span class="ct-i">🔑</span>API Key</div>
+        <div class="ct"><span class="ct-i">&#128273;</span>API Key</div>
         <div class="frow"><input type="password" class="field" id="api-key-input" placeholder="sk-or-v1-..."/><button class="btn btn-p sm" onclick="saveKey()">Save</button></div>
-        <div class="mt8 hint">openrouter.ai/keys · ~$0.001/scan</div>
+        <div class="mt8 hint">openrouter.ai/keys &middot; ~$0.001/scan</div>
       </div>
       <div class="card">
-        <div class="ct"><span class="ct-i">🎯</span>Tracked Competitors</div>
+        <div class="ct"><span class="ct-i">&#127919;</span>Tracked Competitors</div>
         <div class="tlist" id="competitor-tags" style="margin-bottom:10px;"></div>
         <div class="flex"><input type="text" class="field" id="new-competitor" placeholder="Add competitor..." style="max-width:200px" onkeydown="if(event.key==='Enter') addCompetitor()"/><button class="btn btn-o sm" onclick="addCompetitor()">+ Add</button></div>
       </div>
     </div>
-    <div id="radar-ebar" style="display:none;" class="flex fend mt8"><button class="btn btn-o sm" onclick="exportResults()">↓ Export Brief (.txt)</button></div>
-    <div id="results-area">
-      <div class="sbox"><div class="sb-ico">📡</div><h3>Ready to scan</h3><p>Save your API key, confirm tracked competitors, then click Run Morning Scan.</p></div>
-    </div>
+    <div id="radar-ebar" style="display:none;" class="flex fend mt8"><button class="btn btn-o sm" onclick="exportResults()">&#8595; Export Brief (.txt)</button></div>
+    <div id="results-area"><div class="sbox"><div class="sb-ico">&#128225;</div><h3>Ready to scan</h3><p>Save your API key, confirm tracked competitors, then click Run Morning Scan.</p></div></div>
   </div>
 
   <!-- CLINICAL -->
   <div class="wp" id="panel-clinical">
-    <div class="ph"><div><h1>Clinical Translator</h1><p>Upload a clinical study PDF · Get CEO summary, marketing hook, and sales angle instantly</p></div></div>
+    <div class="ph"><div><h1>Clinical Translator</h1><p>Upload a clinical study PDF &middot; Get CEO summary, marketing hook, and sales angle instantly</p></div></div>
     <div class="card accent flex" style="margin-bottom:18px;padding:14px 18px;">
-      <div class="ct" style="margin:0;flex-shrink:0;"><span class="ct-i">🔑</span>API Key</div>
+      <div class="ct" style="margin:0;flex-shrink:0;"><span class="ct-i">&#128273;</span>API Key</div>
       <input type="password" class="field" id="api-key-clinical" placeholder="sk-or-v1-..." style="max-width:340px;"/>
       <button class="btn btn-p sm" onclick="saveKeyClinical()">Save</button>
       <span class="hint">Shared across all modules</span>
@@ -492,59 +353,54 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
     <div class="clin-ws">
       <div style="display:flex;flex-direction:column;gap:12px;">
         <div class="uzn" id="upload-zone" onclick="document.getElementById('pdf-input').click()" ondragover="event.preventDefault();this.classList.add('dg')" ondragleave="this.classList.remove('dg')" ondrop="handleDrop(event)">
-          <div class="uz-ico">📄</div><h3>Drop PDF here</h3><p>or click to browse</p>
-          <p style="margin-top:7px;font-size:10.5px;color:var(--t3);">Clinical studies · Research papers · Trial results</p>
+          <div class="uz-ico">&#128196;</div><h3>Drop PDF here</h3><p>or click to browse</p>
+          <p style="margin-top:7px;font-size:10.5px;color:var(--t3);">Clinical studies &middot; Research papers &middot; Trial results</p>
         </div>
         <input type="file" id="pdf-input" accept=".pdf" onchange="handleFileSelect(event)"/>
         <div class="card" style="flex:1;">
           <div class="ct">What you get</div>
           <div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="padding:10px;background:var(--bg);border-radius:var(--r2);font-size:11.5px;color:var(--t2);line-height:1.5;"><strong style="color:var(--a);font-size:10px;display:block;margin-bottom:3px;">📊 CEO SUMMARY</strong>3 bullet points for quick decisions</div>
-            <div style="padding:10px;background:var(--bg);border-radius:var(--r2);font-size:11.5px;color:var(--t2);line-height:1.5;"><strong style="color:#7dd3fc;font-size:10px;display:block;margin-bottom:3px;">📣 MARKETING HOOK</strong>Plain language for patients, no jargon</div>
-            <div style="padding:10px;background:var(--bg);border-radius:var(--r2);font-size:11.5px;color:var(--t2);line-height:1.5;"><strong style="color:#fcd34d;font-size:10px;display:block;margin-bottom:3px;">💼 SALES ANGLE</strong>Differentiation points with data</div>
+            <div style="padding:10px;background:var(--bg);border-radius:var(--r2);font-size:11.5px;color:var(--t2);line-height:1.5;"><strong style="color:var(--a);font-size:10px;display:block;margin-bottom:3px;">CEO SUMMARY</strong>3 bullet points for quick decisions</div>
+            <div style="padding:10px;background:var(--bg);border-radius:var(--r2);font-size:11.5px;color:var(--t2);line-height:1.5;"><strong style="color:#7dd3fc;font-size:10px;display:block;margin-bottom:3px;">MARKETING HOOK</strong>Plain language for patients</div>
+            <div style="padding:10px;background:var(--bg);border-radius:var(--r2);font-size:11.5px;color:var(--t2);line-height:1.5;"><strong style="color:#fcd34d;font-size:10px;display:block;margin-bottom:3px;">SALES ANGLE</strong>Differentiation points with data</div>
           </div>
         </div>
       </div>
       <div class="cout">
-        <div id="clinical-empty" class="sbox" style="flex:1;"><div class="sb-ico">🧬</div><h3>No study uploaded</h3><p>Drop a clinical PDF on the left to generate translations.</p></div>
+        <div id="clinical-empty" class="sbox" style="flex:1;"><div class="sb-ico">&#129516;</div><h3>No study uploaded</h3><p>Drop a clinical PDF on the left to generate translations.</p></div>
         <div id="clinical-results" style="display:none;height:100%;flex-direction:column;">
           <div class="co-tabs">
-            <button class="co-tab active" onclick="switchOutputTab('ceo',this)">📊 CEO Summary</button>
-            <button class="co-tab" onclick="switchOutputTab('marketing',this)">📣 Marketing</button>
-            <button class="co-tab" onclick="switchOutputTab('sales',this)">💼 Sales</button>
+            <button class="co-tab active" onclick="switchOutputTab('ceo',this)">CEO Summary</button>
+            <button class="co-tab" onclick="switchOutputTab('marketing',this)">Marketing</button>
+            <button class="co-tab" onclick="switchOutputTab('sales',this)">Sales</button>
           </div>
           <div class="co-body" id="output-content"></div>
-          <div class="co-ft"><button class="btn btn-o sm" onclick="exportClinical()">↓ Export</button></div>
+          <div class="co-ft"><button class="btn btn-o sm" onclick="exportClinical()">&#8595; Export</button></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SWOT ANALYZER -->
+  <!-- SWOT -->
   <div class="wp" id="panel-swot">
-    <div class="ph">
-      <div><h1>SWOT Analyzer</h1><p>Full competitor profile · SWOT · Pricing · Latest News · Market Position · 6 Strategic Dimensions</p></div>
-    </div>
+    <div class="ph"><div><h1>SWOT Analyzer</h1><p>Full competitor profile &middot; SWOT &middot; Pricing &middot; Latest News &middot; Market Position &middot; 6 Strategic Dimensions</p></div></div>
     <div class="swot-ws">
-      <!-- SIDE PANEL -->
       <div class="swot-side">
         <div class="mtog">
-          <button class="mbtn active" id="swot-tab-search" onclick="switchSwotMode('search',this)">🔍 By Name</button>
-          <button class="mbtn" id="swot-tab-discover" onclick="switchSwotMode('discover',this)">🤖 Auto-Discover</button>
+          <button class="mbtn active" id="swot-tab-search" onclick="switchSwotMode('search',this)">By Name</button>
+          <button class="mbtn" id="swot-tab-discover" onclick="switchSwotMode('discover',this)">Auto-Discover</button>
         </div>
-        <!-- YOUR PRODUCT CONTEXT — always visible, used for threat scoring -->
-        <div class="card accent" id="my-product-card">
-          <div class="ct"><span class="ct-i">🎯</span>Your Product <span style="color:#f87171;font-size:9px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-left:4px;">Required for threat score</span></div>
-          <textarea class="field" id="my-product-ctx" rows="3" placeholder="Describe what you're building so the AI can score competitive threat accurately...&#10;&#10;e.g. A mobile app that collects glucose readings and generates personalised diet plans for diabetes patients." style="font-size:12px;min-height:72px;"></textarea>
+        <div class="card accent">
+          <div class="ct"><span class="ct-i">&#127919;</span>Your Product <span style="color:#f87171;font-size:9px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-left:4px;">Required for threat score</span></div>
+          <textarea class="field" id="my-product-ctx" rows="3" placeholder="Describe what you're building so the AI can score competitive threat accurately..." style="font-size:12px;min-height:72px;"></textarea>
           <div class="flex mt8" style="justify-content:space-between;align-items:center;">
             <button class="btn btn-p sm" onclick="saveProductCtx()" style="font-size:11.5px;">Save Context</button>
-            <span class="hint" id="ctx-saved-note" style="font-size:11px;color:var(--a);display:none;">✓ Saved</span>
+            <span id="ctx-saved-note" style="font-size:11px;color:var(--a);display:none;">&#10003; Saved</span>
           </div>
         </div>
-
         <div id="swot-mode-search">
           <div class="card">
-            <div class="ct"><span class="ct-i">🔍</span>Search Company</div>
+            <div class="ct"><span class="ct-i">&#128269;</span>Search Company</div>
             <input type="text" class="field" id="swot-search-input" placeholder="Any company..." onkeydown="if(event.key==='Enter') runSwotSearch()" style="margin-bottom:9px;"/>
             <button class="btn btn-p" style="width:100%;justify-content:center;" id="swot-search-btn" onclick="runSwotSearch()">Analyze</button>
             <div style="margin-top:13px;"><div class="hint" style="margin-bottom:7px;">Quick pick:</div><div class="tlist" id="swot-quick-tags"></div></div>
@@ -552,20 +408,16 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
         </div>
         <div id="swot-mode-discover" style="display:none;">
           <div class="card">
-            <div class="ct"><span class="ct-i">🤖</span>Your Product</div>
+            <div class="ct"><span class="ct-i">&#129302;</span>Your Product</div>
             <textarea class="field" id="product-description" rows="5">A mobile app that collects pre and post glucose readings from users and generates personalized diet plans based on their data. Currently in early validation with 10-15 users in the diabetes management space.</textarea>
             <button class="btn btn-p mt12" style="width:100%;justify-content:center;" id="discover-btn" onclick="runAutoDiscover()">Find My Competitors</button>
-            <div class="mt8 hint">Finds top 5 · Full profile for each</div>
+            <div class="mt8 hint">Finds top 5 &middot; Full profile for each</div>
           </div>
         </div>
         <span class="hint" id="swot-status"></span>
       </div>
-
-      <!-- MAIN RESULTS -->
       <div class="swot-main">
-        <div id="swot-results-area">
-          <div class="sbox"><div class="sb-ico">🔬</div><h3>No analysis yet</h3><p>Search a company or use Auto-Discover to generate a full competitive profile.</p></div>
-        </div>
+        <div id="swot-results-area"><div class="sbox"><div class="sb-ico">&#128300;</div><h3>No analysis yet</h3><p>Search a company or use Auto-Discover to generate a full competitive profile.</p></div></div>
         <div id="discover-results-area" style="display:none;"></div>
       </div>
     </div>
@@ -573,27 +425,17 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
 
   <!-- TRENDS -->
   <div class="wp" id="panel-trends">
-    <div class="ph">
-      <div>
-        <h1>Market Trends</h1>
-        <p>Live web search · India &amp; Global · FDA · Funding · Clinical Trials · Emerging Tech · Export PDF</p>
-      </div>
-    </div>
-
-    <!-- VIEW TOGGLE — India vs Global -->
+    <div class="ph"><div><h1>Market Trends</h1><p>Live web search &middot; India &amp; Global &middot; FDA &middot; Funding &middot; Clinical Trials &middot; Emerging Tech &middot; Export PDF</p></div></div>
     <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
       <div class="mtog" style="width:260px;">
-        <button class="mbtn active" id="view-global-btn" onclick="switchTrendsView('global',this)">🌍 Global</button>
-        <button class="mbtn" id="view-india-btn" onclick="switchTrendsView('india',this)">🇮🇳 India</button>
+        <button class="mbtn active" id="view-global-btn" onclick="switchTrendsView('global',this)">&#127758; Global</button>
+        <button class="mbtn" id="view-india-btn" onclick="switchTrendsView('india',this)">&#127470;&#127475; India</button>
       </div>
       <div id="trends-view-hint" style="font-size:12px;color:var(--t3);">Global: FDA, worldwide funding &amp; clinical research</div>
     </div>
-
-    <!-- CONFIG ROW -->
     <div style="display:grid;grid-template-columns:200px 1fr;gap:14px;margin-bottom:20px;">
-      <!-- Time window -->
       <div class="card accent">
-        <div class="ct"><span class="ct-i">📅</span>Time Window</div>
+        <div class="ct"><span class="ct-i">&#128197;</span>Time Window</div>
         <select class="field" id="trends-window" style="cursor:pointer;">
           <option value="30">Last 30 days</option>
           <option value="60">Last 60 days</option>
@@ -602,10 +444,8 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
           <option value="365">Last 12 months</option>
         </select>
       </div>
-
-      <!-- Signal types — global -->
       <div class="card" id="global-signals-card">
-        <div class="ct"><span class="ct-i">📡</span>Global Signal Types</div>
+        <div class="ct"><span class="ct-i">&#128225;</span>Global Signal Types</div>
         <div style="display:flex;flex-wrap:wrap;gap:10px;">
           <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="sig-fda" checked style="accent-color:var(--a);width:14px;height:14px;"/> FDA &amp; Regulatory</label>
           <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="sig-funding" checked style="accent-color:var(--a);width:14px;height:14px;"/> Funding &amp; M&amp;A</label>
@@ -613,26 +453,20 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
           <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="sig-tech" checked style="accent-color:var(--a);width:14px;height:14px;"/> Emerging Tech</label>
         </div>
       </div>
-
-      <!-- Signal types — india -->
       <div class="card" id="india-signals-card" style="display:none;">
-        <div class="ct"><span class="ct-i">🇮🇳</span>India Signal Types</div>
+        <div class="ct"><span class="ct-i">&#127470;&#127475;</span>India Signal Types</div>
         <div style="display:flex;flex-wrap:wrap;gap:10px;">
           <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="sig-india-startups" checked style="accent-color:var(--a);width:14px;height:14px;"/> Healthtech &amp; Lifestyle Startups</label>
           <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="sig-india-food" checked style="accent-color:var(--a);width:14px;height:14px;"/> Food Delivery &amp; Nutrition</label>
           <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="sig-india-fssai" checked style="accent-color:var(--a);width:14px;height:14px;"/> FSSAI &amp; Indian Regulatory</label>
-          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="sig-india-stats" checked style="accent-color:var(--a);width:14px;height:14px;"/> Lifestyle Disease Stats &amp; Reports</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="sig-india-stats" checked style="accent-color:var(--a);width:14px;height:14px;"/> Lifestyle Disease Stats</label>
         </div>
       </div>
     </div>
-
-    <!-- WEB SEARCH NOTICE -->
-    <div id="trends-search-notice" style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(0,229,255,0.04);border:1px solid var(--b1);border-radius:var(--r2);margin-bottom:18px;font-size:12px;color:var(--t2);">
-      <span style="font-size:15px;">🔍</span>
-      <span><strong style="color:var(--a);">Live web search enabled</strong> — results are grounded in real news, not AI memory. ~$0.005/run.</span>
+    <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(0,229,255,0.04);border:1px solid var(--b1);border-radius:var(--r2);margin-bottom:18px;font-size:12px;color:var(--t2);">
+      <span style="font-size:15px;">&#128269;</span>
+      <span><strong style="color:var(--a);">Searches section by section</strong> &mdash; each category is fetched separately so nothing gets cut off. ~$0.005/run.</span>
     </div>
-
-    <!-- GENERATE BUTTON -->
     <div class="flex" style="margin-bottom:24px;gap:12px;">
       <button class="btn-action" id="trends-btn" onclick="runTrends()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
@@ -640,37 +474,20 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
       </button>
       <span class="hint" id="trends-last-run"></span>
     </div>
-
-    <!-- RESULTS -->
-    <div id="trends-results">
-      <div class="sbox">
-        <div class="sb-ico">📈</div>
-        <h3>No digest generated yet</h3>
-        <p>Pick a view (India or Global), select signals, then click Generate.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- BRIEFS -->
-  <div class="wp" id="panel-briefs">
-    <div class="cs"><div class="cs-ring">✍️</div><div class="pbadge">Phase 2</div><h2>Brief Writer</h2><p>Auto-generate investor updates, internal briefs, and marketing copy from your Radar and SWOT data.</p></div>
+    <div id="trends-results"><div class="sbox"><div class="sb-ico">&#128200;</div><h3>No digest generated yet</h3><p>Pick a view (India or Global), select signals, then click Generate.</p></div></div>
   </div>
 
   <!-- VIRAL FEED -->
   <div class="wp" id="panel-viral">
-    <div class="ph">
-      <div><h1>🔥 Viral Feed</h1><p>Stories worth your opinion · Tech · Privacy · Startup drama · Health · India · 5 picks per refresh</p></div>
-    </div>
-
-    <!-- CATEGORY FILTERS -->
+    <div class="ph"><div><h1>&#128293; Viral Feed</h1><p>Stories worth your opinion &middot; Tech &middot; Privacy &middot; Startup drama &middot; Health &middot; India &middot; 5 picks per refresh</p></div></div>
     <div class="card" style="margin-bottom:18px;padding:14px 18px;">
       <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
-        <span class="ct" style="margin:0;flex-shrink:0;"><span class="ct-i">🎯</span>Categories</span>
-        <label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="vcat-tech" checked style="accent-color:var(--a);width:13px;height:13px;"/> 💻 Tech</label>
-        <label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="vcat-privacy" checked style="accent-color:var(--a);width:13px;height:13px;"/> 🔐 Privacy</label>
-        <label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="vcat-startup" checked style="accent-color:var(--a);width:13px;height:13px;"/> 💸 Startup Drama</label>
-        <label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="vcat-health" checked style="accent-color:var(--a);width:13px;height:13px;"/> 🏃 Health</label>
-        <label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="vcat-india" checked style="accent-color:var(--a);width:13px;height:13px;"/> 🇮🇳 India</label>
+        <span class="ct" style="margin:0;flex-shrink:0;"><span class="ct-i">&#127919;</span>Categories</span>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="vcat-tech" checked style="accent-color:var(--a);width:13px;height:13px;"/> Tech</label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="vcat-privacy" checked style="accent-color:var(--a);width:13px;height:13px;"/> Privacy</label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="vcat-startup" checked style="accent-color:var(--a);width:13px;height:13px;"/> Startup Drama</label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="vcat-health" checked style="accent-color:var(--a);width:13px;height:13px;"/> Health</label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="vcat-india" checked style="accent-color:var(--a);width:13px;height:13px;"/> India</label>
         <button class="btn-action" id="viral-btn" onclick="runViral()" style="margin-left:auto;padding:8px 18px;font-size:13px;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0016 2a4.48 4.48 0 00-4.48 4.48v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
           Refresh Stories
@@ -678,150 +495,133 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
         <span class="hint" id="viral-last-run"></span>
       </div>
     </div>
-
-    <!-- RESULTS -->
-    <div id="viral-results">
-      <div class="sbox"><div class="sb-ico">🔥</div><h3>No stories yet</h3><p>Select categories and hit Refresh Stories to load your viral feed.</p></div>
-    </div>
+    <div id="viral-results"><div class="sbox"><div class="sb-ico">&#128293;</div><h3>No stories yet</h3><p>Select categories and hit Refresh Stories to load your viral feed.</p></div></div>
   </div>
+
+  <!-- BRIEFS -->
+  <div class="wp" id="panel-briefs">
+    <div class="cs"><div class="cs-ring">&#9997;&#65039;</div><div class="pbadge">Phase 2</div><h2>Brief Writer</h2><p>Auto-generate investor updates, internal briefs, and marketing copy from your Radar and SWOT data.</p></div>
+  </div>
+
 </div>
 
 <div id="toast"></div>
 
-<!-- HIDDEN PRINT CONTAINER -->
-<div id="print-container" style="display:none;position:fixed;inset:0;background:#fff;z-index:99999;overflow:auto;padding:40px;" class="print-target"></div>
-
 <script>
-const OR_MODEL='anthropic/claude-3.5-haiku',OR_ENDPOINT='https://openrouter.ai/api/v1/chat/completions';
+const OR_MODEL='anthropic/claude-3.5-haiku', OR_ENDPOINT='https://openrouter.ai/api/v1/chat/completions';
 let competitors=['Dexcom','Abbott','One Drop','Livongo','Virta Health'];
-let scanResults=[],clinicalOutputs={ceo:'',marketing:'',sales:''},activeTab='ceo';
+let scanResults=[], clinicalOutputs={ceo:'',marketing:'',sales:''}, activeTab='ceo';
 let lastSwotData=null;
+let trendsData={global:null,india:null};
+let lastTrendsData=null;
+let trendsView='global';
 
-document.addEventListener('DOMContentLoaded',()=>{
+document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('cmd-date').textContent=new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
-  const k=localStorage.getItem('or_key');
+  var k=localStorage.getItem('or_key');
   if(k){document.getElementById('api-key-input').value=k;document.getElementById('api-key-clinical').value=k;}
-  renderCompetitors();updateLastScanTime();
-  const savedCtx=localStorage.getItem('my_product_ctx');
-  if(savedCtx)document.getElementById('my-product-ctx').value=savedCtx;
+  var ctx=localStorage.getItem('my_product_ctx');
+  if(ctx) document.getElementById('my-product-ctx').value=ctx;
+  renderCompetitors();
+  updateLastScanTime();
   updateTrendsLastRun();
   updateViralLastRun();
 });
 
-function saveProductCtx(){
-  const v=document.getElementById('my-product-ctx').value.trim();
-  if(!v)return toast('Add a product description first','err');
-  localStorage.setItem('my_product_ctx',v);
-  const note=document.getElementById('ctx-saved-note');
-  note.style.display='inline';
-  setTimeout(()=>note.style.display='none',2500);
-}
-
-function getProductCtx(){
-  return localStorage.getItem('my_product_ctx')||document.getElementById('my-product-ctx').value.trim()||'';
-}
-
-/* ── NAV ── */
+/* NAV */
 function switchTab(id,el){
-  document.querySelectorAll('.wp').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.wp').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.ctab').forEach(function(t){t.classList.remove('active');});
   document.getElementById('panel-'+id).classList.add('active');
   el.classList.add('active');
 }
 
-/* ── KEYS ── */
-function saveKey(){const k=document.getElementById('api-key-input').value.trim();if(!k)return toast('Enter an API key','err');localStorage.setItem('or_key',k);document.getElementById('api-key-clinical').value=k;toast('API key saved');}
-function saveKeyClinical(){const k=document.getElementById('api-key-clinical').value.trim();if(!k)return toast('Enter an API key','err');localStorage.setItem('or_key',k);document.getElementById('api-key-input').value=k;toast('API key saved');}
+/* KEYS */
+function saveKey(){var k=document.getElementById('api-key-input').value.trim();if(!k)return toast('Enter an API key','err');localStorage.setItem('or_key',k);document.getElementById('api-key-clinical').value=k;toast('API key saved');}
+function saveKeyClinical(){var k=document.getElementById('api-key-clinical').value.trim();if(!k)return toast('Enter an API key','err');localStorage.setItem('or_key',k);document.getElementById('api-key-input').value=k;toast('API key saved');}
 function getKey(){return localStorage.getItem('or_key')||'';}
 
-/* ── COMPETITORS ── */
-function renderCompetitors(){
-  document.getElementById('competitor-tags').innerHTML=competitors.map((c,i)=>`<span class="ctag">${c}<span class="rx" onclick="removeCompetitor(${i})">×</span></span>`).join('');
-  const qt=document.getElementById('swot-quick-tags');
-  if(qt)qt.innerHTML=competitors.map(c=>`<span class="ctag" style="cursor:pointer" onclick="quickSwot('${c}')">${c}</span>`).join('');
+/* PRODUCT CONTEXT */
+function saveProductCtx(){
+  var v=document.getElementById('my-product-ctx').value.trim();
+  if(!v)return toast('Add a product description first','err');
+  localStorage.setItem('my_product_ctx',v);
+  var note=document.getElementById('ctx-saved-note');
+  note.style.display='inline';
+  setTimeout(function(){note.style.display='none';},2500);
 }
-function addCompetitor(){const i=document.getElementById('new-competitor'),v=i.value.trim();if(!v)return;if(competitors.includes(v))return toast('Already tracking');competitors.push(v);i.value='';renderCompetitors();}
+function getProductCtx(){return localStorage.getItem('my_product_ctx')||document.getElementById('my-product-ctx').value.trim()||'';}
+
+/* COMPETITORS */
+function renderCompetitors(){
+  document.getElementById('competitor-tags').innerHTML=competitors.map(function(c,i){return '<span class="ctag">'+c+'<span class="rx" onclick="removeCompetitor('+i+')">x</span></span>';}).join('');
+  var qt=document.getElementById('swot-quick-tags');
+  if(qt) qt.innerHTML=competitors.map(function(c){return '<span class="ctag" style="cursor:pointer" onclick="quickSwot(\''+c+'\')">'+c+'</span>';}).join('');
+}
+function addCompetitor(){var i=document.getElementById('new-competitor'),v=i.value.trim();if(!v)return;if(competitors.includes(v))return toast('Already tracking');competitors.push(v);i.value='';renderCompetitors();}
 function removeCompetitor(i){competitors.splice(i,1);renderCompetitors();}
 
-/* ── API ── */
-async function callOR(messages,maxTokens=3000){
-  const key=getKey();if(!key)throw new Error('No API key saved');
-  const res=await fetch(OR_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${key}`,'HTTP-Referer':'https://pm-intelligence-hub.vercel.app','X-Title':'PM Intelligence Hub'},body:JSON.stringify({model:OR_MODEL,messages,max_tokens:maxTokens,temperature:0.3})});
-  if(!res.ok){const e=await res.json();throw new Error(e.error?.message||`API ${res.status}`);}
-  const d=await res.json();return d.choices?.[0]?.message?.content||'';
+/* API */
+async function callOR(messages,maxTokens){
+  maxTokens=maxTokens||2000;
+  var key=getKey();if(!key)throw new Error('No API key saved');
+  var res=await fetch(OR_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key,'HTTP-Referer':'https://pm-intelligence-hub.vercel.app','X-Title':'PM Intelligence Hub'},body:JSON.stringify({model:OR_MODEL,messages:messages,max_tokens:maxTokens,temperature:0.3})});
+  if(!res.ok){var e=await res.json();throw new Error(e.error&&e.error.message?e.error.message:'API '+res.status);}
+  var d=await res.json();
+  return (d.choices&&d.choices[0]&&d.choices[0].message&&d.choices[0].message.content)||'';
 }
+function parseJSON(text){var c=text.replace(/```json/g,'').replace(/```/g,'').trim();return JSON.parse(c.slice(c.indexOf('{'),c.lastIndexOf('}')+1));}
+function parseJSONArr(text){var c=text.replace(/```json/g,'').replace(/```/g,'').trim();return JSON.parse(c.slice(c.indexOf('['),c.lastIndexOf(']')+1));}
 
-/* ── RADAR ── */
+/* RADAR */
 async function runScan(){
   if(!getKey())return toast('Save your API key first','err');
   if(!competitors.length)return toast('Add at least one competitor','err');
-  const btn=document.getElementById('scan-btn');
-  btn.disabled=true;btn.innerHTML='<span class="spin" style="width:14px;height:14px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px"></span>Scanning...';
-  document.getElementById('results-area').innerHTML=`<div class="sbox"><div class="spin"></div><h3>Scanning ${competitors.length} competitors</h3><p>15–30 seconds</p></div>`;
+  var btn=document.getElementById('scan-btn');
+  btn.disabled=true;btn.textContent='Scanning...';
+  document.getElementById('results-area').innerHTML='<div class="sbox"><div class="spin"></div><h3>Scanning '+competitors.length+' competitors</h3><p>15-30 seconds</p></div>';
   document.getElementById('radar-ebar').style.display='none';
-  const prompt=`You are a Healthtech Competitive Intelligence analyst specializing in diabetes/CGM.
-Today: ${new Date().toDateString()}. Competitors: ${competitors.join(', ')}.
-Return ONLY a valid JSON array, no markdown:
-[{"company":"","headline":"","summary":"2-3 sentences + why it matters for a diabetes startup PM","tag":"FDA","timeAgo":"Recent","sourceUrl":"#","sourceName":"Industry Report"}]
-tag ∈ {FDA,Funding,Product,Partnership,General}. 1-2 items per company.`;
+  var prompt='You are a Healthtech Competitive Intelligence analyst specializing in diabetes/CGM.\nToday: '+new Date().toDateString()+'. Competitors: '+competitors.join(', ')+'.\nReturn ONLY a valid JSON array, no markdown:\n[{"company":"","headline":"","summary":"2-3 sentences + why it matters for a diabetes startup PM","tag":"FDA","timeAgo":"Recent","sourceUrl":"#","sourceName":"Industry Report"}]\ntag in {FDA,Funding,Product,Partnership,General}. 1-2 items per company.';
   try{
-    const text=await callOR([{role:'user',content:prompt}]);
-    const c=text.replace(/```json|```/g,'').trim();
+    var text=await callOR([{role:'user',content:prompt}],2000);
+    var c=text.replace(/```json/g,'').replace(/```/g,'').trim();
     scanResults=JSON.parse(c.slice(c.indexOf('['),c.lastIndexOf(']')+1));
-    renderResults(scanResults);localStorage.setItem('last_scan',new Date().toISOString());updateLastScanTime();
+    renderResults(scanResults);
+    localStorage.setItem('last_scan',new Date().toISOString());updateLastScanTime();
     document.getElementById('radar-ebar').style.display=scanResults.length?'flex':'none';
-    toast(`${scanResults.length} intel updates found`);
-  }catch(e){document.getElementById('results-area').innerHTML=`<div class="sbox"><div class="sb-ico">⚠️</div><h3>Scan failed</h3><p>${e.message}</p></div>`;toast('Scan failed: '+e.message,'err');}
+    toast(scanResults.length+' intel updates found');
+  }catch(e){document.getElementById('results-area').innerHTML='<div class="sbox"><div class="sb-ico">⚠️</div><h3>Scan failed</h3><p>'+e.message+'</p></div>';toast('Scan failed: '+e.message,'err');}
   btn.disabled=false;btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3"/></svg>Run Morning Scan';
 }
-
 function renderResults(results){
-  if(!results?.length){document.getElementById('results-area').innerHTML=`<div class="sbox"><div class="sb-ico">✅</div><h3>All quiet</h3><p>No significant updates found.</p></div>`;return;}
-  const tc={FDA:'t-fda',Funding:'t-fund',Product:'t-prod',Partnership:'t-part',General:'t-gen'};
-  document.getElementById('results-area').innerHTML=`
-    <div class="rbar"><h3>${results.length} Updates</h3><span>${new Date().toLocaleDateString('en-US',{month:'long',day:'numeric'})}</span></div>
-    <div class="igrid">${results.map(r=>`
-      <div class="ic" data-tag="${r.tag}">
-        <div class="ic-top"><div class="ic-co">${r.company}</div><span class="ictag ${tc[r.tag]||'t-gen'}">${r.tag}</span></div>
-        <div class="ic-hl">${r.headline}</div><div class="ic-sm">${r.summary}</div>
-        <div class="ic-ft"><span class="ic-meta">${r.timeAgo} · ${r.sourceName}</span><a href="${r.sourceUrl}" target="_blank" class="ic-link">Source →</a></div>
-      </div>`).join('')}</div>`;
+  if(!results||!results.length){document.getElementById('results-area').innerHTML='<div class="sbox"><div class="sb-ico">✅</div><h3>All quiet</h3><p>No significant updates found.</p></div>';return;}
+  var tc={FDA:'t-fda',Funding:'t-fund',Product:'t-prod',Partnership:'t-part',General:'t-gen'};
+  document.getElementById('results-area').innerHTML='<div class="rbar"><h3>'+results.length+' Updates</h3><span>'+new Date().toLocaleDateString('en-US',{month:'long',day:'numeric'})+'</span></div><div class="igrid">'+results.map(function(r){return '<div class="ic" data-tag="'+r.tag+'"><div class="ic-top"><div class="ic-co">'+r.company+'</div><span class="ictag '+(tc[r.tag]||'t-gen')+'">'+r.tag+'</span></div><div class="ic-hl">'+r.headline+'</div><div class="ic-sm">'+r.summary+'</div><div class="ic-ft"><span class="ic-meta">'+r.timeAgo+' &middot; '+r.sourceName+'</span><a href="'+r.sourceUrl+'" target="_blank" class="ic-link">Source &#8594;</a></div></div>';}).join('')+'</div>';
 }
+function updateLastScanTime(){var last=localStorage.getItem('last_scan');if(!last)return;var diff=Math.round((Date.now()-new Date(last))/60000);document.getElementById('last-scan-time').textContent=diff<60?'Last scan '+diff+'m ago':'Last scan '+Math.round(diff/60)+'h ago';}
 
-function updateLastScanTime(){
-  const last=localStorage.getItem('last_scan');if(!last)return;
-  const diff=Math.round((Date.now()-new Date(last))/60000);
-  document.getElementById('last-scan-time').textContent=diff<60?`Last scan ${diff}m ago`:`Last scan ${Math.round(diff/60)}h ago`;
-}
-
-/* ── CLINICAL ── */
-function handleFileSelect(e){const f=e.target.files[0];if(f)processPDF(f);}
-function handleDrop(e){e.preventDefault();document.getElementById('upload-zone').classList.remove('dg');const f=e.dataTransfer.files[0];if(f?.type==='application/pdf')processPDF(f);else toast('Please upload a PDF','err');}
+/* CLINICAL */
+function handleFileSelect(e){var f=e.target.files[0];if(f)processPDF(f);}
+function handleDrop(e){e.preventDefault();document.getElementById('upload-zone').classList.remove('dg');var f=e.dataTransfer.files[0];if(f&&f.type==='application/pdf')processPDF(f);else toast('Please upload a PDF','err');}
 async function processPDF(file){
   if(!getKey())return toast('Save your API key first','err');
-  document.getElementById('upload-zone').innerHTML=`<div class="uz-ico">⏳</div><h3>Processing ${file.name}</h3><p>Translating with AI...</p>`;
+  document.getElementById('upload-zone').innerHTML='<div class="uz-ico">⏳</div><h3>Processing '+file.name+'</h3><p>Translating...</p>';
   document.getElementById('clinical-empty').style.display='none';document.getElementById('clinical-results').style.display='none';
-  const text=await extractPDFText(file);
-  const prompt=`You are a Healthtech medical research translator for a diabetes startup PM team.
-Analyze this clinical study. Return ONLY valid JSON, no markdown:
-{"ceo":"• Point 1 (max 25 words)\\n• Point 2 (max 25 words)\\n• Point 3 (max 25 words)","marketing":"2-3 plain sentences for patients, no jargon.","sales":"2-3 sentences for sales. Differentiation vs competitors with numbers."}
-Study: ${text.slice(0,8000)}`;
+  var prompt='You are a Healthtech medical research translator. Analyze this clinical study. Return ONLY valid JSON:\n{"ceo":"• Point 1\\n• Point 2\\n• Point 3","marketing":"2-3 plain sentences for patients.","sales":"2-3 sentences for sales with numbers."}\nStudy file: '+file.name;
   try{
-    const r=await callOR([{role:'user',content:prompt}],1024);
-    const c=r.replace(/```json|```/g,'').trim();
-    clinicalOutputs=JSON.parse(c.slice(c.indexOf('{'),c.lastIndexOf('}')+1));
+    var r=await callOR([{role:'user',content:prompt}],1024);
+    clinicalOutputs=parseJSON(r);
     document.getElementById('clinical-results').style.display='flex';document.getElementById('clinical-empty').style.display='none';
     renderOutputTab('ceo');toast('Study translated');
   }catch(e){toast('Translation failed: '+e.message,'err');document.getElementById('clinical-empty').style.display='flex';}
-  document.getElementById('upload-zone').innerHTML=`<div class="uz-ico">📄</div><h3>Drop PDF here</h3><p>or click to browse</p><p style="margin-top:7px;font-size:10.5px;color:var(--t3);">Clinical studies · Research papers · Trial results</p>`;
+  document.getElementById('upload-zone').innerHTML='<div class="uz-ico">&#128196;</div><h3>Drop PDF here</h3><p>or click to browse</p>';
 }
-async function extractPDFText(file){return new Promise(r=>{const fr=new FileReader();fr.onload=()=>r('PDF: '+file.name+'. Analyze this clinical study.');fr.readAsText(file);});}
-function switchOutputTab(tab,el){activeTab=tab;document.querySelectorAll('.co-tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderOutputTab(tab);}
-function renderOutputTab(tab){const l={ceo:'📊 CEO Summary\n\n',marketing:'📣 Marketing Hook\n\n',sales:'💼 Sales Angle\n\n'};document.getElementById('output-content').textContent=l[tab]+(clinicalOutputs[tab]||'');}
+function switchOutputTab(tab,el){activeTab=tab;document.querySelectorAll('.co-tab').forEach(function(t){t.classList.remove('active');});el.classList.add('active');renderOutputTab(tab);}
+function renderOutputTab(tab){var l={ceo:'CEO Summary\n\n',marketing:'Marketing Hook\n\n',sales:'Sales Angle\n\n'};document.getElementById('output-content').textContent=l[tab]+(clinicalOutputs[tab]||'');}
 
-/* ── SWOT MODE TOGGLE ── */
+/* SWOT MODE */
 function switchSwotMode(mode,el){
-  document.querySelectorAll('.mbtn').forEach(b=>b.classList.remove('active'));el.classList.add('active');
+  document.querySelectorAll('.mbtn').forEach(function(b){b.classList.remove('active');});el.classList.add('active');
   document.getElementById('swot-mode-search').style.display=mode==='search'?'block':'none';
   document.getElementById('swot-mode-discover').style.display=mode==='discover'?'block':'none';
   document.getElementById('swot-results-area').style.display=mode==='search'?'block':'none';
@@ -831,19 +631,18 @@ function quickSwot(c){document.getElementById('swot-search-input').value=c;runSw
 
 async function runSwotSearch(){
   if(!getKey())return toast('Save your API key first','err');
-  const company=document.getElementById('swot-search-input').value.trim();if(!company)return toast('Enter a company name','err');
-  const myProduct=getProductCtx();
-  if(!myProduct)return toast('Add your product description above first — it powers the Threat Score','err');
-  const btn=document.getElementById('swot-search-btn');btn.disabled=true;btn.textContent='Analyzing...';
+  var company=document.getElementById('swot-search-input').value.trim();if(!company)return toast('Enter a company name','err');
+  var myProduct=getProductCtx();if(!myProduct)return toast('Add your product description above first — it powers the Threat Score','err');
+  var btn=document.getElementById('swot-search-btn');btn.disabled=true;btn.textContent='Analyzing...';
   document.getElementById('swot-status').textContent='';
-  document.getElementById('swot-results-area').innerHTML=`<div class="sbox"><div class="spin"></div><h3>Building full profile for ${company}</h3><p>SWOT · Pricing · News · Market data · 30–50 seconds</p></div>`;
+  document.getElementById('swot-results-area').innerHTML='<div class="sbox"><div class="spin"></div><h3>Building full profile for '+company+'</h3><p>SWOT &middot; Pricing &middot; News &middot; Market data &middot; 30-50 seconds</p></div>';
   try{
-    const data=await fetchFullProfile(company,myProduct);
+    var data=await fetchFullProfile(company,myProduct);
     renderFullProfile(data,'swot-results-area');
-    document.getElementById('swot-status').textContent=`✓ Updated ${new Date().toLocaleTimeString()}`;
-    toast(`Full profile ready for ${company}`);
+    document.getElementById('swot-status').textContent='Updated '+new Date().toLocaleTimeString();
+    toast('Full profile ready for '+company);
   }catch(e){
-    document.getElementById('swot-results-area').innerHTML=`<div class="sbox"><div class="sb-ico">⚠️</div><h3>Failed</h3><p>${e.message}</p></div>`;
+    document.getElementById('swot-results-area').innerHTML='<div class="sbox"><div class="sb-ico">⚠️</div><h3>Failed</h3><p>'+e.message+'</p></div>';
     toast('Failed: '+e.message,'err');
   }
   btn.disabled=false;btn.textContent='Analyze';
@@ -851,758 +650,290 @@ async function runSwotSearch(){
 
 async function runAutoDiscover(){
   if(!getKey())return toast('Save your API key first','err');
-  const desc=document.getElementById('product-description').value.trim();if(!desc)return toast('Add a product description','err');
-  const btn=document.getElementById('discover-btn');btn.disabled=true;btn.textContent='Discovering...';
-  document.getElementById('discover-results-area').innerHTML=`<div class="sbox"><div class="spin"></div><h3>Finding competitors</h3><p>30–60 seconds</p></div>`;
+  var desc=document.getElementById('product-description').value.trim();if(!desc)return toast('Add a product description','err');
+  var btn=document.getElementById('discover-btn');btn.disabled=true;btn.textContent='Discovering...';
+  document.getElementById('discover-results-area').innerHTML='<div class="sbox"><div class="spin"></div><h3>Finding competitors</h3><p>30-60 seconds</p></div>';
   try{
-    const text=await callOR([{role:'user',content:`You are a Healthtech competitive intelligence analyst.\nProduct: "${desc}"\nIdentify 5 most direct competitors in diabetes/digital health.\nReturn ONLY a JSON array: ["Co A","Co B","Co C","Co D","Co E"]`}],512);
-    const c=text.replace(/```json|```/g,'').trim();
-    const list=JSON.parse(c.slice(c.indexOf('['),c.lastIndexOf(']')+1));
-    list.forEach(co=>{if(!competitors.includes(co))competitors.push(co);});renderCompetitors();
-    toast(`${list.length} competitors found and added`);
-    document.getElementById('discover-results-area').innerHTML=`<p style="font-size:13px;color:var(--t2);margin-bottom:14px;">Found <strong style="color:#fff">${list.length} competitors</strong>. Building full profiles...</p><div id="discover-swot-list"></div>`;
-    for(let i=0;i<list.length;i++){
-      const co=list[i];const ph=document.createElement('div');ph.id=`swot-card-${i}`;
-      ph.innerHTML=`<div class="sbox" style="padding:22px;"><div class="spin"></div><p>Profiling ${co} (${i+1}/${list.length})</p></div>`;
+    var text=await callOR([{role:'user',content:'You are a Healthtech competitive intelligence analyst.\nProduct: "'+desc+'"\nIdentify 5 most direct competitors in diabetes/digital health.\nReturn ONLY a JSON array: ["Co A","Co B","Co C","Co D","Co E"]'}],512);
+    var list=parseJSONArr(text);
+    list.forEach(function(co){if(!competitors.includes(co))competitors.push(co);});renderCompetitors();
+    toast(list.length+' competitors found and added');
+    document.getElementById('discover-results-area').innerHTML='<p style="font-size:13px;color:var(--t2);margin-bottom:14px;">Found <strong style="color:#fff">'+list.length+' competitors</strong>. Building profiles...</p><div id="discover-swot-list"></div>';
+    for(var i=0;i<list.length;i++){
+      var co=list[i];var ph=document.createElement('div');ph.id='swot-card-'+i;
+      ph.innerHTML='<div class="sbox" style="padding:22px;"><div class="spin"></div><p>Profiling '+co+' ('+(i+1)+'/'+list.length+')</p></div>';
       document.getElementById('discover-swot-list').appendChild(ph);
-      try{const data=await fetchFullProfile(co,desc);ph.innerHTML='';renderAccordionProfile(data,`swot-card-${i}`);}
-      catch(e){ph.innerHTML=`<p style="color:#f87171;font-size:12px;padding:10px;">Failed: ${co} — ${e.message}</p>`;}
+      try{var data=await fetchFullProfile(co,desc);ph.innerHTML='';renderAccordionProfile(data,'swot-card-'+i);}
+      catch(e){ph.innerHTML='<p style="color:#f87171;font-size:12px;padding:10px;">Failed: '+co+' — '+e.message+'</p>';}
     }
     toast('All profiles complete');
   }catch(e){
-    document.getElementById('discover-results-area').innerHTML=`<div class="sbox"><div class="sb-ico">⚠️</div><h3>Discovery failed</h3><p>${e.message}</p></div>`;
+    document.getElementById('discover-results-area').innerHTML='<div class="sbox"><div class="sb-ico">⚠️</div><h3>Discovery failed</h3><p>'+e.message+'</p></div>';
     toast('Discovery failed: '+e.message,'err');
   }
   btn.disabled=false;btn.textContent='Find My Competitors';
 }
 
-/* ══════════════════════════════════
-   FULL PROFILE FETCH — enriched prompt
-══════════════════════════════════ */
 async function fetchFullProfile(company,myProduct){
-  const threatCtx=myProduct?`\n\nYOUR STARTUP'S PRODUCT (use this to score competitiveThreat accurately):\n"${myProduct}"\n\ncompetitiveThreat: Score 0-100 based on DIRECT overlap with the above product. Consider: same target users? same core feature (glucose tracking/diet)? same market segment? same geography? High overlap = high threat (70-100). Different segment or approach = lower threat (20-50).`:'';
-  const prompt=`You are a senior Healthtech strategy analyst specializing in diabetes/digital health markets.
-Generate a comprehensive competitive profile for "${company}".${threatCtx}
-Return ONLY valid JSON, no markdown, no extra text:
-{
-  "company": "${company}",
-  "overview": "2-sentence description of what ${company} does in healthtech/diabetes",
-  "founded": "year or 'N/A'",
-  "hq": "City, Country",
-  "employees": "approximate headcount e.g. '500-1000' or 'N/A'",
-  "swot": {
-    "strengths": ["point 1","point 2","point 3","point 4"],
-    "weaknesses": ["point 1","point 2","point 3","point 4"],
-    "opportunities": ["point 1","point 2","point 3","point 4"],
-    "threats": ["point 1","point 2","point 3","point 4"]
-  },
-  "dimensions": {
-    "productFeatures": "2 sentences on product capabilities",
-    "pricingModel": "2 sentences on their pricing approach",
-    "clinicalEvidence": "2 sentences on clinical validation",
-    "marketPositioning": "2 sentences on positioning",
-    "fdaApprovals": "2 sentences on regulatory status",
-    "fundingFinancials": "2 sentences on funding/financials"
-  },
-  "pricing": [
-    {"tier": "Tier name", "price": "$X/mo", "note": "Who it's for or key features", "highlight": false},
-    {"tier": "Tier name", "price": "$X/mo", "note": "Who it's for or key features", "highlight": true}
-  ],
-  "news": [
-    {"headline": "Recent news headline", "category": "Funding", "date": "Q1 2025", "impact": "Why it matters for diabetes startup PMs"},
-    {"headline": "Recent news headline", "category": "Product", "date": "Q4 2024", "impact": "Why it matters"},
-    {"headline": "Recent news headline", "category": "FDA", "date": "Q3 2024", "impact": "Why it matters"}
-  ],
-  "market": {
-    "estimatedMarketShare": "X% of diabetes app market (or 'N/A')",
-    "shareScore": 45,
-    "primarySegment": "e.g. Type 2 diabetes self-management",
-    "keyGeographies": "e.g. US, EU",
-    "revenueEstimate": "e.g. $50M ARR (estimated) or 'Undisclosed'",
-    "growthRate": "e.g. ~30% YoY or 'N/A'",
-    "competitiveThreat": 75,
-    "marketFit": 60
-  }
-}
-pricing: include 2-4 tiers (use "N/A" if pricing not public — still include an entry).
-news: include 3 recent newsworthy items (funding rounds, product launches, FDA clearances, partnerships, etc.).
-shareScore/competitiveThreat/marketFit: 0-100 integers.`;
-  const text=await callOR([{role:'user',content:prompt}],3000);
-  const c=text.replace(/```json|```/g,'').trim();
-  return JSON.parse(c.slice(c.indexOf('{'),c.lastIndexOf('}')+1));
+  var threatCtx=myProduct?'\n\nYOUR STARTUP PRODUCT (use this to score competitiveThreat accurately):\n"'+myProduct+'"\n\ncompetitiveThreat: Score 0-100 based on DIRECT overlap. Same users + same core feature = high threat (70-100). Different segment = lower (20-50).':'';
+  var prompt='You are a senior Healthtech strategy analyst.\nGenerate a comprehensive competitive profile for "'+company+'".'+threatCtx+'\nReturn ONLY valid JSON:\n{"company":"'+company+'","overview":"2-sentence description","founded":"year or N/A","hq":"City, Country","employees":"headcount or N/A","swot":{"strengths":["p1","p2","p3","p4"],"weaknesses":["p1","p2","p3","p4"],"opportunities":["p1","p2","p3","p4"],"threats":["p1","p2","p3","p4"]},"dimensions":{"productFeatures":"2 sentences","pricingModel":"2 sentences","clinicalEvidence":"2 sentences","marketPositioning":"2 sentences","fdaApprovals":"2 sentences","fundingFinancials":"2 sentences"},"pricing":[{"tier":"Name","price":"$X/mo","note":"Details","highlight":false}],"news":[{"headline":"Headline","category":"Funding","date":"Q1 2025","impact":"Why it matters"}],"market":{"estimatedMarketShare":"X%","shareScore":45,"primarySegment":"e.g. Type 2","keyGeographies":"US, EU","revenueEstimate":"$50M ARR","growthRate":"~30% YoY","competitiveThreat":75,"marketFit":60}}\nRules: 2-4 pricing tiers, 3 news items, shareScore/competitiveThreat/marketFit are 0-100 integers. Return only JSON.';
+  var text=await callOR([{role:'user',content:prompt}],3000);
+  return parseJSON(text);
 }
 
-/* ══════════════════════════════════
-   RENDER HELPERS
-══════════════════════════════════ */
-const DL={productFeatures:{e:'🧩',l:'Product Features'},pricingModel:{e:'💰',l:'Pricing & Business Model'},clinicalEvidence:{e:'🔬',l:'Clinical Evidence'},marketPositioning:{e:'🎯',l:'Market Positioning'},fdaApprovals:{e:'✅',l:'FDA Approvals'},fundingFinancials:{e:'📊',l:'Funding & Financials'}};
-const NC={Funding:'nd-fund',FDA:'nd-fda',Product:'nd-prod',Partnership:'nd-part',General:'nd-gen'};
-
-function metaBadge(d){
-  const items=[];
-  if(d.founded&&d.founded!=='N/A')items.push(`🗓 Founded ${d.founded}`);
-  if(d.hq&&d.hq!=='N/A')items.push(`📍 ${d.hq}`);
-  if(d.employees&&d.employees!=='N/A')items.push(`👥 ${d.employees} employees`);
-  return items.length?`<div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;">${items.map(i=>`<span style="font-size:11px;color:var(--t3);">${i}</span>`).join('')}</div>`:'';
-}
-
-function swotHTML(d){return `
-  <div class="sec-hdr">SWOT Analysis</div>
-  <div class="qgrid">
-    <div class="sq sq-s"><div class="sq-lbl">💪 Strengths</div><ul>${d.swot.strengths.map(s=>`<li>${s}</li>`).join('')}</ul></div>
-    <div class="sq sq-w"><div class="sq-lbl">⚠️ Weaknesses</div><ul>${d.swot.weaknesses.map(s=>`<li>${s}</li>`).join('')}</ul></div>
-    <div class="sq sq-o"><div class="sq-lbl">🚀 Opportunities</div><ul>${d.swot.opportunities.map(s=>`<li>${s}</li>`).join('')}</ul></div>
-    <div class="sq sq-t"><div class="sq-lbl">🔥 Threats</div><ul>${d.swot.threats.map(s=>`<li>${s}</li>`).join('')}</ul></div>
-  </div>`;}
-
-function dimensionsHTML(d){return `
-  <div class="sec-hdr">Strategic Dimensions</div>
-  <div class="dgrid">${Object.entries(d.dimensions).map(([k,v])=>`<div class="dc"><h5>${DL[k]?.e} ${DL[k]?.l}</h5><p>${v}</p></div>`).join('')}</div>`;}
-
-function pricingHTML(d){
-  if(!d.pricing?.length)return '';
-  return `<div class="sec-hdr">Pricing</div>
-  <div class="pricing-grid">${d.pricing.map(p=>`
-    <div class="price-card${p.highlight?' highlight':''}">
-      <div class="pc-tier">${p.tier}</div>
-      <div class="pc-price">${p.price}</div>
-      <div class="pc-note">${p.note}</div>
-    </div>`).join('')}</div>`;}
-
-function newsHTML(d){
-  if(!d.news?.length)return '';
-  return `<div class="sec-hdr">Latest News & Developments</div>
-  <div class="news-list">${d.news.map(n=>`
-    <div class="news-item">
-      <div class="news-dot ${NC[n.category]||'nd-gen'}"></div>
-      <div class="news-body">
-        <div class="news-hl">${n.headline}</div>
-        <div class="news-meta">${n.date} · ${n.category} · <em style="color:var(--t2)">${n.impact}</em></div>
-      </div>
-    </div>`).join('')}</div>`;}
-
-function marketHTML(d){
-  if(!d.market)return '';
-  const m=d.market;
-  return `<div class="sec-hdr">Market Position</div>
-  <div class="mktpos-grid">
-    <div class="mktpos-card"><div class="mktpos-label">Market Share</div><div class="mktpos-val">${m.estimatedMarketShare}</div><div class="mktpos-sub">Primary: ${m.primarySegment}</div><div class="bar-wrap"><div class="bar-fill" style="width:${m.shareScore||30}%"></div></div></div>
-    <div class="mktpos-card"><div class="mktpos-label">Revenue Estimate</div><div class="mktpos-val">${m.revenueEstimate}</div><div class="mktpos-sub">Growth: ${m.growthRate}</div></div>
-    <div class="mktpos-card"><div class="mktpos-label">Competitive Threat</div><div class="mktpos-val">${m.competitiveThreat}/100</div><div class="mktpos-sub">To your diabetes startup</div><div class="bar-wrap"><div class="bar-fill" style="width:${m.competitiveThreat}%;background:linear-gradient(90deg,#f87171,#ef4444)"></div></div></div>
-    <div class="mktpos-card"><div class="mktpos-label">Key Geographies</div><div class="mktpos-val" style="font-size:14px;">${m.keyGeographies}</div><div class="mktpos-sub">Core markets</div></div>
-  </div>`;}
+var DL={productFeatures:{e:'',l:'Product Features'},pricingModel:{e:'',l:'Pricing & Business Model'},clinicalEvidence:{e:'',l:'Clinical Evidence'},marketPositioning:{e:'',l:'Market Positioning'},fdaApprovals:{e:'',l:'FDA Approvals'},fundingFinancials:{e:'',l:'Funding & Financials'}};
 
 function profileBodyHTML(d){
-  return swotHTML(d)+dimensionsHTML(d)+pricingHTML(d)+newsHTML(d)+marketHTML(d);
+  var sw='<div class="sec-hdr">SWOT Analysis</div><div class="qgrid"><div class="sq sq-s"><div class="sq-lbl">Strengths</div><ul>'+d.swot.strengths.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ul></div><div class="sq sq-w"><div class="sq-lbl">Weaknesses</div><ul>'+d.swot.weaknesses.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ul></div><div class="sq sq-o"><div class="sq-lbl">Opportunities</div><ul>'+d.swot.opportunities.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ul></div><div class="sq sq-t"><div class="sq-lbl">Threats</div><ul>'+d.swot.threats.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ul></div></div>';
+  var dims='<div class="sec-hdr">Strategic Dimensions</div><div class="dgrid">'+Object.entries(d.dimensions).map(function(kv){return '<div class="dc"><h5>'+DL[kv[0]].l+'</h5><p>'+kv[1]+'</p></div>';}).join('')+'</div>';
+  var pricing=d.pricing&&d.pricing.length?'<div class="sec-hdr">Pricing</div><div class="pricing-grid">'+d.pricing.map(function(p){return '<div class="price-card'+(p.highlight?' highlight':'')+'"><div class="pc-tier">'+p.tier+'</div><div class="pc-price">'+p.price+'</div><div class="pc-note">'+p.note+'</div></div>';}).join('')+'</div>':'';
+  var news=d.news&&d.news.length?'<div class="sec-hdr">Latest News</div><div class="news-list">'+d.news.map(function(n){return '<div class="news-item"><div class="news-dot nd-fund"></div><div class="news-body"><div class="news-hl">'+n.headline+'</div><div class="news-meta">'+n.date+' &middot; '+n.category+' &middot; '+n.impact+'</div></div></div>';}).join('')+'</div>':'';
+  var m=d.market||{};
+  var mkt='<div class="sec-hdr">Market Position</div><div class="mktpos-grid"><div class="mktpos-card"><div class="mktpos-label">Market Share</div><div class="mktpos-val">'+(m.estimatedMarketShare||'N/A')+'</div><div class="mktpos-sub">'+(m.primarySegment||'')+'</div><div class="bar-wrap"><div class="bar-fill" style="width:'+(m.shareScore||30)+'%"></div></div></div><div class="mktpos-card"><div class="mktpos-label">Revenue</div><div class="mktpos-val">'+(m.revenueEstimate||'N/A')+'</div><div class="mktpos-sub">Growth: '+(m.growthRate||'N/A')+'</div></div><div class="mktpos-card"><div class="mktpos-label">Competitive Threat</div><div class="mktpos-val" style="color:#f87171;">'+(m.competitiveThreat||0)+'/100</div><div class="bar-wrap"><div class="bar-fill" style="width:'+(m.competitiveThreat||0)+'%;background:linear-gradient(90deg,#f87171,#ef4444)"></div></div></div><div class="mktpos-card"><div class="mktpos-label">Key Geographies</div><div class="mktpos-val" style="font-size:14px;">'+(m.keyGeographies||'N/A')+'</div></div></div>';
+  return sw+dims+pricing+news+mkt;
 }
 
 function renderFullProfile(data,containerId){
   lastSwotData=data;
-  document.getElementById(containerId).innerHTML=`
-    <div class="sch">
-      <div>
-        <div class="sch-name">${data.company}</div>
-        <div class="sch-ov">${data.overview}</div>
-        ${metaBadge(data)}
-      </div>
-      <div class="flex">
-        <button class="btn btn-o sm" onclick="exportTxt()">↓ .txt</button>
-        <button class="btn btn-pdf sm" onclick="exportPDF()">⬇ PDF</button>
-      </div>
-    </div>
-    <div class="swot-body">${profileBodyHTML(data)}</div>`;
-  // animate bars after render
-  setTimeout(()=>{document.querySelectorAll('.bar-fill').forEach(b=>{const w=b.style.width;b.style.width='0';setTimeout(()=>b.style.width=w,50);});},100);
+  document.getElementById(containerId).innerHTML='<div class="sch"><div><div class="sch-name">'+data.company+'</div><div class="sch-ov">'+data.overview+'</div></div><div class="flex"><button class="btn btn-o sm" onclick="exportTxt()">&#8595; .txt</button><button class="btn btn-pdf sm" onclick="exportSwotPDF()">&#8595; PDF</button></div></div><div class="swot-body">'+profileBodyHTML(data)+'</div>';
 }
 
 function renderAccordionProfile(data,cid){
-  const uid=data.company.replace(/\s/g,'_');
-  document.getElementById(cid).innerHTML=`
-    <div class="acc">
-      <div class="acc-h" onclick="toggleAcc('${uid}')">
-        <div><div class="acc-name">${data.company}</div><div class="acc-ov">${data.overview}</div></div>
-        <div class="flex">
-          <button class="btn btn-o sm" onclick="event.stopPropagation();exportTxtData(${JSON.stringify(data).replace(/"/g,'&quot;')})">↓ .txt</button>
-          <button class="btn btn-pdf sm" onclick="event.stopPropagation();exportPDFData(${JSON.stringify(data).replace(/"/g,'&quot;')})">⬇ PDF</button>
-          <span class="acc-chev" id="chev-${uid}">▼</span>
-        </div>
-      </div>
-      <div class="acc-b" id="sab-${uid}">${profileBodyHTML(data)}</div>
-    </div>`;
+  var uid=data.company.replace(/\s/g,'_');
+  document.getElementById(cid).innerHTML='<div class="acc"><div class="acc-h" onclick="toggleAcc(\''+uid+'\')"><div><div class="acc-name">'+data.company+'</div><div class="acc-ov">'+data.overview+'</div></div><div class="flex"><button class="btn btn-o sm" onclick="event.stopPropagation();lastSwotData='+JSON.stringify(data).replace(/"/g,'&quot;')+';exportTxt()">&#8595; .txt</button><span class="acc-chev" id="chev-'+uid+'">&#9660;</span></div></div><div class="acc-b" id="sab-'+uid+'">'+profileBodyHTML(data)+'</div></div>';
+}
+function toggleAcc(uid){document.getElementById('sab-'+uid).classList.toggle('open');document.getElementById('chev-'+uid).classList.toggle('open');}
+
+/* SWOT PDF */
+function exportSwotPDF(){
+  if(!lastSwotData)return toast('No profile loaded','err');
+  var data=lastSwotData;
+  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"/><style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:Helvetica,Arial,sans-serif;color:#111;padding:40px;max-width:960px;margin:0 auto;}@media print{@page{margin:15mm;}}</style></head><body>';
+  html+='<div style="border-bottom:3px solid #0088cc;padding-bottom:20px;margin-bottom:24px;"><div style="font-size:10px;color:#0088cc;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">PM Intelligence Hub &middot; Competitive Profile</div><h1 style="font-size:26px;font-weight:700;margin-bottom:6px;">'+data.company+'</h1><p style="font-size:13px;color:#555;">'+data.overview+'</p></div>';
+  var qs=['strengths','weaknesses','opportunities','threats'];var qc={strengths:'#0d9488',weaknesses:'#dc2626',opportunities:'#0284c7',threats:'#d97706'};var qb={strengths:'#f0fffe',weaknesses:'#fff5f5',opportunities:'#f0f9ff',threats:'#fffbeb'};
+  html+='<h3 style="font-size:13px;font-weight:700;color:#0088cc;text-transform:uppercase;margin:0 0 14px;border-bottom:1px solid #ddd;padding-bottom:8px;">SWOT Analysis</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">';
+  qs.forEach(function(q){html+='<div style="background:'+qb[q]+';border:1px solid #ddd;border-radius:8px;padding:14px;"><div style="font-size:10px;font-weight:700;color:'+qc[q]+';text-transform:uppercase;margin-bottom:8px;">'+q.toUpperCase()+'</div><ul style="list-style:none;">'+data.swot[q].map(function(s){return '<li style="font-size:12px;color:#333;padding:4px 0;border-bottom:1px solid rgba(0,0,0,0.05);">- '+s+'</li>';}).join('')+'</ul></div>';});
+  html+='</div>';
+  if(data.pricing&&data.pricing.length){html+='<h3 style="font-size:13px;font-weight:700;color:#0088cc;text-transform:uppercase;margin:0 0 12px;border-bottom:1px solid #ddd;padding-bottom:8px;">Pricing</h3><div style="display:grid;grid-template-columns:repeat('+Math.min(data.pricing.length,4)+',1fr);gap:10px;margin-bottom:24px;">'+data.pricing.map(function(p){return '<div style="background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:14px;text-align:center;"><div style="font-size:10px;font-weight:700;color:#666;margin-bottom:4px;">'+p.tier+'</div><div style="font-size:20px;font-weight:700;color:#111;margin-bottom:4px;">'+p.price+'</div><div style="font-size:11px;color:#555;">'+p.note+'</div></div>';}).join('')+'</div>';}
+  if(data.news&&data.news.length){html+='<h3 style="font-size:13px;font-weight:700;color:#0088cc;text-transform:uppercase;margin:0 0 12px;border-bottom:1px solid #ddd;padding-bottom:8px;">Latest News</h3>'+data.news.map(function(n){return '<div style="background:#f8f9fa;border:1px solid #ddd;border-radius:6px;padding:12px 14px;margin-bottom:8px;"><div style="font-size:12.5px;font-weight:600;margin-bottom:3px;">'+n.headline+'</div><div style="font-size:11px;color:#666;">'+n.date+' &middot; '+n.category+' &middot; '+n.impact+'</div></div>';}).join('');}
+  var m=data.market||{};
+  html+='<h3 style="font-size:13px;font-weight:700;color:#0088cc;text-transform:uppercase;margin:24px 0 12px;border-bottom:1px solid #ddd;padding-bottom:8px;">Market Position</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"><div style="background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:14px;"><div style="font-size:10px;font-weight:700;color:#888;margin-bottom:4px;">MARKET SHARE</div><div style="font-size:18px;font-weight:700;">'+m.estimatedMarketShare+'</div></div><div style="background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:14px;"><div style="font-size:10px;font-weight:700;color:#888;margin-bottom:4px;">COMPETITIVE THREAT</div><div style="font-size:18px;font-weight:700;color:#dc2626;">'+m.competitiveThreat+'/100</div></div></div>';
+  html+='<div style="margin-top:32px;padding-top:14px;border-top:1px solid #ddd;font-size:10px;color:#aaa;">Generated by PM IntelHub &middot; '+new Date().toISOString()+'</div></body></html>';
+  var w=window.open('','_blank','width=1000,height=800');w.document.write(html);w.document.close();w.onload=function(){setTimeout(function(){w.print();},400);};
+  toast('PDF export opened');
 }
 
-function toggleAcc(uid){document.getElementById(`sab-${uid}`).classList.toggle('open');document.getElementById(`chev-${uid}`).classList.toggle('open');}
-
-/* ══════════════════════════════════
-   PDF EXPORT — print-based
-══════════════════════════════════ */
-function buildPrintHTML(data){
-  const m=data.market||{};
-  const barStyle=(pct,color='#0088cc')=>`<div style="height:5px;background:#eee;border-radius:3px;margin-top:6px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:${color};border-radius:3px;"></div></div>`;
-
-  const pricingRows=data.pricing?.length?`
-    <h3 style="font-size:13px;font-weight:700;color:#0088cc;text-transform:uppercase;letter-spacing:1px;margin:24px 0 12px;border-bottom:1px solid #ddd;padding-bottom:8px;">💰 Pricing</h3>
-    <div style="display:grid;grid-template-columns:repeat(${Math.min(data.pricing.length,4)},1fr);gap:10px;">
-      ${data.pricing.map(p=>`<div style="background:#f8f9fa;border:1px solid${p.highlight?'#0088cc':'#ddd'};border-radius:8px;padding:14px;text-align:center;">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#666;margin-bottom:5px;">${p.tier}</div>
-        <div style="font-size:22px;font-weight:700;color:#111;margin-bottom:3px;">${p.price}</div>
-        <div style="font-size:11px;color:#555;">${p.note}</div>
-      </div>`).join('')}
-    </div>`:''
-
-  const newsRows=data.news?.length?`
-    <h3 style="font-size:13px;font-weight:700;color:#0088cc;text-transform:uppercase;letter-spacing:1px;margin:24px 0 12px;border-bottom:1px solid #ddd;padding-bottom:8px;">📰 Latest News</h3>
-    ${data.news.map(n=>`<div style="background:#f8f9fa;border:1px solid #ddd;border-radius:6px;padding:12px 14px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;">
-      <div style="width:8px;height:8px;border-radius:50%;background:#0088cc;flex-shrink:0;margin-top:5px;"></div>
-      <div><div style="font-size:12.5px;font-weight:600;color:#111;margin-bottom:3px;">${n.headline}</div>
-      <div style="font-size:11px;color:#666;">${n.date} · ${n.category} · ${n.impact}</div></div>
-    </div>`).join('')}`:''
-
-  const marketRows=data.market?`
-    <h3 style="font-size:13px;font-weight:700;color:#0088cc;text-transform:uppercase;letter-spacing:1px;margin:24px 0 12px;border-bottom:1px solid #ddd;padding-bottom:8px;">📊 Market Position</h3>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-      <div style="background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:14px;"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#888;margin-bottom:6px;">Market Share</div><div style="font-size:18px;font-weight:700;color:#111;">${m.estimatedMarketShare}</div><div style="font-size:11px;color:#555;margin-top:3px;">${m.primarySegment}</div>${barStyle(m.shareScore||30)}</div>
-      <div style="background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:14px;"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#888;margin-bottom:6px;">Revenue Estimate</div><div style="font-size:18px;font-weight:700;color:#111;">${m.revenueEstimate}</div><div style="font-size:11px;color:#555;margin-top:3px;">Growth: ${m.growthRate}</div></div>
-      <div style="background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:14px;"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#888;margin-bottom:6px;">Competitive Threat Score</div><div style="font-size:18px;font-weight:700;color:#dc2626;">${m.competitiveThreat}/100</div>${barStyle(m.competitiveThreat,'#dc2626')}</div>
-      <div style="background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:14px;"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#888;margin-bottom:6px;">Key Geographies</div><div style="font-size:16px;font-weight:700;color:#111;">${m.keyGeographies}</div></div>
-    </div>`:''
-
-  const quadColor={strengths:'#0d9488',weaknesses:'#dc2626',opportunities:'#0284c7',threats:'#d97706'};
-  const quadBg={strengths:'#f0fffe',weaknesses:'#fff5f5',opportunities:'#f0f9ff',threats:'#fffbeb'};
-  const quadBorder={strengths:'#a7f3d0',weaknesses:'#fecaca',opportunities:'#bae6fd',threats:'#fde68a'};
-  const quadLabel={strengths:'💪 Strengths',weaknesses:'⚠️ Weaknesses',opportunities:'🚀 Opportunities',threats:'🔥 Threats'};
-
-  const swotGrid=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px;">
-    ${['strengths','weaknesses','opportunities','threats'].map(q=>`
-      <div style="background:${quadBg[q]};border:1px solid ${quadBorder[q]};border-radius:8px;padding:16px;">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:${quadColor[q]};margin-bottom:10px;">${quadLabel[q]}</div>
-        <ul style="list-style:none;padding:0;">${data.swot[q].map(s=>`<li style="font-size:12px;color:#333;padding:5px 0;border-bottom:1px solid rgba(0,0,0,0.05);display:flex;gap:8px;"><span style="color:#999;">–</span>${s}</li>`).join('')}</ul>
-      </div>`).join('')}
-  </div>`;
-
-  const dimGrid=`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
-    ${Object.entries(data.dimensions).map(([k,v])=>`<div style="background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:14px;">
-      <div style="font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#0088cc;margin-bottom:7px;">${DL[k]?.e} ${DL[k]?.l}</div>
-      <div style="font-size:11.5px;color:#444;line-height:1.6;">${v}</div>
-    </div>`).join('')}
-  </div>`;
-
-  const metaLine=[data.founded!=='N/A'?`Founded: ${data.founded}`:'',data.hq!=='N/A'?`HQ: ${data.hq}`:'',data.employees!=='N/A'?`Employees: ${data.employees}`:''].filter(Boolean).join(' &nbsp;·&nbsp; ');
-
-  return `<!DOCTYPE html><html><head><meta charset="UTF-8"/>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Helvetica Neue',Arial,sans-serif;color:#111;background:#fff;padding:40px;max-width:960px;margin:0 auto;}
-    @media print{body{padding:20px;}@page{margin:15mm;}}
-  </style></head><body>
-  <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;padding-bottom:18px;border-bottom:2px solid #0088cc;">
-    <div>
-      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#0088cc;margin-bottom:6px;">PM Intelligence Hub · Competitive Profile</div>
-      <h1 style="font-size:28px;font-weight:700;color:#111;margin-bottom:6px;">${data.company}</h1>
-      <p style="font-size:13px;color:#555;line-height:1.5;max-width:580px;">${data.overview}</p>
-      ${metaLine?`<p style="font-size:11px;color:#888;margin-top:8px;">${metaLine}</p>`:''}
-    </div>
-    <div style="text-align:right;flex-shrink:0;padding-left:20px;">
-      <div style="font-size:11px;color:#888;">Generated</div>
-      <div style="font-size:12px;font-weight:600;color:#333;">${new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</div>
-    </div>
-  </div>
-
-  <h3 style="font-size:13px;font-weight:700;color:#0088cc;text-transform:uppercase;letter-spacing:1px;margin:0 0 14px;border-bottom:1px solid #ddd;padding-bottom:8px;">🔬 SWOT Analysis</h3>
-  ${swotGrid}
-
-  <h3 style="font-size:13px;font-weight:700;color:#0088cc;text-transform:uppercase;letter-spacing:1px;margin:24px 0 12px;border-bottom:1px solid #ddd;padding-bottom:8px;">📋 Strategic Dimensions</h3>
-  ${dimGrid}
-
-  ${pricingRows}
-  ${newsRows}
-  ${marketRows}
-
-  <div style="margin-top:32px;padding-top:14px;border-top:1px solid #ddd;font-size:10px;color:#aaa;">Generated by PM IntelHub · ${new Date().toISOString()} · Data based on AI analysis — verify with primary sources before strategic decisions.</div>
-  </body></html>`;
-}
-
-function exportPDF(){if(!lastSwotData)return toast('No profile loaded','err');openPrintWindow(lastSwotData);}
-function exportPDFData(data){openPrintWindow(typeof data==='string'?JSON.parse(data):data);}
-
-function openPrintWindow(data){
-  const html=buildPrintHTML(data);
-  const w=window.open('','_blank','width=1000,height=800');
-  w.document.write(html);
-  w.document.close();
-  w.onload=()=>{
-    setTimeout(()=>{w.print();},400);
-  };
-  toast('PDF export opened — use browser Print dialog');
-}
-
-/* ── TEXT EXPORT ── */
-function exportTxt(){if(!lastSwotData)return toast('No profile loaded','err');exportTxtData(lastSwotData);}
-function exportTxtData(data){
-  const m=data.market||{};
-  const lines=[`COMPETITIVE PROFILE: ${data.company.toUpperCase()}`,`Generated: ${new Date()}`,``,data.overview,``,
-    `COMPANY INFO`,'─'.repeat(20),`Founded: ${data.founded||'N/A'} | HQ: ${data.hq||'N/A'} | Employees: ${data.employees||'N/A'}`,``,
-    `SWOT ANALYSIS`,'─'.repeat(20),
-    `STRENGTHS:`,...data.swot.strengths.map(s=>`  → ${s}`),``,
-    `WEAKNESSES:`,...data.swot.weaknesses.map(s=>`  → ${s}`),``,
-    `OPPORTUNITIES:`,...data.swot.opportunities.map(s=>`  → ${s}`),``,
-    `THREATS:`,...data.swot.threats.map(s=>`  → ${s}`),``,
-    `STRATEGIC DIMENSIONS`,'─'.repeat(20),
-    ...Object.entries(data.dimensions).map(([k,v])=>`${DL[k]?.l}:\n  ${v}\n`),
-    `PRICING`,'─'.repeat(20),
-    ...(data.pricing||[]).map(p=>`${p.tier}: ${p.price} — ${p.note}`),``,
-    `LATEST NEWS`,'─'.repeat(20),
-    ...(data.news||[]).map(n=>`[${n.date}] ${n.headline}\n  Impact: ${n.impact}`),``,
-    `MARKET POSITION`,'─'.repeat(20),
-    `Market Share: ${m.estimatedMarketShare||'N/A'}`,
-    `Revenue: ${m.revenueEstimate||'N/A'} | Growth: ${m.growthRate||'N/A'}`,
-    `Competitive Threat Score: ${m.competitiveThreat||'N/A'}/100`,
-    `Key Geographies: ${m.keyGeographies||'N/A'}`,
-  ];
-  dl(lines.join('\n'),`profile-${data.company.toLowerCase().replace(/\s/g,'-')}-${today()}.txt`);
-  toast('Text export downloaded');
-}
-
-function exportResults(){
-  if(!scanResults.length)return;
-  const lines=['PM INTELLIGENCE HUB — COMPETITOR RADAR',`Generated: ${new Date()}`,'','─'.repeat(40),'',...scanResults.flatMap((r,i)=>[`${i+1}. ${r.company} [${r.tag}]`,`   ${r.headline}`,`   ${r.summary}`,`   ${r.sourceName} · ${r.timeAgo}`,''])];
-  dl(lines.join('\n'),`radar-${today()}.txt`);toast('Brief exported');
-}
-function exportClinical(){
-  const lines=['CLINICAL STUDY TRANSLATION',`Generated: ${new Date()}`,'','CEO SUMMARY','─'.repeat(20),clinicalOutputs.ceo,'','MARKETING HOOK','─'.repeat(20),clinicalOutputs.marketing,'','SALES ANGLE','─'.repeat(20),clinicalOutputs.sales];
-  dl(lines.join('\n'),`clinical-${today()}.txt`);toast('Translation exported');
-}
-function dl(content,filename){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type:'text/plain'}));a.download=filename;a.click();}
-function today(){return new Date().toISOString().split('T')[0];}
-function toast(msg,type='ok'){const t=document.getElementById('toast');t.textContent=msg;t.className=`toast show ${type}`;setTimeout(()=>t.classList.remove('show'),3500);}
-
-/* ════════════════════════════════════
-   MARKET TRENDS
-════════════════════════════════════ */
-let trendsData={global:null,india:null};
-let lastTrendsData=null;
-let trendsView='global'; // 'global' | 'india'
-
-function switchTrendsView(view, el){
+/* TRENDS */
+function switchTrendsView(view,el){
   trendsView=view;
-  document.querySelectorAll('#panel-trends .mbtn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('#panel-trends .mbtn').forEach(function(b){b.classList.remove('active');});
   el.classList.add('active');
-  const isIndia=view==='india';
+  var isIndia=view==='india';
   document.getElementById('global-signals-card').style.display=isIndia?'none':'block';
   document.getElementById('india-signals-card').style.display=isIndia?'block':'none';
-  document.getElementById('trends-view-hint').textContent=isIndia
-    ? 'India: Healthtech startups, food delivery, FSSAI regulations, lifestyle disease trends'
-    : 'Global: FDA, worldwide funding & clinical research';
+  document.getElementById('trends-view-hint').textContent=isIndia?'India: Healthtech startups, food delivery, FSSAI, lifestyle disease trends':'Global: FDA, worldwide funding & clinical research';
   document.getElementById('trends-btn-label').textContent=isIndia?'Generate India Digest':'Generate Market Digest';
-
-  // Show cached results for this view if available, otherwise show empty state
-  const cached=trendsData[view];
+  var cached=trendsData[view];
   if(cached){
     document.getElementById('trends-results').innerHTML=cached;
   } else {
-    const emptyLabel=isIndia?'India digest':'Global digest';
-    document.getElementById('trends-results').innerHTML=`<div class="sbox"><div class="sb-ico">${isIndia?'🇮🇳':'🌍'}</div><h3>No ${emptyLabel} yet</h3><p>Click Generate to fetch ${isIndia?'India':'Global'} signals.</p></div>`;
+    document.getElementById('trends-results').innerHTML='<div class="sbox"><div class="sb-ico">'+(isIndia?'&#127470;&#127475;':'&#127758;')+'</div><h3>No '+(isIndia?'India':'Global')+' digest yet</h3><p>Click Generate to fetch '+(isIndia?'India':'Global')+' signals.</p></div>';
   }
-}
-
-async function callORWithSearch(messages, maxTokens=4000){
-  const key=getKey();if(!key)throw new Error('No API key saved');
-  const body={
-    model: OR_MODEL,
-    messages,
-    max_tokens: maxTokens,
-    temperature: 0.2,
-    tools:[{
-      type:'function',
-      function:{
-        name:'web_search',
-        description:'Search the web for recent news and information',
-        parameters:{type:'object',properties:{query:{type:'string',description:'Search query'}},required:['query']}
-      }
-    }],
-    tool_choice:'auto'
-  };
-  const res=await fetch(OR_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${key}`,'HTTP-Referer':'https://pm-intelligence-hub.vercel.app','X-Title':'PM Intelligence Hub'},body:JSON.stringify(body)});
-  if(!res.ok){const e=await res.json();throw new Error(e.error?.message||`API ${res.status}`);}
-  const d=await res.json();
-  return d.choices?.[0]?.message?.content||'';
 }
 
 async function runTrends(){
   if(!getKey())return toast('Save your API key first','err');
-
-  const timeWindow=document.getElementById('trends-window').value;
-  const isIndia=trendsView==='india';
-  const myProduct=getProductCtx();
-
-  let signals=[];
+  var timeWindow=document.getElementById('trends-window').value;
+  var isIndia=trendsView==='india';
+  var myProduct=getProductCtx();
+  var signals=[];
   if(isIndia){
-    if(document.getElementById('sig-india-startups').checked) signals.push('Indian healthtech and lifestyle disease startups — funding rounds, new launches, key players targeting diabetes, obesity, hypertension, PCOS in India');
-    if(document.getElementById('sig-india-food').checked)    signals.push('Food delivery and nutrition platforms in India — companies like Swiggy, Zomato, EatFit, Cure.fit, Nourish.ai, healthy meal delivery, curated diet food for lifestyle diseases');
-    if(document.getElementById('sig-india-fssai').checked)   signals.push('FSSAI regulatory changes, Indian government health policies, NHP initiatives related to lifestyle diseases and nutrition');
-    if(document.getElementById('sig-india-stats').checked)   signals.push('India-specific statistics and reports on diabetes, obesity, hypertension, PCOS, lifestyle diseases — prevalence, market size, patient behaviour');
+    if(document.getElementById('sig-india-startups').checked) signals.push({id:'startups',title:'Indian Healthtech & Lifestyle Startups',icon:'&#128640;',category:'India',topic:'Indian healthtech and lifestyle disease startups: funding, launches, players targeting diabetes, obesity, hypertension, PCOS (e.g. HealthifyMe, GOQii, Fitterfly, BeatO, Ultrahuman)'});
+    if(document.getElementById('sig-india-food').checked)    signals.push({id:'food',title:'Food Delivery & Nutrition Platforms',icon:'&#127857;',category:'Food',topic:'Food delivery and nutrition platforms in India targeting health: EatFit, Kenko Health food plans, Cure.fit, healthy meal delivery, curated diet food for lifestyle diseases'});
+    if(document.getElementById('sig-india-fssai').checked)   signals.push({id:'fssai',title:'FSSAI & Indian Regulatory',icon:'&#127984;&#65039;',category:'FSSAI',topic:'FSSAI regulatory updates, Indian government health policies (MoHFW, CDSCO, NHP), nutrition labelling, food safety for health foods'});
+    if(document.getElementById('sig-india-stats').checked)   signals.push({id:'stats',title:'Lifestyle Disease Stats & Reports',icon:'&#128202;',category:'Stats',topic:'India-specific data: diabetes, obesity, hypertension, PCOS prevalence, digital health market size (ICMR, NFHS, government reports)'});
   } else {
-    if(document.getElementById('sig-fda').checked)     signals.push('FDA clearances and regulatory changes in diabetes and CGM technology');
-    if(document.getElementById('sig-funding').checked) signals.push('Global funding rounds and M&A in digital health and diabetes tech');
-    if(document.getElementById('sig-clinical').checked)signals.push('Clinical trial results and research relevant to diabetes management technology');
-    if(document.getElementById('sig-tech').checked)    signals.push('Emerging technology signals: AI in diabetes, new sensors, digital therapeutics');
+    if(document.getElementById('sig-fda').checked)     signals.push({id:'fda',title:'FDA & Regulatory',icon:'&#127984;&#65039;',category:'FDA',topic:'FDA 510(k) clearances, De Novo grants, regulatory guidance for diabetes devices, CGM, digital therapeutics'});
+    if(document.getElementById('sig-funding').checked) signals.push({id:'funding',title:'Funding & M&A',icon:'&#128176;',category:'Funding',topic:'Venture capital, Series A/B/C, M&A in digital health, diabetes tech and chronic disease management globally'});
+    if(document.getElementById('sig-clinical').checked)signals.push({id:'clinical',title:'Clinical Trials & Research',icon:'&#128300;',category:'Clinical',topic:'Published clinical trial results, peer-reviewed research on diabetes management, CGM accuracy, digital therapeutics outcomes'});
+    if(document.getElementById('sig-tech').checked)    signals.push({id:'tech',title:'Emerging Tech Signals',icon:'&#9889;',category:'Tech',topic:'AI in diabetes, new sensor hardware, digital therapeutics, wearables, precision nutrition'});
   }
   if(!signals.length)return toast('Select at least one signal type','err');
 
-  const btn=document.getElementById('trends-btn');
+  var geo=isIndia?'India':'Global';
+  var btn=document.getElementById('trends-btn');
   btn.disabled=true;
-  btn.innerHTML=`<span class="spin" style="width:14px;height:14px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px"></span>${isIndia?'Searching India news...':'Searching live news...'}`;
+  btn.innerHTML='<span class="spin" style="width:14px;height:14px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px"></span>Fetching...';
 
-  document.getElementById('trends-results').innerHTML=`
-    <div class="sbox">
-      <div class="spin"></div>
-      <h3>${isIndia?'Searching India market signals':'Searching global market signals'}</h3>
-      <p>🔍 Live web search · ${signals.length} categories · Last ${timeWindow} days · 30–60 seconds</p>
-    </div>`;
+  lastTrendsData={period:'Last '+timeWindow+' days',geography:geo,generatedAt:new Date().toDateString(),executiveSummary:'',keyTheme:'',totalSignals:0,sections:[]};
 
-  const geoCtx = isIndia
-    ? `GEOGRAPHY: India only. Focus on Indian companies, Indian market, INR amounts where relevant, Indian regulatory bodies (FSSAI, CDSCO, MoHFW). Do NOT include US/EU news unless it directly impacts Indian market.`
-    : `GEOGRAPHY: Global, with emphasis on US and EU markets.`;
+  document.getElementById('trends-results').innerHTML='<div id="digest-summary-shell" class="digest-summary" style="opacity:0.5;"><div class="ds-left"><h3>&#128200; Last '+timeWindow+' days &middot; '+geo+' &middot; '+new Date().toDateString()+'</h3><p style="color:var(--t3);">Fetching sections...</p></div><div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;"><div class="ds-stats"><div class="ds-stat"><div class="dsn" id="live-signal-count">0</div><div class="dsl">Signals</div></div><div class="ds-stat"><div class="dsn" style="color:#4ade80;" id="live-high-count">0</div><div class="dsl">High impact</div></div><div class="ds-stat"><div class="dsn" id="live-cat-count">0</div><div class="dsl">Categories</div></div></div></div></div><div id="live-sections"></div>';
 
-  const searchInstructions = isIndia
-    ? `Before generating each section, search the web for recent India news using queries like:
-- "India healthtech startup funding 2024 2025 lifestyle disease diabetes"
-- "India food delivery nutrition healthy meal startup Bangalore Mumbai"
-- "FSSAI regulations 2024 2025 food health"
-- "India diabetes obesity statistics report 2024 2025"
-Use ONLY information found via web search. If you cannot find specific recent India news for a category, say so honestly rather than inventing details. For any company mentioned, accurately describe what they actually do based on search results.`
-    : `Before generating each section, search the web for recent news using queries like:
-- "FDA diabetes CGM digital health clearance 2024 2025"
-- "digital health diabetes funding round 2024 2025"  
-- "diabetes clinical trial results 2024 2025"
-- "AI diabetes technology startup 2024 2025"
-Use ONLY information found via web search. Do not invent company details or funding amounts.`;
-
-  const prompt=`You are a senior Healthtech market intelligence analyst.
-${geoCtx}
-${myProduct?`
-STARTUP CONTEXT: The reader builds "${myProduct}". They are now also planning to venture into curated food delivery for people with lifestyle diseases (diabetes, obesity, hypertension, PCOS) in India. Flag items especially relevant to both angles.`:''}
-
-${searchInstructions}
-
-Generate a market trends digest for the LAST ${timeWindow} DAYS covering:
-${signals.map((s,i)=>`${i+1}. ${s}`).join('\n')}
-
-CRITICAL ACCURACY RULES:
-- ONLY report on companies/events you found via web search
-- For each company, accurately state what they actually do (e.g. Kenko is a healthy food subscription, not a CGM company)
-- If a funding amount is unknown, say "undisclosed" not a made-up number
-- Dates must be real approximate dates, not invented
-- Add a sourceHint field per item: a short note like "via TechCrunch" or "via FSSAI press release" so users can verify
-
-Return ONLY valid JSON:
-{
-  "period": "Last ${timeWindow} days",
-  "geography": "${isIndia?'India':'Global'}",
-  "generatedAt": "${new Date().toDateString()}",
-  "executiveSummary": "3-4 sentence overview based only on verified web search results. Be honest if data was limited.",
-  "keyTheme": "Single biggest theme in one sentence",
-  "totalSignals": <number>,
-  "sections": [
-    {
-      "id": "${isIndia?'startups':'fda'}",
-      "title": "${isIndia?'Indian Healthtech & Lifestyle Startups':'FDA & Regulatory'}",
-      "icon": "${isIndia?'🚀':'🏛️'}",
-      "summary": "2-sentence summary based on search results",
-      "items": [
-        {
-          "title": "Accurate headline based on real news",
-          "body": "2-3 sentences. Only verified facts. Company description must be accurate.",
-          "impact": "Why this matters for a startup building a lifestyle disease food delivery + health app in India",
-          "date": "Approximate real date e.g. Feb 2025",
-          "relevance": "High|Medium|Low",
-          "category": "${isIndia?'India':'FDA'}",
-          "geo": "${isIndia?'🇮🇳 India':'🌍 Global'}",
-          "sourceHint": "Source name e.g. Economic Times, TechCrunch, FSSAI.gov.in"
-        }
-      ]
-    }
-  ]
-}
-Rules: 3-5 items per included section. relevance = exactly High/Medium/Low. Return only JSON.`;
-
-  // ── Run one section at a time to avoid token cutoff ──
-  const sectionDefs = isIndia ? [
-    {id:'startups', title:'Indian Healthtech & Lifestyle Startups', icon:'🚀', category:'India', topic:'Indian healthtech and lifestyle disease startups: recent funding rounds, new product launches, key players targeting diabetes, obesity, hypertension, PCOS in India (e.g. Ultrahuman, HealthifyMe, GOQii, Fitterfly, BeatO, Dozee)'},
-    {id:'food',     title:'Food Delivery & Nutrition Platforms',    icon:'🍱', category:'Food',  topic:'Food delivery and nutrition platforms in India targeting health and lifestyle diseases: healthy meal delivery, diet food subscriptions, curated nutrition (e.g. EatFit, Kenko Health food plans, Cure.fit, Nourish Organics, Supr Daily, Wholsum Foods)'},
-    {id:'fssai',    title:'FSSAI & Indian Regulatory',             icon:'🏛️', category:'FSSAI', topic:'FSSAI regulatory updates, Indian government health policies (MoHFW, CDSCO, NHP), nutrition labelling rules, food safety standards related to health foods and lifestyle diseases'},
-    {id:'stats',    title:'Lifestyle Disease Stats & Reports',     icon:'📊', category:'Stats', topic:'India-specific data and reports on diabetes, obesity, hypertension, PCOS prevalence, digital health market size, patient behaviour trends, government health reports (ICMR, NFHS)'}
-  ] : [
-    {id:'fda',      title:'FDA & Regulatory',           icon:'🏛️', category:'FDA',     topic:'FDA clearances, 510(k) approvals, De Novo grants and regulatory guidance for diabetes devices, CGM, digital therapeutics and health apps'},
-    {id:'funding',  title:'Funding & M&A',              icon:'💰', category:'Funding', topic:'Venture capital funding rounds, Series A/B/C, M&A acquisitions in digital health, diabetes tech and chronic disease management globally'},
-    {id:'clinical', title:'Clinical Trials & Research', icon:'🔬', category:'Clinical',topic:'Published clinical trial results, peer-reviewed research and landmark studies on diabetes management technology, CGM accuracy, digital therapeutics outcomes'},
-    {id:'tech',     title:'Emerging Tech Signals',      icon:'⚡', category:'Tech',    topic:'Emerging technology in diabetes and chronic disease: AI/ML applications, new sensor hardware, digital therapeutics, wearables, precision nutrition'}
-  ];
-
-  const selectedDefs = sectionDefs.filter((_,i)=>{
-    const ids=['sig-fda','sig-funding','sig-clinical','sig-tech','sig-india-startups','sig-india-food','sig-india-fssai','sig-india-stats'];
-    const checkId = isIndia ? ['sig-india-startups','sig-india-food','sig-india-fssai','sig-india-stats'][i] : ['sig-fda','sig-funding','sig-clinical','sig-tech'][i];
-    const el=document.getElementById(checkId);
-    return el&&el.checked;
-  });
-
-  const geo = isIndia ? 'India' : 'Global';
-  lastTrendsData = {
-    period:`Last ${timeWindow} days`,
-    geography: geo,
-    generatedAt: new Date().toDateString(),
-    executiveSummary:'',
-    keyTheme:'',
-    totalSignals:0,
-    sections:[]
-  };
-
-  // Show empty shell immediately
-  document.getElementById('trends-results').innerHTML=`
-    <div id="digest-summary-shell" class="digest-summary" style="opacity:0.5;">
-      <div class="ds-left">
-        <h3>📈 Last ${timeWindow} days · ${geo} · ${new Date().toDateString()}</h3>
-        <p style="color:var(--t3);">Fetching sections one by one…</p>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;">
-        <div class="ds-stats">
-          <div class="ds-stat"><div class="dsn" id="live-signal-count">0</div><div class="dsl">Signals</div></div>
-          <div class="ds-stat"><div class="dsn" style="color:#4ade80;" id="live-high-count">0</div><div class="dsl">High impact</div></div>
-          <div class="ds-stat"><div class="dsn" id="live-cat-count">0</div><div class="dsl">Categories</div></div>
-        </div>
-      </div>
-    </div>
-    <div id="live-sections"></div>`;
-
-  let successCount=0;
-  for(let i=0;i<selectedDefs.length;i++){
-    const def=selectedDefs[i];
-    // Add loading placeholder for this section
-    const ph=document.createElement('div');
-    ph.id=`sec-ph-${def.id}`;
-    ph.innerHTML=`<div class="trends-section-header"><span class="tsh-icon">${def.icon}</span>${def.title}<span class="tsh-count" style="margin-left:auto;"><span class="spin" style="width:10px;height:10px;border-width:1.5px;display:inline-block;vertical-align:middle;"></span> fetching…</span></div>`;
+  var successCount=0;
+  for(var i=0;i<signals.length;i++){
+    var def=signals[i];
+    var ph=document.createElement('div');
+    ph.id='sec-ph-'+def.id;
+    ph.innerHTML='<div class="trends-section-header"><span class="tsh-icon">'+def.icon+'</span>'+def.title+'<span class="tsh-count" style="margin-left:auto;"><span class="spin" style="width:10px;height:10px;border-width:1.5px;display:inline-block;vertical-align:middle;"></span> fetching...</span></div>';
     document.getElementById('live-sections').appendChild(ph);
 
-    const sectionPrompt=`You are a Healthtech market intelligence analyst. Today: ${new Date().toDateString()}.
-Geography: ${geo}. Time window: last ${timeWindow} days.
-${myProduct?`Startup context: "${myProduct}" — also planning curated food delivery for lifestyle diseases in India.`:''}
-
-Generate a news digest section for: ${def.topic}
-
-Return ONLY a valid JSON object (no markdown, no extra text):
-{
-  "id": "${def.id}",
-  "title": "${def.title}",
-  "icon": "${def.icon}",
-  "summary": "2-sentence summary of key movements in this category",
-  "items": [
-    {
-      "title": "Specific accurate headline",
-      "body": "2-3 sentences of factual detail. Be specific about company names, amounts, dates.",
-      "impact": "1 sentence on why this matters for a lifestyle disease / food delivery health startup in India",
-      "date": "Month Year e.g. Feb 2025",
-      "relevance": "High",
-      "category": "${def.category}",
-      "geo": "${isIndia?'🇮🇳 India':'🌍 Global'}",
-      "sourceHint": "e.g. Economic Times or TechCrunch"
-    }
-  ]
-}
-Rules:
-- 3 to 4 items only
-- relevance must be exactly High, Medium, or Low
-- For Indian companies: describe what they ACTUALLY do accurately
-- If unsure of exact figures, use "approx" or "undisclosed"
-- Return only the JSON object, starting with {`;
+    var sp='You are a Healthtech market intelligence analyst. Today: '+new Date().toDateString()+'.\nGeography: '+geo+'. Time window: last '+timeWindow+' days.\n'+(myProduct?'Startup context: "'+myProduct+'" — also planning curated food delivery for lifestyle diseases in India.\n':'')+'Generate a news digest section for: '+def.topic+'\nReturn ONLY valid JSON:\n{"id":"'+def.id+'","title":"'+def.title+'","icon":"'+def.icon+'","summary":"2-sentence summary","items":[{"title":"Specific accurate headline","body":"2-3 sentences of factual detail","impact":"1 sentence on why this matters","date":"Month Year","relevance":"High","category":"'+def.category+'","geo":"'+(isIndia?'India':'Global')+'","sourceHint":"e.g. Economic Times"}]}\nRules: 3 to 4 items, relevance = High/Medium/Low exactly, be accurate about company details, return only JSON.';
 
     try{
-      btn.innerHTML=`<span class="spin" style="width:14px;height:14px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px"></span>(${i+1}/${selectedDefs.length}) Fetching ${def.title}…`;
-      const text=await callOR([{role:'user',content:sectionPrompt}],1200);
-      const cleaned=text.replace(/```json|```/g,'').trim();
-      const jsonStr=cleaned.slice(cleaned.indexOf('{'),cleaned.lastIndexOf('}')+1);
-      const sec=JSON.parse(jsonStr);
+      btn.innerHTML='<span class="spin" style="width:14px;height:14px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px"></span>('+(i+1)+'/'+signals.length+') '+def.title+'...';
+      var text=await callOR([{role:'user',content:sp}],1200);
+      var sec=parseJSON(text);
       lastTrendsData.sections.push(sec);
-      lastTrendsData.totalSignals+=(sec.items?.length||0);
+      lastTrendsData.totalSignals+=(sec.items&&sec.items.length)||0;
       successCount++;
-
-      // Update live counters
-      const high=lastTrendsData.sections.reduce((a,s)=>a+(s.items?.filter(x=>x.relevance==='High').length||0),0);
+      var high=lastTrendsData.sections.reduce(function(a,s){return a+(s.items?s.items.filter(function(x){return x.relevance==='High';}).length:0);},0);
       document.getElementById('live-signal-count').textContent=lastTrendsData.totalSignals;
       document.getElementById('live-high-count').textContent=high;
       document.getElementById('live-cat-count').textContent=lastTrendsData.sections.length;
-
-      // Render this section in place of placeholder
       ph.outerHTML=buildSectionHTML(sec);
     }catch(err){
-      ph.innerHTML=`<div style="padding:10px;font-size:12px;color:#f87171;">⚠️ ${def.title} failed: ${err.message}</div>`;
+      ph.innerHTML='<div style="padding:10px;font-size:12px;color:#f87171;">Failed: '+def.title+' — '+err.message+'</div>';
     }
   }
 
-  // Generate summary if we have sections
   if(successCount>0){
     try{
-      const summaryPrompt=`Based on these ${geo} healthtech market sections, write a 3-sentence executive summary and identify the single biggest key theme. Return JSON only: {"executiveSummary":"...","keyTheme":"..."}
-Sections: ${JSON.stringify(lastTrendsData.sections.map(s=>({title:s.title,summary:s.summary})))}`;
-      const st=await callOR([{role:'user',content:summaryPrompt}],400);
-      const sc=st.replace(/```json|```/g,'').trim();
-      const sd=JSON.parse(sc.slice(sc.indexOf('{'),sc.lastIndexOf('}')+1));
+      var summaryPrompt="Based on these "+geo+" healthtech market sections, write a 3-sentence executive summary and identify the single biggest key theme. Return JSON only: {\"executiveSummary\":\"...\",\"keyTheme\":\"...\"}\\nSections: "+JSON.stringify(lastTrendsData.sections.map(function(s){return {title:s.title,summary:s.summary};}));
+      var st=await callOR([{role:"user",content:summaryPrompt}],400);
+      var sd=parseJSON(st);
       lastTrendsData.executiveSummary=sd.executiveSummary||'';
       lastTrendsData.keyTheme=sd.keyTheme||'';
     }catch(e){}
-    // Update summary shell
-    const shell=document.getElementById('digest-summary-shell');
+    var high2=lastTrendsData.sections.reduce(function(a,s){return a+(s.items?s.items.filter(function(x){return x.relevance==='High';}).length:0);},0);
+    var shell=document.getElementById('digest-summary-shell');
     if(shell){
-      const high=lastTrendsData.sections.reduce((a,s)=>a+(s.items?.filter(x=>x.relevance==='High').length||0),0);
       shell.style.opacity='1';
-      shell.innerHTML=`
-        <div class="ds-left">
-          <h3>📈 ${lastTrendsData.period} · ${geo} · ${lastTrendsData.generatedAt}</h3>
-          <p>${lastTrendsData.executiveSummary||'Digest complete.'}</p>
-          ${lastTrendsData.keyTheme?`<div style="margin-top:10px;font-size:12px;color:var(--a);font-weight:600;">Key theme: ${lastTrendsData.keyTheme}</div>`:''}
-        </div>
-        <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;">
-          <div class="ds-stats">
-            <div class="ds-stat"><div class="dsn">${lastTrendsData.totalSignals}</div><div class="dsl">Signals</div></div>
-            <div class="ds-stat"><div class="dsn" style="color:#4ade80;">${high}</div><div class="dsl">High impact</div></div>
-            <div class="ds-stat"><div class="dsn">${lastTrendsData.sections.length}</div><div class="dsl">Categories</div></div>
-          </div>
-          <button class="btn btn-pdf sm" onclick="exportTrendsPDF()">⬇ Export PDF</button>
-        </div>`;
+      shell.innerHTML='<div class="ds-left"><h3>&#128200; '+lastTrendsData.period+' &middot; '+geo+' &middot; '+lastTrendsData.generatedAt+'</h3><p>'+(lastTrendsData.executiveSummary||'Digest complete.')+'</p>'+(lastTrendsData.keyTheme?'<div style="margin-top:10px;font-size:12px;color:var(--a);font-weight:600;">Key theme: '+lastTrendsData.keyTheme+'</div>':'')+'</div><div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;"><div class="ds-stats"><div class="ds-stat"><div class="dsn">'+lastTrendsData.totalSignals+'</div><div class="dsl">Signals</div></div><div class="ds-stat"><div class="dsn" style="color:#4ade80;">'+high2+'</div><div class="dsl">High impact</div></div><div class="ds-stat"><div class="dsn">'+lastTrendsData.sections.length+'</div><div class="dsl">Categories</div></div></div><button class="btn btn-pdf sm" onclick="exportTrendsPDF()">&#8595; Export PDF</button></div>';
     }
-    // Cache the rendered HTML for this view so toggling preserves it
     trendsData[isIndia?'india':'global']=document.getElementById('trends-results').innerHTML;
-    lastTrendsData=lastTrendsData; // keep reference for PDF export
     localStorage.setItem('last_trends_run',new Date().toISOString());
     updateTrendsLastRun();
-  updateViralLastRun();
-    toast(`Digest ready · ${lastTrendsData.totalSignals} signals · ${isIndia?'🇮🇳 India':'🌍 Global'}`);
+    toast('Digest ready &middot; '+lastTrendsData.totalSignals+' signals &middot; '+geo);
   } else {
-    document.getElementById('trends-results').innerHTML=`<div class="sbox"><div class="sb-ico">⚠️</div><h3>All sections failed</h3><p>Check your API key and try again.</p></div>`;
+    document.getElementById('trends-results').innerHTML='<div class="sbox"><div class="sb-ico">&#9888;&#65039;</div><h3>All sections failed</h3><p>Check your API key and try again.</p></div>';
     toast('Generation failed','err');
   }
   btn.disabled=false;
-  btn.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span id="trends-btn-label">${isIndia?'Generate India Digest':'Generate Market Digest'}</span>`;
+  btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span id="trends-btn-label">'+(isIndia?'Generate India Digest':'Generate Market Digest')+'</span>';
 }
 
 function buildSectionHTML(sec){
-  const catClass={FDA:'tc-fda',Funding:'tc-fund',Clinical:'tc-clin',Tech:'tc-tech',India:'tc-fund',Food:'tc-tech',FSSAI:'tc-fda',Stats:'tc-clin'};
-  const badgeClass={FDA:'tcb-fda',Funding:'tcb-fund',Clinical:'tcb-clin',Tech:'tcb-tech',India:'tcb-fund',Food:'tcb-tech',FSSAI:'tcb-fda',Stats:'tcb-clin'};
-  const hdrClass={startups:'tsh-fund',food:'tsh-tech',fssai:'tsh-fda',stats:'tsh-clin',fda:'tsh-fda',funding:'tsh-fund',clinical:'tsh-clin',tech:'tsh-tech'};
-  const relClass={High:'tc-r-high',Medium:'tc-r-med',Low:'tc-r-low'};
-  return `<div class="trends-section">
-    <div class="trends-section-header">
-      <span class="tsh-icon ${hdrClass[sec.id]||''}">${sec.icon}</span>
-      ${sec.title}
-      <span style="font-size:11.5px;color:var(--t2);font-weight:400;text-transform:none;letter-spacing:0;">${sec.summary||''}</span>
-      <span class="tsh-count">${sec.items?.length||0} signals</span>
-    </div>
-    <div class="trends-grid">
-      ${(sec.items||[]).map(item=>`
-        <div class="trend-card ${catClass[item.category]||'tc-tech'}">
-          <div class="tc-top">
-            <div class="tc-title">${item.title}</div>
-            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;">
-              <span class="tc-badge ${badgeClass[item.category]||'tcb-tech'}">${item.category}</span>
-              ${item.geo?`<span style="font-size:9px;color:var(--t3);">${item.geo}</span>`:''}
-            </div>
-          </div>
-          <div class="tc-body">${item.body}</div>
-          <div class="tc-impact">💡 ${item.impact}</div>
-          <div class="tc-ft">
-            <span class="tc-date">${item.date}${item.sourceHint?` · <em style="color:var(--t3);">${item.sourceHint}</em>`:''}</span>
-            <span class="tc-relevance ${relClass[item.relevance]||'tc-r-low'}">● ${item.relevance}</span>
-          </div>
-        </div>`).join('')}
-    </div>
-  </div>`;
+  var catClass={FDA:'tc-fda',Funding:'tc-fund',Clinical:'tc-clin',Tech:'tc-tech',India:'tc-fund',Food:'tc-tech',FSSAI:'tc-fda',Stats:'tc-clin'};
+  var badgeClass={FDA:'tcb-fda',Funding:'tcb-fund',Clinical:'tcb-clin',Tech:'tcb-tech',India:'tcb-fund',Food:'tcb-tech',FSSAI:'tcb-fda',Stats:'tcb-clin'};
+  var relClass={High:'tc-r-high',Medium:'tc-r-med',Low:'tc-r-low'};
+  return '<div class="trends-section"><div class="trends-section-header"><span class="tsh-icon">'+(sec.icon||'')+'</span>'+sec.title+'<span style="font-size:11.5px;color:var(--t2);font-weight:400;text-transform:none;letter-spacing:0;">'+(sec.summary||'')+'</span><span class="tsh-count">'+(sec.items&&sec.items.length||0)+' signals</span></div><div class="trends-grid">'+((sec.items||[]).map(function(item){return '<div class="trend-card '+(catClass[item.category]||'tc-tech')+'"><div class="tc-top"><div class="tc-title">'+item.title+'</div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;"><span class="tc-badge '+(badgeClass[item.category]||'tcb-tech')+'">'+item.category+'</span>'+(item.geo?'<span style="font-size:9px;color:var(--t3);">'+item.geo+'</span>':'')+'</div></div><div class="tc-body">'+item.body+'</div><div class="tc-impact">&#128161; '+item.impact+'</div><div class="tc-ft"><span class="tc-date">'+item.date+(item.sourceHint?' &middot; <em style="color:var(--t3);">'+item.sourceHint+'</em>':'')+'</span><span class="tc-relevance '+(relClass[item.relevance]||'tc-r-low')+'">&#9679; '+item.relevance+'</span></div></div>';}).join(''))+'</div></div>';
 }
 
-function updateTrendsLastRun(){
-  const last=localStorage.getItem('last_trends_run');if(!last)return;
-  const diff=Math.round((Date.now()-new Date(last))/60000);
-  const el=document.getElementById('trends-last-run');if(el)el.textContent=diff<60?`Last run ${diff}m ago`:`Last run ${Math.round(diff/60)}h ago`;
-}
+function updateTrendsLastRun(){var last=localStorage.getItem('last_trends_run');if(!last)return;var diff=Math.round((Date.now()-new Date(last))/60000);var el=document.getElementById('trends-last-run');if(el)el.textContent=diff<60?'Last run '+diff+'m ago':'Last run '+Math.round(diff/60)+'h ago';}
 
-// renderTrends replaced by buildSectionHTML + progressive rendering
-
-/* ── TRENDS PDF EXPORT ── */
 function exportTrendsPDF(){
-  if(!lastTrendsData)return toast('No digest generated yet','err');
-  const data=lastTrendsData;
-  const catColor={FDA:'#a78bfa',Funding:'#00e5ff',Clinical:'#38bdf8',Tech:'#fbbf24'};
-  const catBg={FDA:'#f5f3ff',Funding:'#ecfeff',Clinical:'#f0f9ff',Tech:'#fffbeb'};
-  const catBorder={FDA:'#ddd6fe',Funding:'#a5f3fc',Clinical:'#bae6fd',Tech:'#fde68a'};
-  const relColor={High:'#16a34a',Medium:'#d97706',Low:'#9ca3af'};
-  const totalItems=data.sections?.reduce((a,s)=>a+(s.items?.length||0),0)||0;
-  const highCount=data.sections?.reduce((a,s)=>a+(s.items?.filter(i=>i.relevance==='High').length||0),0)||0;
-
-  let sectionsHTML='';
-  data.sections?.forEach(sec=>{
-    sectionsHTML+=`
-      <div style="margin-bottom:28px;page-break-inside:avoid;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #e5e7eb;">
-          <span style="font-size:18px;">${sec.icon}</span>
-          <div>
-            <div style="font-size:14px;font-weight:700;color:#111;">${sec.title}</div>
-            <div style="font-size:12px;color:#555;margin-top:2px;">${sec.summary}</div>
-          </div>
-          <span style="margin-left:auto;font-size:11px;background:#f3f4f6;color:#6b7280;padding:3px 10px;border-radius:12px;">${sec.items?.length||0} signals</span>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          ${(sec.items||[]).map(item=>`
-            <div style="background:${catBg[item.category]||'#f9fafb'};border:1px solid ${catBorder[item.category]||'#e5e7eb'};border-radius:8px;padding:14px;border-left:3px solid ${catColor[item.category]||'#6b7280'};">
-              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:7px;">
-                <div style="font-size:12.5px;font-weight:600;color:#111;line-height:1.4;flex:1;">${item.title}</div>
-                <span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;background:${catColor[item.category]}22;color:${catColor[item.category]};text-transform:uppercase;flex-shrink:0;">${item.category}</span>
-              </div>
-              <div style="font-size:11.5px;color:#444;line-height:1.6;margin-bottom:8px;">${item.body}</div>
-              <div style="font-size:11px;color:#0088cc;background:#eff6ff;padding:6px 9px;border-radius:4px;line-height:1.5;margin-bottom:8px;">💡 ${item.impact}</div>
-              <div style="display:flex;justify-content:space-between;font-size:10.5px;color:#6b7280;">
-                <span>${item.date}</span>
-                <span style="font-weight:600;color:${relColor[item.relevance]||'#6b7280'};">● ${item.relevance} relevance</span>
-              </div>
-            </div>`).join('')}
-        </div>
-      </div>`;
+  if(!lastTrendsData||!lastTrendsData.sections||!lastTrendsData.sections.length)return toast('No digest generated yet','err');
+  var data=lastTrendsData;var relColor={High:'#16a34a',Medium:'#d97706',Low:'#9ca3af'};
+  var shtml='';
+  data.sections.forEach(function(sec){
+    shtml+='<div style="margin-bottom:28px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #e5e7eb;"><div style="font-size:14px;font-weight:700;color:#111;">'+sec.title+'</div><span style="margin-left:auto;font-size:11px;background:#f3f4f6;color:#6b7280;padding:3px 10px;border-radius:12px;">'+(sec.items&&sec.items.length||0)+' signals</span></div>';
+    shtml+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">';
+    (sec.items||[]).forEach(function(item){
+      shtml+='<div style="background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:14px;border-left:3px solid #0088cc;"><div style="font-size:12.5px;font-weight:600;margin-bottom:6px;color:#111;">'+item.title+'</div><div style="font-size:11.5px;color:#444;line-height:1.6;margin-bottom:7px;">'+item.body+'</div><div style="font-size:11px;color:#0088cc;background:#eff6ff;padding:6px 9px;border-radius:4px;margin-bottom:7px;">&#128161; '+item.impact+'</div><div style="display:flex;justify-content:space-between;font-size:10.5px;color:#6b7280;"><span>'+item.date+(item.sourceHint?' &middot; '+item.sourceHint:'')+'</span><span style="font-weight:600;color:'+(relColor[item.relevance]||'#6b7280')+';">&#9679; '+item.relevance+'</span></div></div>';
+    });
+    shtml+='</div></div>';
   });
-
-  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"/>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Helvetica Neue',Arial,sans-serif;color:#111;background:#fff;padding:40px;max-width:1000px;margin:0 auto;}
-    @media print{body{padding:20px;}@page{margin:15mm;size:A4;}}
-  </style></head><body>
-
-  <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px;padding-bottom:20px;border-bottom:3px solid #0088cc;">
-    <div>
-      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#0088cc;margin-bottom:8px;">PM Intelligence Hub · Market Trends Digest</div>
-      <h1 style="font-size:26px;font-weight:700;color:#111;margin-bottom:6px;">${data.period} · ${data.geography||'Global'}</h1>
-      <p style="font-size:13px;color:#555;line-height:1.6;max-width:560px;">${data.executiveSummary}</p>
-      ${data.keyTheme?`<div style="margin-top:10px;font-size:12px;color:#0088cc;font-weight:600;">Key theme: ${data.keyTheme}</div>`:''}
-    </div>
-    <div style="text-align:right;flex-shrink:0;padding-left:20px;">
-      <div style="font-size:11px;color:#888;margin-bottom:4px;">Generated</div>
-      <div style="font-size:12px;font-weight:600;color:#333;">${data.generatedAt}</div>
-      <div style="display:flex;gap:16px;margin-top:12px;">
-        <div style="text-align:center;"><div style="font-size:22px;font-weight:700;color:#0088cc;">${totalItems}</div><div style="font-size:10px;color:#888;text-transform:uppercase;">Signals</div></div>
-        <div style="text-align:center;"><div style="font-size:22px;font-weight:700;color:#16a34a;">${highCount}</div><div style="font-size:10px;color:#888;text-transform:uppercase;">High Impact</div></div>
-        <div style="text-align:center;"><div style="font-size:22px;font-weight:700;color:#0088cc;">${data.sections?.length||0}</div><div style="font-size:10px;color:#888;text-transform:uppercase;">Categories</div></div>
-      </div>
-    </div>
-  </div>
-
-  ${sectionsHTML}
-
-  <div style="margin-top:32px;padding-top:14px;border-top:1px solid #e5e7eb;font-size:10px;color:#aaa;">
-    Generated by PM IntelHub · ${new Date().toISOString()} · Based on AI analysis — verify with primary sources before strategic decisions.
-  </div>
-  </body></html>`;
-
-  const w=window.open('','_blank','width=1100,height=900');
-  w.document.write(html);w.document.close();
-  w.onload=()=>setTimeout(()=>w.print(),400);
-  toast('PDF export opened — use browser Print dialog');
+  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"/><style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:Helvetica,Arial,sans-serif;color:#111;padding:40px;max-width:1000px;margin:0 auto;}@media print{@page{margin:15mm;size:A4;}}</style></head><body><div style="border-bottom:3px solid #0088cc;padding-bottom:20px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:flex-start;"><div><div style="font-size:10px;color:#0088cc;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">PM Intelligence Hub &middot; Market Trends Digest</div><h1 style="font-size:26px;font-weight:700;margin-bottom:6px;">'+data.period+' &middot; '+(data.geography||'Global')+'</h1><p style="font-size:13px;color:#555;max-width:560px;line-height:1.6;">'+(data.executiveSummary||'')+'</p></div><div style="text-align:right;"><div style="font-size:11px;color:#888;">Generated</div><div style="font-size:12px;font-weight:600;color:#333;">'+data.generatedAt+'</div></div></div>'+shtml+'<div style="margin-top:32px;padding-top:14px;border-top:1px solid #ddd;font-size:10px;color:#aaa;">Generated by PM IntelHub &middot; '+new Date().toISOString()+'</div></body></html>';
+  var w=window.open('','_blank','width=1100,height=900');w.document.write(html);w.document.close();w.onload=function(){setTimeout(function(){w.print();},400);};
+  toast('PDF export opened');
 }
+
+/* VIRAL FEED */
+async function runViral(){
+  if(!getKey())return toast('Save your API key first','err');
+  var cats=[];
+  if(document.getElementById('vcat-tech').checked)    cats.push('Tech and product news: Apple, Google, Samsung, MKBHD-style consumer tech, app updates, platform changes');
+  if(document.getElementById('vcat-privacy').checked) cats.push('Privacy and data scandals: apps harvesting data, surveillance, leaks, TOS controversies like Pokemon Go and Facebook');
+  if(document.getElementById('vcat-startup').checked) cats.push('Startup and funding drama: layoffs, pivots, founder controversies, VC blow-ups, product failures');
+  if(document.getElementById('vcat-health').checked)  cats.push('Health and wellness viral moments: fitness trends, food science controversies, wearables drama');
+  if(document.getElementById('vcat-india').checked)   cats.push('India viral tech and startup news: app bans, Zomato Swiggy controversies, unicorn news, BGMI, Jio, UPI stories');
+  if(!cats.length)return toast('Select at least one category','err');
+
+  var btn=document.getElementById('viral-btn');
+  btn.disabled=true;
+  btn.innerHTML='<span class="spin" style="width:13px;height:13px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:7px"></span>Finding stories...';
+  document.getElementById('viral-results').innerHTML='<div class="sbox"><div class="spin"></div><h3>Hunting viral stories</h3><p>Finding the 5 most tweet-worthy stories right now...</p></div>';
+
+  var catList=cats.map(function(c,i){return (i+1)+'. '+c;}).join('\n');
+  var prompt='You are a social media strategist and tech journalist who knows what goes viral on Twitter/X.\n'
+    +'The user is building a Twitter account. Their vibe: informed, slightly edgy, like a smart PM who follows MKBHD, reads TechCrunch and ET.\n\n'
+    +'Pick exactly 5 stories across these categories that are CURRENTLY viral or high-engagement:\n'
+    +catList+'\n\n'
+    +'Return ONLY valid JSON:\n'
+    +'{"stories":[{"rank":1,"headline":"Punchy headline max 12 words","category":"Tech","platform":"Twitter/X","why":"2-3 sentences on what happened and why people care","tweetAngle":"Strong 1-sentence opinionated take. Punchy.","viralScore":85,"heat":"Fire","sourceHint":"TechCrunch"}]}\n'
+    +'Rules: exactly 5 stories, viralScore 0-100, heat = Fire or Hot or Warm, mix categories, return only JSON.';
+
+  try{
+    var text=await callOR([{role:'user',content:prompt}],1800);
+    var c=text.replace(/```json/g,'').replace(/```/g,'').trim();
+    var data=JSON.parse(c.slice(c.indexOf('{'),c.lastIndexOf('}')+1));
+    renderViral(data.stories||[]);
+    localStorage.setItem('last_viral_run',new Date().toISOString());
+    updateViralLastRun();
+    toast((data.stories&&data.stories.length||0)+' viral stories loaded');
+  }catch(e){
+    document.getElementById('viral-results').innerHTML='<div class="sbox"><div class="sb-ico">&#9888;&#65039;</div><h3>Failed</h3><p>'+e.message+'</p></div>';
+    toast('Failed: '+e.message,'err');
+  }
+  btn.disabled=false;
+  btn.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0016 2a4.48 4.48 0 00-4.48 4.48v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>Refresh Stories';
+}
+
+function renderViral(stories){
+  if(!stories||!stories.length){document.getElementById('viral-results').innerHTML='<div class="sbox"><div class="sb-ico">&#128293;</div><h3>No stories found</h3><p>Try again.</p></div>';return;}
+  var catClass={Tech:'vc-tech',Privacy:'vc-privacy',Startup:'vc-startup',Health:'vc-health',India:'vc-india'};
+  var rankClass={Tech:'vcr-tech',Privacy:'vcr-privacy',Startup:'vcr-startup',Health:'vcr-health',India:'vcr-india'};
+  var catBadge={Tech:'vcc-tech',Privacy:'vcc-privacy',Startup:'vcc-startup',Health:'vcc-health',India:'vcc-india'};
+  var heatEmoji={Fire:'&#128293;',Hot:'&#9928;&#65039;',Warm:'&#128200;'};
+  var heatClass={Fire:'vh-fire',Hot:'vh-hot',Warm:'vh-warm'};
+  var html='<div class="viral-grid">';
+  stories.forEach(function(s){
+    html+='<div class="viral-card '+(catClass[s.category]||'vc-tech')+'">'
+      +'<div class="vc-rank '+(rankClass[s.category]||'vcr-tech')+'">#'+s.rank+'</div>'
+      +'<div class="vc-body">'
+        +'<div class="vc-meta">'
+          +'<span class="vc-cat '+(catBadge[s.category]||'vcc-tech')+'">'+s.category+'</span>'
+          +'<span class="vc-platform">'+s.platform+'</span>'
+          +'<span class="vc-heat '+(heatClass[s.heat]||'vh-warm')+'">'+(heatEmoji[s.heat]||'&#128200;')+' '+s.heat+'</span>'
+          +'<span style="font-size:10.5px;color:var(--t3);">via '+s.sourceHint+'</span>'
+        +'</div>'
+        +'<div class="vc-headline">'+s.headline+'</div>'
+        +'<div class="vc-why">'+s.why+'</div>'
+        +'<div class="vc-angle">'+s.tweetAngle+'</div>'
+      +'</div>'
+      +'<div class="vc-right">'
+        +'<div class="vc-viral-score"><div class="vvs-num">'+s.viralScore+'</div><div class="vvs-lbl">Viral</div></div>'
+      +'</div>'
+    +'</div>';
+  });
+  html+='</div>';
+  document.getElementById('viral-results').innerHTML=html;
+}
+
+function updateViralLastRun(){
+  var last=localStorage.getItem('last_viral_run');if(!last)return;
+  var diff=Math.round((Date.now()-new Date(last))/60000);
+  var el=document.getElementById('viral-last-run');
+  if(el)el.textContent=diff<2?'Just now':diff<60?diff+'m ago':Math.round(diff/60)+'h ago';
+}
+
+/* EXPORTS */
+function exportTxt(){if(!lastSwotData)return toast('No profile loaded','err');var data=lastSwotData;var m=data.market||{};var lines=['COMPETITIVE PROFILE: '+data.company.toUpperCase(),'Generated: '+new Date(),'',data.overview,'','SWOT ANALYSIS','---','STRENGTHS:',...data.swot.strengths.map(function(s){return '  - '+s;}),'','WEAKNESSES:',...data.swot.weaknesses.map(function(s){return '  - '+s;}),'','OPPORTUNITIES:',...data.swot.opportunities.map(function(s){return '  - '+s;}),'','THREATS:',...data.swot.threats.map(function(s){return '  - '+s;}),'','MARKET POSITION','---','Market Share: '+(m.estimatedMarketShare||'N/A'),'Revenue: '+(m.revenueEstimate||'N/A'),'Competitive Threat: '+(m.competitiveThreat||'N/A')+'/100'];dl(lines.join('\n'),'profile-'+data.company.toLowerCase().replace(/\s/g,'-')+'-'+today()+'.txt');toast('Text export downloaded');}
+function exportResults(){if(!scanResults.length)return;var lines=['PM INTELLIGENCE HUB - COMPETITOR RADAR','Generated: '+new Date(),'','---',...scanResults.flatMap(function(r,i){return [(i+1)+'. '+r.company+' ['+r.tag+']','   '+r.headline,'   '+r.summary,'   '+r.sourceName+' - '+r.timeAgo,''];})];dl(lines.join('\n'),'radar-'+today()+'.txt');toast('Brief exported');}
+function exportClinical(){var lines=['CLINICAL STUDY TRANSLATION','Generated: '+new Date(),'','CEO SUMMARY','---',clinicalOutputs.ceo,'','MARKETING HOOK','---',clinicalOutputs.marketing,'','SALES ANGLE','---',clinicalOutputs.sales];dl(lines.join('\n'),'clinical-'+today()+'.txt');toast('Translation exported');}
+function dl(content,filename){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type:'text/plain'}));a.download=filename;a.click();}
+function today(){return new Date().toISOString().split('T')[0];}
+function toast(msg,type){type=type||'ok';var t=document.getElementById('toast');t.textContent=msg;t.className='toast show '+type;setTimeout(function(){t.classList.remove('show');},3500);}
 </script>
 </body>
 </html>
