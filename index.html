@@ -303,6 +303,64 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
   .acc-b { display:block !important; }
 }
 
+/* ── VIRAL FEED ── */
+.viral-grid { display:flex;flex-direction:column;gap:12px; }
+.viral-card {
+  background:var(--s1);border:1px solid var(--b2);border-radius:var(--r);
+  padding:18px 20px;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:start;
+  transition:all 0.2s;position:relative;overflow:hidden;
+}
+.viral-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.viral-card:hover{border-color:var(--b1);transform:translateX(2px);box-shadow:0 4px 24px rgba(0,0,0,0.25);}
+.vc-tech::before    {background:#00e5ff;}
+.vc-privacy::before {background:#a78bfa;}
+.vc-startup::before {background:#fbbf24;}
+.vc-health::before  {background:#4ade80;}
+.vc-india::before   {background:#f97316;}
+
+.vc-rank {
+  width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#fff;flex-shrink:0;
+}
+.vcr-tech    {background:rgba(0,229,255,0.12);color:var(--a);}
+.vcr-privacy {background:rgba(167,139,250,0.12);color:#c4b5fd;}
+.vcr-startup {background:rgba(251,191,36,0.12);color:#fcd34d;}
+.vcr-health  {background:rgba(74,222,128,0.12);color:#4ade80;}
+.vcr-india   {background:rgba(249,115,22,0.12);color:#fb923c;}
+
+.vc-body { flex:1;min-width:0; }
+.vc-meta { display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap; }
+.vc-cat  { font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;padding:2px 8px;border-radius:4px; }
+.vcc-tech    {background:rgba(0,229,255,0.08);color:var(--a);}
+.vcc-privacy {background:rgba(167,139,250,0.08);color:#c4b5fd;}
+.vcc-startup {background:rgba(251,191,36,0.08);color:#fcd34d;}
+.vcc-health  {background:rgba(74,222,128,0.08);color:#4ade80;}
+.vcc-india   {background:rgba(249,115,22,0.08);color:#fb923c;}
+
+.vc-platform {font-size:10.5px;color:var(--t3);font-weight:500;}
+.vc-heat     {font-size:10.5px;font-weight:700;}
+.vh-fire     {color:#f87171;}
+.vh-hot      {color:#fbbf24;}
+.vh-warm     {color:var(--t2);}
+.vc-headline {font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#fff;line-height:1.4;margin-bottom:8px;}
+.vc-why      {font-size:12.5px;color:var(--t2);line-height:1.65;margin-bottom:10px;}
+.vc-angle    {
+  font-size:12px;color:var(--a);line-height:1.55;
+  padding:8px 12px;background:rgba(0,229,255,0.04);
+  border:1px solid rgba(0,229,255,0.1);border-radius:var(--r2);
+  font-style:italic;
+}
+.vc-angle::before{content:'"';margin-right:3px;opacity:0.5;}
+.vc-angle::after{content:'"';margin-left:3px;opacity:0.5;}
+.vc-right { display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0; }
+.vc-viral-score {
+  text-align:center;padding:8px 12px;
+  background:var(--bg);border:1px solid var(--b2);border-radius:var(--r2);
+  min-width:58px;
+}
+.vvs-num  {font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff;line-height:1;}
+.vvs-lbl  {font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
+
 .print-header,.print-footer { display:none; }
 
 /* ── TRENDS ── */
@@ -381,6 +439,7 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
     <button class="ctab" onclick="switchTab('swot',this)"><span>🔬</span>SWOT Analyzer<span class="tab-pip"></span></button>
     <button class="ctab" onclick="switchTab('trends',this)"><span>📈</span>Market Trends<span class="tab-pip"></span></button>
     <button class="ctab" onclick="switchTab('briefs',this)"><span>✍️</span>Brief Writer<span class="tab-soon">Phase 2</span></button>
+    <button class="ctab" onclick="switchTab('viral',this)"><span>🔥</span>Viral Feed<span class="tab-pip"></span></button>
   </div>
   <div class="cmd-r">
     <div class="cmd-date" id="cmd-date"></div>
@@ -596,6 +655,35 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
   <div class="wp" id="panel-briefs">
     <div class="cs"><div class="cs-ring">✍️</div><div class="pbadge">Phase 2</div><h2>Brief Writer</h2><p>Auto-generate investor updates, internal briefs, and marketing copy from your Radar and SWOT data.</p></div>
   </div>
+
+  <!-- VIRAL FEED -->
+  <div class="wp" id="panel-viral">
+    <div class="ph">
+      <div><h1>🔥 Viral Feed</h1><p>Stories worth your opinion · Tech · Privacy · Startup drama · Health · India · 5 picks per refresh</p></div>
+    </div>
+
+    <!-- CATEGORY FILTERS -->
+    <div class="card" style="margin-bottom:18px;padding:14px 18px;">
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+        <span class="ct" style="margin:0;flex-shrink:0;"><span class="ct-i">🎯</span>Categories</span>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="vcat-tech" checked style="accent-color:var(--a);width:13px;height:13px;"/> 💻 Tech</label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="vcat-privacy" checked style="accent-color:var(--a);width:13px;height:13px;"/> 🔐 Privacy</label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="vcat-startup" checked style="accent-color:var(--a);width:13px;height:13px;"/> 💸 Startup Drama</label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="vcat-health" checked style="accent-color:var(--a);width:13px;height:13px;"/> 🏃 Health</label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--t2);cursor:pointer;"><input type="checkbox" id="vcat-india" checked style="accent-color:var(--a);width:13px;height:13px;"/> 🇮🇳 India</label>
+        <button class="btn-action" id="viral-btn" onclick="runViral()" style="margin-left:auto;padding:8px 18px;font-size:13px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0016 2a4.48 4.48 0 00-4.48 4.48v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+          Refresh Stories
+        </button>
+        <span class="hint" id="viral-last-run"></span>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="viral-results">
+      <div class="sbox"><div class="sb-ico">🔥</div><h3>No stories yet</h3><p>Select categories and hit Refresh Stories to load your viral feed.</p></div>
+    </div>
+  </div>
 </div>
 
 <div id="toast"></div>
@@ -617,6 +705,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const savedCtx=localStorage.getItem('my_product_ctx');
   if(savedCtx)document.getElementById('my-product-ctx').value=savedCtx;
   updateTrendsLastRun();
+  updateViralLastRun();
 });
 
 function saveProductCtx(){
@@ -1385,6 +1474,7 @@ Sections: ${JSON.stringify(lastTrendsData.sections.map(s=>({title:s.title,summar
     lastTrendsData=lastTrendsData; // keep reference for PDF export
     localStorage.setItem('last_trends_run',new Date().toISOString());
     updateTrendsLastRun();
+  updateViralLastRun();
     toast(`Digest ready · ${lastTrendsData.totalSignals} signals · ${isIndia?'🇮🇳 India':'🌍 Global'}`);
   } else {
     document.getElementById('trends-results').innerHTML=`<div class="sbox"><div class="sb-ico">⚠️</div><h3>All sections failed</h3><p>Check your API key and try again.</p></div>`;
