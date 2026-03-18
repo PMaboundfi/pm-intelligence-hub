@@ -495,7 +495,7 @@ textarea.field{resize:vertical;line-height:1.6;min-height:90px;}
         <span class="hint" id="viral-last-run"></span>
       </div>
     </div>
-    <div id="viral-results"><div class="sbox"><div class="sb-ico">&#128293;</div><h3>No stories yet</h3><p>Select categories and hit Refresh Stories to load your viral feed.</p></div></div>
+    <div id="viral-results"><div class="sbox"><div class="sb-ico">&#128293;</div><h3>No stories yet</h3><p>Uses live web search via OpenRouter &middot; Stories from the last 7 days only &middot; Select categories and hit Refresh.</p></div></div>
   </div>
 
   <!-- BRIEFS -->
@@ -849,38 +849,74 @@ function exportTrendsPDF(){
 }
 
 /* VIRAL FEED */
+async function callORWithWebSearch(messages, maxTokens){
+  maxTokens = maxTokens||2500;
+  var key=getKey(); if(!key) throw new Error('No API key saved');
+  // Use claude-3.5-sonnet on openrouter which supports :online suffix for web search
+  var body={
+    model: 'anthropic/claude-3.5-sonnet:online',
+    messages: messages,
+    max_tokens: maxTokens,
+    temperature: 0.3
+  };
+  var res=await fetch(OR_ENDPOINT,{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+key,'HTTP-Referer':'https://pm-intelligence-hub.vercel.app','X-Title':'PM Intelligence Hub'},
+    body:JSON.stringify(body)
+  });
+  if(!res.ok){var e=await res.json();throw new Error(e.error&&e.error.message?e.error.message:'API '+res.status);}
+  var d=await res.json();
+  return (d.choices&&d.choices[0]&&d.choices[0].message&&d.choices[0].message.content)||'';
+}
+
 async function runViral(){
   if(!getKey())return toast('Save your API key first','err');
   var cats=[];
-  if(document.getElementById('vcat-tech').checked)    cats.push('Tech and product news: Apple, Google, Samsung, MKBHD-style consumer tech, app updates, platform changes');
-  if(document.getElementById('vcat-privacy').checked) cats.push('Privacy and data scandals: apps harvesting data, surveillance, leaks, TOS controversies like Pokemon Go and Facebook');
+  if(document.getElementById('vcat-tech').checked)    cats.push('Tech and product news: Apple, Google, Samsung, consumer tech, app updates, platform changes');
+  if(document.getElementById('vcat-privacy').checked) cats.push('Privacy and data scandals: apps harvesting data, surveillance, leaks, TOS controversies');
   if(document.getElementById('vcat-startup').checked) cats.push('Startup and funding drama: layoffs, pivots, founder controversies, VC blow-ups, product failures');
-  if(document.getElementById('vcat-health').checked)  cats.push('Health and wellness viral moments: fitness trends, food science controversies, wearables drama');
-  if(document.getElementById('vcat-india').checked)   cats.push('India viral tech and startup news: app bans, Zomato Swiggy controversies, unicorn news, BGMI, Jio, UPI stories');
+  if(document.getElementById('vcat-health').checked)  cats.push('Health and wellness viral moments: fitness trends, food science controversies, wearables');
+  if(document.getElementById('vcat-india').checked)   cats.push('India viral tech and startup news: Indian app bans, Zomato Swiggy news, unicorn funding, BGMI, Jio, UPI stories');
   if(!cats.length)return toast('Select at least one category','err');
 
   var btn=document.getElementById('viral-btn');
   btn.disabled=true;
-  btn.innerHTML='<span class="spin" style="width:13px;height:13px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:7px"></span>Finding stories...';
-  document.getElementById('viral-results').innerHTML='<div class="sbox"><div class="spin"></div><h3>Hunting viral stories</h3><p>Finding the 5 most tweet-worthy stories right now...</p></div>';
+  btn.innerHTML='<span class="spin" style="width:13px;height:13px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:7px"></span>Searching live news...';
+  document.getElementById('viral-results').innerHTML='<div class="sbox"><div class="spin"></div><h3>Searching live web for viral stories</h3><p>Using web search to find what is trending RIGHT NOW on Twitter/X... 20-40 seconds</p></div>';
 
+  var today=new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
   var catList=cats.map(function(c,i){return (i+1)+'. '+c;}).join('\n');
-  var prompt='You are a social media strategist and tech journalist who knows what goes viral on Twitter/X.\n'
-    +'The user is building a Twitter account. Their vibe: informed, slightly edgy, like a smart PM who follows MKBHD, reads TechCrunch and ET.\n\n'
-    +'Pick exactly 5 stories across these categories that are CURRENTLY viral or high-engagement:\n'
-    +catList+'\n\n'
-    +'Return ONLY valid JSON:\n'
-    +'{"stories":[{"rank":1,"headline":"Punchy headline max 12 words","category":"Tech","platform":"Twitter/X","why":"2-3 sentences on what happened and why people care","tweetAngle":"Strong 1-sentence opinionated take. Punchy.","viralScore":85,"heat":"Fire","sourceHint":"TechCrunch"}]}\n'
-    +'Rules: exactly 5 stories, viralScore 0-100, heat = Fire or Hot or Warm, mix categories, return only JSON.';
+
+  var prompt='You are a social media strategist and tech journalist. Today is '+today+'.'
+    +'\n\nSEARCH THE WEB NOW for the latest viral news stories trending on Twitter/X TODAY or this week.'
+    +'\nSearch for terms like "trending Twitter today", "viral tech news this week", "India tech news today", etc.'
+    +'\nOnly report stories from the last 7 days. Do NOT use stories from 2023 or early 2024.'
+    +'\n\nCategories the user wants:\n'+catList
+    +'\n\nAfter searching, pick exactly 5 of the most viral, tweet-worthy stories you found.'
+    +'\nThe user wants to quote-tweet these with strong opinions. Vibe: smart PM, slightly edgy, like MKBHD meets ET tech.'
+    +'\n\nReturn ONLY valid JSON, no markdown:'
+    +'\n{"stories":[{'
+    +'\n  "rank":1,'
+    +'\n  "headline":"Punchy accurate headline based on real news you found, max 12 words",'
+    +'\n  "category":"Tech|Privacy|Startup|Health|India",'
+    +'\n  "platform":"Where it is trending right now",'
+    +'\n  "why":"2-3 sentences on what actually happened this week and why people are talking",'
+    +'\n  "tweetAngle":"Strong opinionated 1-sentence take the user can post. No corporate speak.",'
+    +'\n  "viralScore":85,'
+    +'\n  "heat":"Fire|Hot|Warm",'
+    +'\n  "sourceHint":"Actual source you found e.g. TechCrunch, The Verge, Economic Times",'
+    +'\n  "publishedDate":"Actual date e.g. Mar 18 2025"'
+    +'\n}]}'
+    +'\nRules: exactly 5 stories, all from the last 7 days, viralScore 0-100, heat = Fire/Hot/Warm, mix categories. Return only JSON.';
 
   try{
-    var text=await callOR([{role:'user',content:prompt}],1800);
+    var text=await callORWithWebSearch([{role:'user',content:prompt}],2000);
     var c=text.replace(/```json/g,'').replace(/```/g,'').trim();
     var data=JSON.parse(c.slice(c.indexOf('{'),c.lastIndexOf('}')+1));
     renderViral(data.stories||[]);
     localStorage.setItem('last_viral_run',new Date().toISOString());
     updateViralLastRun();
-    toast((data.stories&&data.stories.length||0)+' viral stories loaded');
+    toast((data.stories&&data.stories.length||0)+' live stories loaded');
   }catch(e){
     document.getElementById('viral-results').innerHTML='<div class="sbox"><div class="sb-ico">&#9888;&#65039;</div><h3>Failed</h3><p>'+e.message+'</p></div>';
     toast('Failed: '+e.message,'err');
@@ -905,7 +941,7 @@ function renderViral(stories){
           +'<span class="vc-cat '+(catBadge[s.category]||'vcc-tech')+'">'+s.category+'</span>'
           +'<span class="vc-platform">'+s.platform+'</span>'
           +'<span class="vc-heat '+(heatClass[s.heat]||'vh-warm')+'">'+(heatEmoji[s.heat]||'&#128200;')+' '+s.heat+'</span>'
-          +'<span style="font-size:10.5px;color:var(--t3);">via '+s.sourceHint+'</span>'
+          +'<span style="font-size:10.5px;color:var(--t3);">via '+s.sourceHint+(s.publishedDate?' &middot; '+s.publishedDate:'')+'</span>'
         +'</div>'
         +'<div class="vc-headline">'+s.headline+'</div>'
         +'<div class="vc-why">'+s.why+'</div>'
